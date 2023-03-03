@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{90AC7194-C09F-4815-A00C-289D956E8E98}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>ConnexionOracle.My.MyApplication</StartupObject>
+    <RootNamespace>ConnexionOracle</RootNamespace>
+    <AssemblyName>ConnexionOracle</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ConnexionOracle.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>ConnexionOracle.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=2.111.7.20, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="Oracle.DataAccess.Client" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Delegue\Organiser\Creer_reunion.Designer.vb">
+      <DependentUpon>Creer_reunion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Delegue\Organiser\Creer_reunion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delegue\Delegue_Acceder_rapport_collegues.Designer.vb">
+      <DependentUpon>Delegue_Acceder_rapport_collegues.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Delegue\Delegue_Acceder_rapport_collegues.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delegue\Delegue_Accueil.Designer.vb">
+      <DependentUpon>Delegue_Accueil.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Delegue\Delegue_Accueil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delegue\Delegue_Enregistrer_donnees_attribution.Designer.vb">
+      <DependentUpon>Delegue_Enregistrer_donnees_attribution.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Delegue\Delegue_Enregistrer_donnees_attribution.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delegue\Delegue_Organiser_réunions_mensuelles .Designer.vb">
+      <DependentUpon>Delegue_Organiser_réunions_mensuelles .vb</DependentUpon>
+    </Compile>
+    <Compile Include="Delegue\Delegue_Organiser_réunions_mensuelles .vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Responsable\Responsable_Accueil.Designer.vb">
+      <DependentUpon>Responsable_Accueil.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Responsable\Responsable_Accueil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Responsable\Responsable_Effectuer_analyse.Designer.vb">
+      <DependentUpon>Responsable_Effectuer_analyse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Responsable\Responsable_Effectuer_analyse.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Responsable\Responsable_Gerer_approvisionnement_echantillon.Designer.vb">
+      <DependentUpon>Responsable_Gerer_approvisionnement_echantillon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Responsable\Responsable_Gerer_approvisionnement_echantillon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Responsable\Responsable_Gerer_nouveaux_visiteurs.Designer.vb">
+      <DependentUpon>Responsable_Gerer_nouveaux_visiteurs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Responsable\Responsable_Gerer_nouveaux_visiteurs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Responsable\Responsable_Organiser_soiree_information.Designer.vb">
+      <DependentUpon>Responsable_Organiser_soiree_information.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Responsable\Responsable_Organiser_soiree_information.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visiteur\Visiteur_Accueil.Designer.vb">
+      <DependentUpon>Visiteur_Accueil.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Visiteur\Visiteur_Accueil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Connect.Designer.vb">
+      <DependentUpon>Connect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Connect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Global_Variable.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Visiteur\Visiteur_Rediger_compte_rendu.Designer.vb">
+      <DependentUpon>Visiteur_Rediger_compte_rendu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Visiteur\Visiteur_Rediger_compte_rendu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visiteur\Visiteur_Consulter_compte_rendu.Designer.vb">
+      <DependentUpon>Visiteur_Consulter_compte_rendu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Visiteur\Visiteur_Consulter_compte_rendu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delegue\Organiser\Voir_reunion.Designer.vb">
+      <DependentUpon>Voir_reunion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Delegue\Organiser\Voir_reunion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visiteur\Rediger\Voir_Medicament.Designer.vb">
+      <DependentUpon>Voir_Medicament.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Visiteur\Rediger\Voir_Medicament.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Delegue\Organiser\Creer_reunion.resx">
+      <DependentUpon>Creer_reunion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delegue\Delegue_Acceder_rapport_collegues.resx">
+      <DependentUpon>Delegue_Acceder_rapport_collegues.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delegue\Delegue_Accueil.resx">
+      <DependentUpon>Delegue_Accueil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delegue\Delegue_Enregistrer_donnees_attribution.resx">
+      <DependentUpon>Delegue_Enregistrer_donnees_attribution.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delegue\Delegue_Organiser_réunions_mensuelles .resx">
+      <DependentUpon>Delegue_Organiser_réunions_mensuelles .vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Responsable\Responsable_Accueil.resx">
+      <DependentUpon>Responsable_Accueil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Responsable\Responsable_Effectuer_analyse.resx">
+      <DependentUpon>Responsable_Effectuer_analyse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Responsable\Responsable_Gerer_approvisionnement_echantillon.resx">
+      <DependentUpon>Responsable_Gerer_approvisionnement_echantillon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Responsable\Responsable_Gerer_nouveaux_visiteurs.resx">
+      <DependentUpon>Responsable_Gerer_nouveaux_visiteurs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Responsable\Responsable_Organiser_soiree_information.resx">
+      <DependentUpon>Responsable_Organiser_soiree_information.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visiteur\Rediger\Voir_Medicament.resx">
+      <DependentUpon>Voir_Medicament.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visiteur\Visiteur_Accueil.resx">
+      <DependentUpon>Visiteur_Accueil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Connect.resx">
+      <DependentUpon>Connect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visiteur\Visiteur_Rediger_compte_rendu.resx">
+      <DependentUpon>Visiteur_Rediger_compte_rendu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visiteur\Visiteur_Consulter_compte_rendu.resx">
+      <DependentUpon>Visiteur_Consulter_compte_rendu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delegue\Organiser\Voir_reunion.resx">
+      <DependentUpon>Voir_reunion.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\MicrosoftTeams-image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FLECHE_RETOUR.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche_petite.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\retour.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
