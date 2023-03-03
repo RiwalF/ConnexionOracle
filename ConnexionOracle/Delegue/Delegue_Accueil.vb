@@ -23,8 +23,8 @@ Public Class Accueil_Delegue
 
             Dim commande As String = "SELECT NOM,ID
                                     FROM DELEGUE_VISITEUR
-                                    WHERE PRENOM='" & Connect.TextBox_username.Text & "'
-                                    AND MDP='" & Connect.TextBox_MDP.Text & "'
+                                    WHERE PRENOM='" & Form1.TextBox_username.Text & "'
+                                    AND MDP='" & Form1.TextBox_MDP.Text & "'
                                     AND DV_DELEGUE=1"
             myCommand.Connection = myConnection
             myCommand.CommandText = commande
@@ -34,7 +34,7 @@ Public Class Accueil_Delegue
                 Nom = myReader.GetString(0)
                 id_utilisateur = myReader.GetString(1)
             End While
-            Prenom = Connect.TextBox_username.Text
+            Prenom = Form1.TextBox_username.Text
         End If
 
 
@@ -45,27 +45,33 @@ Public Class Accueil_Delegue
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button_retour.Click
         Nom = ""
         Prenom = ""
-        Connect.Show()
+        type_Utilisateur = ""
+        Form1.Show()
         Me.Close()
     End Sub
 
     Private Sub Button_acceder_Click(sender As Object, e As EventArgs) Handles Button_acceder.Click
         Delegue_Acceder_rapport_collegues.Show()
+        Me.Close()
     End Sub
 
     Private Sub Button_Organiser_Click(sender As Object, e As EventArgs) Handles Button_Organiser.Click
         Delegue_Organiser_réunions_mensuelles.Show()
+        Me.Close()
     End Sub
 
     Private Sub Button_Enregistrer_Click(sender As Object, e As EventArgs) Handles Button_Enregistrer.Click
         Delegue_Enregistrer_donnees_attribution.Show()
+        Me.Close()
     End Sub
 
     Private Sub Button_rediger_Click(sender As Object, e As EventArgs) Handles Button_rediger.Click
         Visiteur_Rediger_compte_rendu.Show()
+        Me.Close()
     End Sub
 
     Private Sub Button_consulter_Click(sender As Object, e As EventArgs) Handles Button_consulter.Click
         Visiteur_Consulter_compte_rendu.Show()
+        Me.Close()
     End Sub
 End Class

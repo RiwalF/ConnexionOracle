@@ -24,8 +24,8 @@ Public Class Accueil_Visiteur
 
             Dim commande As String = "SELECT NOM,ID
                                     FROM DELEGUE_VISITEUR
-                                    WHERE PRENOM='" & Connect.TextBox_username.Text & "'
-                                    AND MDP='" & Connect.TextBox_MDP.Text & "'
+                                    WHERE PRENOM='" & Form1.TextBox_username.Text & "'
+                                    AND MDP='" & Form1.TextBox_MDP.Text & "'
                                     AND DV_DELEGUE=0"
             myCommand.Connection = myConnection
             myCommand.CommandText = commande
@@ -35,7 +35,7 @@ Public Class Accueil_Visiteur
                 Nom = myReader.GetString(0)
                 id_utilisateur = myReader.GetString(1)
             End While
-            Prenom = Connect.TextBox_username.Text
+            Prenom = Form1.TextBox_username.Text
         End If
 
 
@@ -46,16 +46,19 @@ Public Class Accueil_Visiteur
 
     Private Sub Button_rediger_Click(sender As Object, e As EventArgs) Handles Button_rediger.Click
         Visiteur_Rediger_compte_rendu.Show()
+        Me.Close()
     End Sub
 
     Private Sub Button_consulter_Click(sender As Object, e As EventArgs) Handles Button_consulter.Click
         Visiteur_Consulter_compte_rendu.Show()
+        Me.Close()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Nom = ""
         Prenom = ""
-        Connect.Show()
+        type_Utilisateur = ""
+        Form1.Show()
         Me.Close()
     End Sub
 

@@ -22,186 +22,114 @@ Partial Class Form1
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Label_Tables = New System.Windows.Forms.Label()
-        Me.ComboBox_Tables = New System.Windows.Forms.ComboBox()
-        Me.DataGridView_Tables = New System.Windows.Forms.DataGridView()
-        Me.Button_Valider_les_modifications = New System.Windows.Forms.Button()
-        Me.GroupBox_Données = New System.Windows.Forms.GroupBox()
-        Me.GroupBox_Connexion = New System.Windows.Forms.GroupBox()
-        Me.Button_Connexion = New System.Windows.Forms.Button()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.TextBox_username = New System.Windows.Forms.TextBox()
+        Me.Label_username = New System.Windows.Forms.Label()
         Me.TextBox_MDP = New System.Windows.Forms.TextBox()
-        Me.Label_MDP = New System.Windows.Forms.Label()
-        Me.Label_Login = New System.Windows.Forms.Label()
-        Me.Label_DSN = New System.Windows.Forms.Label()
-        Me.TextBox_Login = New System.Windows.Forms.TextBox()
-        Me.TextBox_DSN = New System.Windows.Forms.TextBox()
-        Me.Button_to_CONNEXION = New System.Windows.Forms.Button()
-        CType(Me.DataGridView_Tables, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox_Données.SuspendLayout()
-        Me.GroupBox_Connexion.SuspendLayout()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button_Login = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label_Tables
+        'PictureBox1
         '
-        Me.Label_Tables.AutoSize = True
-        Me.Label_Tables.Location = New System.Drawing.Point(211, 22)
-        Me.Label_Tables.Name = "Label_Tables"
-        Me.Label_Tables.Size = New System.Drawing.Size(45, 13)
-        Me.Label_Tables.TabIndex = 2
-        Me.Label_Tables.Text = "Tables :"
+        Me.PictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.PictureBox1.ErrorImage = CType(resources.GetObject("PictureBox1.ErrorImage"), System.Drawing.Image)
+        Me.PictureBox1.Image = Global.ConnexionOracle.My.Resources.Resources.MicrosoftTeams_image
+        Me.PictureBox1.InitialImage = Nothing
+        Me.PictureBox1.Location = New System.Drawing.Point(-2, 26)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(1176, 108)
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
         '
-        'ComboBox_Tables
+        'TextBox_username
         '
-        Me.ComboBox_Tables.FormattingEnabled = True
-        Me.ComboBox_Tables.Location = New System.Drawing.Point(255, 19)
-        Me.ComboBox_Tables.Name = "ComboBox_Tables"
-        Me.ComboBox_Tables.Size = New System.Drawing.Size(104, 21)
-        Me.ComboBox_Tables.TabIndex = 3
+        Me.TextBox_username.Location = New System.Drawing.Point(155, 288)
+        Me.TextBox_username.Name = "TextBox_username"
+        Me.TextBox_username.Size = New System.Drawing.Size(132, 20)
+        Me.TextBox_username.TabIndex = 1
         '
-        'DataGridView_Tables
+        'Label_username
         '
-        Me.DataGridView_Tables.AllowUserToOrderColumns = True
-        Me.DataGridView_Tables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView_Tables.Location = New System.Drawing.Point(5, 52)
-        Me.DataGridView_Tables.Name = "DataGridView_Tables"
-        Me.DataGridView_Tables.RowTemplate.Height = 25
-        Me.DataGridView_Tables.Size = New System.Drawing.Size(589, 283)
-        Me.DataGridView_Tables.TabIndex = 4
-        '
-        'Button_Valider_les_modifications
-        '
-        Me.Button_Valider_les_modifications.Location = New System.Drawing.Point(232, 350)
-        Me.Button_Valider_les_modifications.Name = "Button_Valider_les_modifications"
-        Me.Button_Valider_les_modifications.Size = New System.Drawing.Size(127, 20)
-        Me.Button_Valider_les_modifications.TabIndex = 5
-        Me.Button_Valider_les_modifications.Text = "Valider les modifications"
-        Me.Button_Valider_les_modifications.UseVisualStyleBackColor = True
-        '
-        'GroupBox_Données
-        '
-        Me.GroupBox_Données.Controls.Add(Me.Button_Valider_les_modifications)
-        Me.GroupBox_Données.Controls.Add(Me.ComboBox_Tables)
-        Me.GroupBox_Données.Controls.Add(Me.Label_Tables)
-        Me.GroupBox_Données.Controls.Add(Me.DataGridView_Tables)
-        Me.GroupBox_Données.Location = New System.Drawing.Point(10, 111)
-        Me.GroupBox_Données.Name = "GroupBox_Données"
-        Me.GroupBox_Données.Size = New System.Drawing.Size(599, 383)
-        Me.GroupBox_Données.TabIndex = 6
-        Me.GroupBox_Données.TabStop = False
-        Me.GroupBox_Données.Text = "Données :"
-        '
-        'GroupBox_Connexion
-        '
-        Me.GroupBox_Connexion.Controls.Add(Me.Button_Connexion)
-        Me.GroupBox_Connexion.Controls.Add(Me.TextBox_MDP)
-        Me.GroupBox_Connexion.Controls.Add(Me.Label_MDP)
-        Me.GroupBox_Connexion.Controls.Add(Me.Label_Login)
-        Me.GroupBox_Connexion.Controls.Add(Me.Label_DSN)
-        Me.GroupBox_Connexion.Controls.Add(Me.TextBox_Login)
-        Me.GroupBox_Connexion.Controls.Add(Me.TextBox_DSN)
-        Me.GroupBox_Connexion.Location = New System.Drawing.Point(10, 10)
-        Me.GroupBox_Connexion.Name = "GroupBox_Connexion"
-        Me.GroupBox_Connexion.Size = New System.Drawing.Size(599, 95)
-        Me.GroupBox_Connexion.TabIndex = 7
-        Me.GroupBox_Connexion.TabStop = False
-        Me.GroupBox_Connexion.Text = "Connexion :"
-        '
-        'Button_Connexion
-        '
-        Me.Button_Connexion.Location = New System.Drawing.Point(473, 34)
-        Me.Button_Connexion.Name = "Button_Connexion"
-        Me.Button_Connexion.Size = New System.Drawing.Size(75, 31)
-        Me.Button_Connexion.TabIndex = 6
-        Me.Button_Connexion.Text = "Connexion"
-        Me.Button_Connexion.UseVisualStyleBackColor = True
+        Me.Label_username.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_username.Location = New System.Drawing.Point(66, 288)
+        Me.Label_username.MaximumSize = New System.Drawing.Size(500, 500)
+        Me.Label_username.Name = "Label_username"
+        Me.Label_username.Size = New System.Drawing.Size(83, 20)
+        Me.Label_username.TabIndex = 2
+        Me.Label_username.Text = "Username :"
         '
         'TextBox_MDP
         '
-        Me.TextBox_MDP.Location = New System.Drawing.Point(267, 59)
+        Me.TextBox_MDP.Location = New System.Drawing.Point(613, 285)
+        Me.TextBox_MDP.MaximumSize = New System.Drawing.Size(500, 500)
+        Me.TextBox_MDP.MinimumSize = New System.Drawing.Size(4, 4)
         Me.TextBox_MDP.Name = "TextBox_MDP"
-        Me.TextBox_MDP.Size = New System.Drawing.Size(115, 20)
-        Me.TextBox_MDP.TabIndex = 5
+        Me.TextBox_MDP.Size = New System.Drawing.Size(150, 20)
+        Me.TextBox_MDP.TabIndex = 3
+        Me.TextBox_MDP.UseSystemPasswordChar = True
         '
-        'Label_MDP
+        'Label1
         '
-        Me.Label_MDP.AutoSize = True
-        Me.Label_MDP.Location = New System.Drawing.Point(191, 62)
-        Me.Label_MDP.Name = "Label_MDP"
-        Me.Label_MDP.Size = New System.Drawing.Size(77, 13)
-        Me.Label_MDP.TabIndex = 4
-        Me.Label_MDP.Text = "Mot de passe :"
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(525, 285)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(82, 17)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Password :"
         '
-        'Label_Login
+        'Button_Login
         '
-        Me.Label_Login.AutoSize = True
-        Me.Label_Login.Location = New System.Drawing.Point(19, 62)
-        Me.Label_Login.Name = "Label_Login"
-        Me.Label_Login.Size = New System.Drawing.Size(39, 13)
-        Me.Label_Login.TabIndex = 3
-        Me.Label_Login.Text = "Login :"
+        Me.Button_Login.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button_Login.Location = New System.Drawing.Point(381, 412)
+        Me.Button_Login.Name = "Button_Login"
+        Me.Button_Login.Size = New System.Drawing.Size(91, 40)
+        Me.Button_Login.TabIndex = 5
+        Me.Button_Login.Text = "Login"
+        Me.Button_Login.UseVisualStyleBackColor = True
         '
-        'Label_DSN
+        'Label2
         '
-        Me.Label_DSN.AutoSize = True
-        Me.Label_DSN.Location = New System.Drawing.Point(19, 37)
-        Me.Label_DSN.Name = "Label_DSN"
-        Me.Label_DSN.Size = New System.Drawing.Size(39, 13)
-        Me.Label_DSN.TabIndex = 2
-        Me.Label_DSN.Text = "DSN : "
+        Me.Label2.AutoSize = True
+        Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label2.Font = New System.Drawing.Font("Arial", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(345, 190)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(154, 35)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "Connexion"
         '
-        'TextBox_Login
-        '
-        Me.TextBox_Login.Location = New System.Drawing.Point(61, 59)
-        Me.TextBox_Login.Name = "TextBox_Login"
-        Me.TextBox_Login.Size = New System.Drawing.Size(115, 20)
-        Me.TextBox_Login.TabIndex = 1
-        '
-        'TextBox_DSN
-        '
-        Me.TextBox_DSN.Location = New System.Drawing.Point(61, 34)
-        Me.TextBox_DSN.Name = "TextBox_DSN"
-        Me.TextBox_DSN.Size = New System.Drawing.Size(115, 20)
-        Me.TextBox_DSN.TabIndex = 0
-        '
-        'Button_to_CONNEXION
-        '
-        Me.Button_to_CONNEXION.Location = New System.Drawing.Point(150, 518)
-        Me.Button_to_CONNEXION.Name = "Button_to_CONNEXION"
-        Me.Button_to_CONNEXION.Size = New System.Drawing.Size(312, 51)
-        Me.Button_to_CONNEXION.TabIndex = 8
-        Me.Button_to_CONNEXION.Text = "CONNEXION"
-        Me.Button_to_CONNEXION.UseVisualStyleBackColor = True
-        '
-        'Form1
+        'Connect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(621, 604)
-        Me.Controls.Add(Me.Button_to_CONNEXION)
-        Me.Controls.Add(Me.GroupBox_Connexion)
-        Me.Controls.Add(Me.GroupBox_Données)
-        Me.Name = "Form1"
-        Me.Text = "Form1"
-        CType(Me.DataGridView_Tables, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox_Données.ResumeLayout(False)
-        Me.GroupBox_Données.PerformLayout()
-        Me.GroupBox_Connexion.ResumeLayout(False)
-        Me.GroupBox_Connexion.PerformLayout()
+        Me.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ClientSize = New System.Drawing.Size(857, 523)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Button_Login)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.TextBox_MDP)
+        Me.Controls.Add(Me.Label_username)
+        Me.Controls.Add(Me.TextBox_username)
+        Me.Controls.Add(Me.PictureBox1)
+        Me.Name = "Connect"
+        Me.Text = "Connect"
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label_Tables As Label
-    Friend WithEvents ComboBox_Tables As ComboBox
-    Friend WithEvents DataGridView_Tables As DataGridView
-    Friend WithEvents Button_Valider_les_modifications As Button
-    Friend WithEvents GroupBox_Données As GroupBox
-    Friend WithEvents GroupBox_Connexion As GroupBox
-    Friend WithEvents Label_Login As Label
-    Friend WithEvents Label_DSN As Label
-    Friend WithEvents TextBox_Login As TextBox
-    Friend WithEvents TextBox_DSN As TextBox
-    Friend WithEvents Button_Connexion As Button
+
+
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents TextBox_username As TextBox
+    Friend WithEvents Label_username As Label
     Friend WithEvents TextBox_MDP As TextBox
-    Friend WithEvents Label_MDP As Label
-    Friend WithEvents Button_to_CONNEXION As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Button_Login As Button
+    Friend WithEvents Label2 As Label
 End Class

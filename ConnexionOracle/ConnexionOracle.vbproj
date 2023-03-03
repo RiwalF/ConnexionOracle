@@ -159,17 +159,17 @@
     <Compile Include="Visiteur\Visiteur_Accueil.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Connect.Designer.vb">
-      <DependentUpon>Connect.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Connect.vb">
-      <SubType>Form</SubType>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
     </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="FormADMIN.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormADMIN.Designer.vb">
+      <DependentUpon>FormADMIN.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Global_Variable.vb" />
@@ -251,11 +251,11 @@
     <EmbeddedResource Include="Visiteur\Visiteur_Accueil.resx">
       <DependentUpon>Visiteur_Accueil.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Connect.resx">
-      <DependentUpon>Connect.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormADMIN.resx">
+      <DependentUpon>FormADMIN.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

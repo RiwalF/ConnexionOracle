@@ -36,6 +36,7 @@ Partial Class Visiteur_Consulter_compte_rendu
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -179,12 +180,22 @@ Partial Class Visiteur_Consulter_compte_rendu
         Me.ListBox1.Size = New System.Drawing.Size(305, 251)
         Me.ListBox1.TabIndex = 53
         '
+        'Button1
+        '
+        Me.Button1.BackgroundImage = Global.ConnexionOracle.My.Resources.Resources.retour
+        Me.Button1.Location = New System.Drawing.Point(12, 140)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(55, 50)
+        Me.Button1.TabIndex = 54
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Visiteur_Consulter_compte_rendu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
@@ -221,5 +232,6 @@ Partial Class Visiteur_Consulter_compte_rendu
     Friend WithEvents Label10 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents Button1 As Button
 End Class
 

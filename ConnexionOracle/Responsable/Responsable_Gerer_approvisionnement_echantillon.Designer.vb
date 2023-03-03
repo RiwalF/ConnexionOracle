@@ -26,6 +26,7 @@ Partial Class Responsable_Gerer_approvisionnement_echantillon
         Me.Label_Prenom = New System.Windows.Forms.Label()
         Me.Label_Nom = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -70,12 +71,22 @@ Partial Class Responsable_Gerer_approvisionnement_echantillon
         Me.PictureBox1.TabIndex = 14
         Me.PictureBox1.TabStop = False
         '
+        'Button1
+        '
+        Me.Button1.BackgroundImage = Global.ConnexionOracle.My.Resources.Resources.retour
+        Me.Button1.Location = New System.Drawing.Point(12, 140)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(55, 50)
+        Me.Button1.TabIndex = 55
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Responsable_Gerer_approvisionnement_echantillon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label_Prenom)
         Me.Controls.Add(Me.Label_Nom)
         Me.Controls.Add(Me.PictureBox1)
@@ -92,5 +103,6 @@ Partial Class Responsable_Gerer_approvisionnement_echantillon
     Friend WithEvents Label_Prenom As Label
     Friend WithEvents Label_Nom As Label
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Button1 As Button
 End Class
 

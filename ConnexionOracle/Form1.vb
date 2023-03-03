@@ -1,8 +1,4 @@
-﻿
-Imports System.Data.SqlTypes
-Imports System.Diagnostics.Eventing
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
-Imports System.Data.SqlClient
+﻿Imports System.Security.Cryptography.X509Certificates
 
 Public Class Form1
 
@@ -12,62 +8,89 @@ Public Class Form1
     Dim myAdapter As Odbc.OdbcDataAdapter
     Dim myBuilder As Odbc.OdbcCommandBuilder
     Dim connString As String
-    Dim donnee As DataTable
 
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-    End Sub
-
-    Private Sub Button_Connexion_Click(sender As Object, e As EventArgs) Handles Button_Connexion.Click
-
+    Private Sub Connect_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'FERME DE SERVEUR
-        'connString = "DSN=" & TextBox_DSN.Text & ";Uid=" & TextBox_Login.Text & ";Pwd=" & TextBox_MDP.Text & ";"
         connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
 
         myConnection.ConnectionString = connString
 
         Try
             myConnection.Open()
-            MessageBox.Show("Connexion Oracle Réussie")
-            Dim query As String = "SELECT table_name FROM user_tables"
-            myCommand.Connection = myConnection
-            myCommand.CommandText = query
-            myReader = myCommand.ExecuteReader
-            While myReader.Read
-                ComboBox_Tables.Items.Add(myReader.GetString(0))
-            End While
         Catch ex As Odbc.OdbcException
             MessageBox.Show(ex.Message)
         End Try
+
+
     End Sub
 
 
-    Private Sub ComboBox_Tables_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox_Tables.SelectedIndexChanged
+    Private Sub Connexio_Click(sender As Object, e As EventArgs) Handles Button_Login.Click
 
-        Dim table_name As String = ComboBox_Tables.SelectedItem.ToString()
-        Dim query As String = "SELECT * FROM " & table_name
-        donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(query, myConnection)
-        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
-        myAdapter.Fill(donnee)
-        DataGridView_Tables.DataSource = donnee
-    End Sub
+        If TextBox_username.Text = "ADMIN" Then
+            If TextBox_MDP.Text = "RNSLAM2022" Then
+                FormADMIN.Show()
+                Me.Hide()
+            End If
+        End If
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button_Valider_les_modifications.Click
-        Dim changes As DataTable = donnee.GetChanges()
-        Try
-            myAdapter.Update(changes)
-            donnee.AcceptChanges()
-            MessageBox.Show("Modification réussie...")
-        Catch ex As Odbc.OdbcException
-            MessageBox.Show("Erreur de modification")
-        End Try
+        Dim Responsable As String = "SELECT COUNT(*)
+                                    FROM RESPONSABLE_SECTEUR
+                                    WHERE PRENOM='" & TextBox_username.Text & "'
+                                    AND MDP='" & TextBox_MDP.Text & "'"
+        Dim Visiteur As String = "SELECT COUNT(*)
+                                    FROM DELEGUE_VISITEUR
+                                    WHERE PRENOM='" & TextBox_username.Text & "'
+                                    AND MDP='" & TextBox_MDP.Text & "'
+                                    AND DV_DELEGUE=0"
+        Dim Delegue As String = "SELECT COUNT(*)
+                                    FROM DELEGUE_VISITEUR
+                                    WHERE PRENOM='" & TextBox_username.Text & "'
+                                    AND MDP='" & TextBox_MDP.Text & "'
+                                    AND DV_DELEGUE=1"
 
-    End Sub
+        myCommand.Connection = myConnection
+        myCommand.CommandText = Responsable
+        myReader = myCommand.ExecuteReader
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button_to_CONNEXION.Click
-        myConnection.Close()
-        Connect.Show()
+
+        While myReader.Read
+            If (myReader.GetString(0)) = 1 Then
+                type_Utilisateur = "Responsable"
+                Accueil_responsable.Show()
+                Me.Hide()
+            End If
+        End While
+        myReader.Close()
+
+        myCommand.Connection = myConnection
+        myCommand.CommandText = Visiteur
+        myReader = myCommand.ExecuteReader
+
+        While myReader.Read
+            If (myReader.GetString(0)) = 1 Then
+                type_Utilisateur = "Visiteur"
+                Accueil_Visiteur.Show()
+                Me.Hide()
+            End If
+        End While
+        myReader.Close()
+
+        myCommand.Connection = myConnection
+        myCommand.CommandText = Delegue
+        myReader = myCommand.ExecuteReader
+
+
+        While myReader.Read
+            If (myReader.GetString(0)) = 1 Then
+                type_Utilisateur = "Delegue"
+                Accueil_Delegue.Show()
+                Me.Hide()
+            End If
+        End While
+        myReader.Close()
+
     End Sub
 
 End Class

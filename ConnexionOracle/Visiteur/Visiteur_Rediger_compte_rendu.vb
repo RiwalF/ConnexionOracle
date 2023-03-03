@@ -153,8 +153,20 @@ Public Class Visiteur_Rediger_compte_rendu
     End Sub
 
     Private Sub Button_retour_Click(sender As Object, e As EventArgs) Handles Button_retour.Click
-        Accueil_Visiteur.Show()
-        Me.Close()
+        If type_Utilisateur = "Responsable" Then
+            Accueil_responsable.Show()
+            Me.Close()
+        ElseIf type_Utilisateur = "Delegue" Then
+            Accueil_Delegue.Show()
+            Me.Close()
+        ElseIf type_Utilisateur = "Visiteur" Then
+            Accueil_Visiteur.Show()
+            Me.Close()
+        Else
+            type_Utilisateur = ""
+            Form1.Show()
+            Me.Close()
+        End If
     End Sub
 
 End Class
