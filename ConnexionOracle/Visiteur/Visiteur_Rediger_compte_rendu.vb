@@ -18,7 +18,6 @@ Public Class Visiteur_Rediger_compte_rendu
     Private Sub Rediger_compte_rendu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Label_Prenom.Text = Prenom
         Label_Nom.Text = Nom
-        'Test
         connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
         myConnection.ConnectionString = connString
         myConnection.Open()
