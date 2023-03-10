@@ -16,8 +16,7 @@ Public Class Creer_reunion
     Dim id As New List(Of Integer)
     Dim test As New Integer
     Private Sub Creer_reunion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Label_Nom.Text = Nom
-        Label_Prenom.Text = Prenom
+
 
         connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
 
