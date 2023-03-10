@@ -71,7 +71,7 @@ Public Class Visiteur_Rediger_compte_rendu
 
 
 
-    'Obligé TextBox1 à accepter que des chiffres
+    'Obliger TextBox1 à accepter que des chiffres
     Private Sub TextBox1_TextChanged(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox1.KeyPress
         If Asc(e.KeyChar) <> 8 Then
             If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
