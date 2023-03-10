@@ -48,9 +48,9 @@ Public Class Form1
 
         'HASHAGE DU MOT DE PASSE
         Dim password As String = TextBox_MDP.Text
-        Dim sha As HashAlgorithm = SHA256.Create()
+        Dim sha256 As HashAlgorithm = sha256.Create()
         Dim passwordBytes() As Byte = Encoding.ASCII.GetBytes(password)
-        Dim passwordHash() As Byte = sha.ComputeHash(passwordBytes)
+        Dim passwordHash() As Byte = sha256.ComputeHash(passwordBytes)
         Dim passwordHashString As String = BitConverter.ToString(passwordHash).Replace("-", "")
 
         Dim Responsable As String = "SELECT COUNT(*)

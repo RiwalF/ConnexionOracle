@@ -18,28 +18,7 @@ Public Class Creer_reunion
     Private Sub Creer_reunion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Label_Prenom.Text = Prenom
         Label_Nom.Text = Nom
-        connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
-        myConnection.ConnectionString = connString
-        myConnection.Open()
 
-        Dim selectDelegueVisiteur As String = "SELECT ID,NOM,PRENOM FROM delegue_visiteur"
-        donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(selectDelegueVisiteur, myConnection)
-        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
-        myAdapter.Fill(donnee)
-
-        Dim dt As New DataTable
-        dt.Columns.Add("ID")
-        dt.Columns.Add("NOM")
-
-        For Each unItem In donnee.Rows
-            dt.Rows.Add(unItem("ID"), unItem("NOM"))
-        Next
-
-        Me.ComboBox1.DataSource = dt
-        Me.ComboBox1.DisplayMember = "NOM"
-        Me.ComboBox1.ValueMember = "ID"
-        donnee.Clear()
 
 
 
@@ -160,6 +139,26 @@ Public Class Creer_reunion
         Else
             MessageBox.Show("Erreur de réalisation")
         End If
+
+
+        Dim selectPraticien As String = "SELECT M_ID,M_NOM FROM medicaments"
+        donnee = New DataTable
+        myAdapter = New Odbc.OdbcDataAdapter(selectPraticien, myConnection)
+        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
+        myAdapter.Fill(donnee)
+
+        Dim dt As New DataTable
+        dt.Columns.Add("M_ID")
+        dt.Columns.Add("M_NOM")
+
+        For Each unItem In donnee.Rows
+            dt.Rows.Add(unItem("M_ID"), unItem("M_NOM"))
+        Next
+
+        Me.ComboBox1.DataSource = dt
+        Me.ComboBox1.DisplayMember = "M_NOM"
+        Me.ComboBox1.ValueMember = "M_ID"
+        donnee.Clear()
 
     End Sub
 
