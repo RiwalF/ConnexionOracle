@@ -36,9 +36,8 @@ Partial Class Creer_reunion
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -132,9 +131,9 @@ Partial Class Creer_reunion
         'ComboBox1
         '
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(248, 295)
+        Me.ComboBox1.Location = New System.Drawing.Point(15, 233)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(166, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(280, 21)
         Me.ComboBox1.TabIndex = 25
         '
         'Button1
@@ -159,11 +158,11 @@ Partial Class Creer_reunion
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(245, 276)
+        Me.Label4.Location = New System.Drawing.Point(12, 214)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(175, 16)
+        Me.Label4.Size = New System.Drawing.Size(283, 16)
         Me.Label4.TabIndex = 33
-        Me.Label4.Text = "Sélectionnez l'identifiant"
+        Me.Label4.Text = "Sélectionnez les membres de la réunion"
         '
         'Label6
         '
@@ -174,24 +173,6 @@ Partial Class Creer_reunion
         Me.Label6.Size = New System.Drawing.Size(230, 20)
         Me.Label6.TabIndex = 35
         Me.Label6.Text = "Liste des utilisateurs ajouté" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(36, 248)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(175, 20)
-        Me.Label5.TabIndex = 36
-        Me.Label5.Text = "Liste des utilisateurs"
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(24, 271)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(200, 238)
-        Me.DataGridView1.TabIndex = 37
         '
         'Button2
         '
@@ -204,15 +185,22 @@ Partial Class Creer_reunion
         Me.Button2.Text = "CRÉER RÉUNION"
         Me.Button2.UseVisualStyleBackColor = False
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 286)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(240, 150)
+        Me.DataGridView1.TabIndex = 40
+        '
         'Creer_reunion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.ListBox1)
@@ -251,8 +239,7 @@ Partial Class Creer_reunion
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Button2 As Button
+    Friend WithEvents DataGridView1 As DataGridView
 End Class
 
