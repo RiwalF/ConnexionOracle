@@ -1,10 +1,14 @@
-﻿Imports System.Security.Cryptography.X509Certificates
-
+﻿Imports System.Security.Cryptography
+Imports System.Security.Cryptography.X509Certificates
+Imports System.Text
 Public Class Form1
 
     Dim myConnection As New Odbc.OdbcConnection
     Dim myCommand As New Odbc.OdbcCommand
     Dim myReader As Odbc.OdbcDataReader
+    Dim my2Connection As New Odbc.OdbcConnection
+    Dim my2Command As New Odbc.OdbcCommand
+    Dim my2Reader As Odbc.OdbcDataReader
     Dim myAdapter As Odbc.OdbcDataAdapter
     Dim myBuilder As Odbc.OdbcCommandBuilder
     Dim connString As String
@@ -22,6 +26,13 @@ Public Class Form1
             MessageBox.Show(ex.Message)
         End Try
 
+        'CREATION DES MOT DE PASSE QUE L'ON AJOUTE AU INSERT LORSQUE L'ON SOUHAITE AJOUTER UN UTILISATEUR QUELCONQUE
+        'Dim password As String = "Melon"
+        'Dim sha256 As HashAlgorithm = sha256.Create()
+        'Dim passwordBytes() As Byte = Encoding.ASCII.GetBytes(password)
+        'Dim passwordHash() As Byte = sha256.ComputeHash(passwordBytes)
+        'Dim passwordHashString As String = BitConverter.ToString(passwordHash).Replace("-", "")
+        'Console.WriteLine(passwordHashString)
 
     End Sub
 
@@ -35,19 +46,26 @@ Public Class Form1
             End If
         End If
 
+        'HASHAGE DU MOT DE PASSE
+        Dim password As String = TextBox_MDP.Text
+        Dim sha As HashAlgorithm = SHA256.Create()
+        Dim passwordBytes() As Byte = Encoding.ASCII.GetBytes(password)
+        Dim passwordHash() As Byte = sha.ComputeHash(passwordBytes)
+        Dim passwordHashString As String = BitConverter.ToString(passwordHash).Replace("-", "")
+
         Dim Responsable As String = "SELECT COUNT(*)
                                     FROM RESPONSABLE_SECTEUR
                                     WHERE PRENOM='" & TextBox_username.Text & "'
-                                    AND MDP='" & TextBox_MDP.Text & "'"
+                                    AND MDP='" & passwordHashString & "'"
         Dim Visiteur As String = "SELECT COUNT(*)
                                     FROM DELEGUE_VISITEUR
                                     WHERE PRENOM='" & TextBox_username.Text & "'
-                                    AND MDP='" & TextBox_MDP.Text & "'
+                                    AND MDP='" & passwordHashString & "'
                                     AND DV_DELEGUE=0"
         Dim Delegue As String = "SELECT COUNT(*)
                                     FROM DELEGUE_VISITEUR
                                     WHERE PRENOM='" & TextBox_username.Text & "'
-                                    AND MDP='" & TextBox_MDP.Text & "'
+                                    AND MDP='" & passwordHashString & "'
                                     AND DV_DELEGUE=1"
 
         myCommand.Connection = myConnection
@@ -58,6 +76,19 @@ Public Class Form1
         While myReader.Read
             If (myReader.GetString(0)) = 1 Then
                 type_Utilisateur = "Responsable"
+                Dim commande As String = "SELECT NOM
+                                    FROM RESPONSABLE_SECTEUR
+                                    WHERE PRENOM='" & TextBox_username.Text & "'
+                                    AND MDP='" & passwordHashString & "'"
+                my2Command.Connection = myConnection
+                my2Command.CommandText = commande
+                my2Reader = my2Command.ExecuteReader
+
+                While my2Reader.Read
+                    Nom = my2Reader.GetString(0)
+                End While
+                my2Reader.Close()
+                Prenom = TextBox_username.Text
                 Accueil_responsable.Show()
                 Me.Hide()
             End If
@@ -71,6 +102,20 @@ Public Class Form1
         While myReader.Read
             If (myReader.GetString(0)) = 1 Then
                 type_Utilisateur = "Visiteur"
+                Dim commande As String = "SELECT NOM
+                                    FROM DELEGUE_VISITEUR
+                                    WHERE PRENOM='" & TextBox_username.Text & "'
+                                    AND MDP='" & passwordHashString & "'
+                                    AND DV_DELEGUE=0"
+                my2Command.Connection = myConnection
+                my2Command.CommandText = commande
+                my2Reader = my2Command.ExecuteReader
+
+                While my2Reader.Read
+                    Nom = my2Reader.GetString(0)
+                End While
+                my2Reader.Close()
+                Prenom = TextBox_username.Text
                 Accueil_Visiteur.Show()
                 Me.Hide()
             End If
@@ -85,6 +130,20 @@ Public Class Form1
         While myReader.Read
             If (myReader.GetString(0)) = 1 Then
                 type_Utilisateur = "Delegue"
+                Dim commande As String = "SELECT NOM
+                                    FROM DELEGUE_VISITEUR
+                                    WHERE PRENOM='" & TextBox_username.Text & "'
+                                    AND MDP='" & passwordHashString & "'
+                                    AND DV_DELEGUE=1"
+                my2Command.Connection = myConnection
+                my2Command.CommandText = commande
+                my2Reader = my2Command.ExecuteReader
+
+                While my2Reader.Read
+                    Nom = my2Reader.GetString(0)
+                End While
+                my2Reader.Close()
+                Prenom = TextBox_username.Text
                 Accueil_Delegue.Show()
                 Me.Hide()
             End If

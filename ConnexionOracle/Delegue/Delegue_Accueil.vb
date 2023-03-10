@@ -11,36 +11,8 @@ Public Class Accueil_Delegue
     Dim connString As String
 
     Private Sub Accueil_Delegue_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If (Nom = "") Then
-            connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
-
-            myConnection.ConnectionString = connString
-            Try
-                myConnection.Open()
-            Catch ex As Odbc.OdbcException
-                MessageBox.Show(ex.Message)
-            End Try
-
-            Dim commande As String = "SELECT NOM,ID
-                                    FROM DELEGUE_VISITEUR
-                                    WHERE PRENOM='" & Form1.TextBox_username.Text & "'
-                                    AND MDP='" & Form1.TextBox_MDP.Text & "'
-                                    AND DV_DELEGUE=1"
-            myCommand.Connection = myConnection
-            myCommand.CommandText = commande
-            myReader = myCommand.ExecuteReader
-
-            While myReader.Read
-                Nom = myReader.GetString(0)
-                id_utilisateur = myReader.GetString(1)
-            End While
-            Prenom = Form1.TextBox_username.Text
-        End If
-
-
         Label_Nom.Text = Nom
         Label_Prenom.Text = Prenom
-
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button_retour.Click
         Nom = ""

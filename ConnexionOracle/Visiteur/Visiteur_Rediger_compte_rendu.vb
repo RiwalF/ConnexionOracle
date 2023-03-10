@@ -18,7 +18,6 @@ Public Class Visiteur_Rediger_compte_rendu
     Private Sub Rediger_compte_rendu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Label_Prenom.Text = Prenom
         Label_Nom.Text = Nom
-        'Test
         connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
         myConnection.ConnectionString = connString
         myConnection.Open()
@@ -96,10 +95,15 @@ Public Class Visiteur_Rediger_compte_rendu
             End If
         Next
         If test = 0 Then
-            id_M.Add(ComboBox1.SelectedValue)
-            id_M_Quantite.Add(TextBox1.Text)
-            Text = TextBox1.Text & " ==> " & ComboBox1.Text
-            Me.ListBox1.Items.Add(Text)
+            If Not IsNumeric(TextBox1.Text) Then
+                MsgBox("Saisissez une valeur numérique !", vbExclamation, "Erreur de saisie")
+                Exit Sub
+            Else
+                id_M.Add(ComboBox1.SelectedValue)
+                id_M_Quantite.Add(TextBox1.Text)
+                Text = TextBox1.Text & " ==> " & ComboBox1.Text
+                Me.ListBox1.Items.Add(Text)
+            End If
         Else
             MessageBox.Show("ATTENTION 'Médicament déjà ajouté !'")
         End If
