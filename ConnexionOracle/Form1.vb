@@ -38,7 +38,7 @@ Public Class Form1
 
 
     Private Sub Connexio_Click(sender As Object, e As EventArgs) Handles Button_Login.Click
-
+        'ATTETION NE PAS OUBLIER DE SUPPRIMER
         If TextBox_username.Text = "ADMIN" Then
             If TextBox_MDP.Text = "RNSLAM2022" Then
                 FormADMIN.Show()

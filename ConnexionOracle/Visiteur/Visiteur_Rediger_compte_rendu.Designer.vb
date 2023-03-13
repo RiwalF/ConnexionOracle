@@ -40,9 +40,13 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Button_retour = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.quantite = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.medicament = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button4 = New System.Windows.Forms.Button()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -212,14 +216,6 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.Button1.Text = "Ajouter médicaments"
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'ListBox1
-        '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(540, 222)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(305, 251)
-        Me.ListBox1.TabIndex = 21
-        '
         'Label8
         '
         Me.Label8.AutoSize = True
@@ -230,12 +226,48 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.Label8.TabIndex = 41
         Me.Label8.Text = "Médicaments sélectionné"
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.quantite, Me.medicament})
+        Me.DataGridView1.Location = New System.Drawing.Point(540, 238)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(305, 212)
+        Me.DataGridView1.TabIndex = 42
+        '
+        'quantite
+        '
+        Me.quantite.HeaderText = "Quantité"
+        Me.quantite.Name = "quantite"
+        Me.quantite.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.quantite.Width = 50
+        '
+        'medicament
+        '
+        Me.medicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.medicament.HeaderText = "Médicament"
+        Me.medicament.Name = "medicament"
+        Me.medicament.ReadOnly = True
+        Me.medicament.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.Button4.Location = New System.Drawing.Point(540, 456)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(305, 31)
+        Me.Button4.TabIndex = 43
+        Me.Button4.Text = "Supprimer ligne seléctionné"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
         'Visiteur_Rediger_compte_rendu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
+        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Button_retour)
         Me.Controls.Add(Me.Button3)
@@ -247,7 +279,6 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox1)
@@ -259,6 +290,7 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.Name = "Visiteur_Rediger_compte_rendu"
         Me.Text = "Rediger_compte_rendu"
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -285,6 +317,9 @@ Partial Class Visiteur_Rediger_compte_rendu
     Friend WithEvents Button3 As Button
     Friend WithEvents Button_retour As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents quantite As DataGridViewTextBoxColumn
+    Friend WithEvents medicament As DataGridViewTextBoxColumn
+    Friend WithEvents Button4 As Button
 End Class

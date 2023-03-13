@@ -103,7 +103,7 @@ Partial Class Form1
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Connexion"
         '
-        'Connect
+        'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -116,7 +116,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label_username)
         Me.Controls.Add(Me.TextBox_username)
         Me.Controls.Add(Me.PictureBox1)
-        Me.Name = "Connect"
+        Me.Name = "Form1"
         Me.Text = "Connect"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

@@ -53,6 +53,9 @@ Public Class Visiteur_Consulter_compte_rendu
     End Sub
 
     Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
+
+        Me.ListBox1.Items.Clear()
+
         Dim query As String = "SELECT m_id,QUANTITE FROM QUANTITE WHERE cr_id ='" & ComboBox2.SelectedValue.ToString & "'"
 
         Dim id_liste As New List(Of String)
@@ -95,9 +98,21 @@ Public Class Visiteur_Consulter_compte_rendu
         myReader = myCommand.ExecuteReader
         Dim P_ID As String = ""
         While myReader.Read
-            Label9.Text = myReader.GetString(0)
-            Label6.Text = myReader.GetString(1)
-            P_ID = myReader.GetString(2)
+            Try
+                Label9.Text = myReader.GetString(0)
+            Catch ex As Exception
+                'bug
+            End Try
+            Try
+                Label6.Text = myReader.GetString(1)
+            Catch ex As Exception
+                'bug
+            End Try
+            Try
+                P_ID = myReader.GetString(2)
+            Catch ex As Exception
+                'bug
+            End Try
         End While
         myReader.Close()
 
@@ -129,4 +144,5 @@ Public Class Visiteur_Consulter_compte_rendu
             Me.Close()
         End If
     End Sub
+
 End Class
