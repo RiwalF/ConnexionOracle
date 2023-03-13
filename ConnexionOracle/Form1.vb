@@ -38,7 +38,7 @@ Public Class Form1
 
 
     Private Sub Connexio_Click(sender As Object, e As EventArgs) Handles Button_Login.Click
-
+        'ATTETION NE PAS OUBLIER DE SUPPRIMER
         If TextBox_username.Text = "ADMIN" Then
             If TextBox_MDP.Text = "RNSLAM2022" Then
                 FormADMIN.Show()
@@ -76,7 +76,7 @@ Public Class Form1
         While myReader.Read
             If (myReader.GetString(0)) = 1 Then
                 type_Utilisateur = "Responsable"
-                Dim commande As String = "SELECT NOM
+                Dim commande As String = "SELECT NOM,ID
                                     FROM RESPONSABLE_SECTEUR
                                     WHERE PRENOM='" & TextBox_username.Text & "'
                                     AND MDP='" & passwordHashString & "'"
@@ -86,6 +86,7 @@ Public Class Form1
 
                 While my2Reader.Read
                     Nom = my2Reader.GetString(0)
+                    id_utilisateur = my2Reader.GetString(1)
                 End While
                 my2Reader.Close()
                 Prenom = TextBox_username.Text
@@ -102,7 +103,7 @@ Public Class Form1
         While myReader.Read
             If (myReader.GetString(0)) = 1 Then
                 type_Utilisateur = "Visiteur"
-                Dim commande As String = "SELECT NOM
+                Dim commande As String = "SELECT NOM,ID
                                     FROM DELEGUE_VISITEUR
                                     WHERE PRENOM='" & TextBox_username.Text & "'
                                     AND MDP='" & passwordHashString & "'
@@ -113,6 +114,7 @@ Public Class Form1
 
                 While my2Reader.Read
                     Nom = my2Reader.GetString(0)
+                    id_utilisateur = my2Reader.GetString(1)
                 End While
                 my2Reader.Close()
                 Prenom = TextBox_username.Text
@@ -130,7 +132,7 @@ Public Class Form1
         While myReader.Read
             If (myReader.GetString(0)) = 1 Then
                 type_Utilisateur = "Delegue"
-                Dim commande As String = "SELECT NOM
+                Dim commande As String = "SELECT NOM,ID
                                     FROM DELEGUE_VISITEUR
                                     WHERE PRENOM='" & TextBox_username.Text & "'
                                     AND MDP='" & passwordHashString & "'
@@ -141,6 +143,7 @@ Public Class Form1
 
                 While my2Reader.Read
                     Nom = my2Reader.GetString(0)
+                    id_utilisateur = my2Reader.GetString(1)
                 End While
                 my2Reader.Close()
                 Prenom = TextBox_username.Text

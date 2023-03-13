@@ -9,7 +9,6 @@ Public Class Visiteur_Rediger_compte_rendu
     Dim connString As String
     Dim donnee As DataTable
     Dim id_M As New List(Of String)
-    Dim id_M_Quantite As New List(Of Integer)
 
     Function RemoveWhitespace(fullString As String) As String
         Return New String(fullString.Where(Function(x) Not Char.IsWhiteSpace(x)).ToArray())
@@ -21,9 +20,6 @@ Public Class Visiteur_Rediger_compte_rendu
         connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
         myConnection.ConnectionString = connString
         myConnection.Open()
-
-
-
 
         Dim selectNomMedic As String = "SELECT M_ID,M_NOM FROM medicaments"
         donnee = New DataTable
@@ -85,11 +81,12 @@ Public Class Visiteur_Rediger_compte_rendu
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        Dim Commande_id_m As String = "SELECT M_id FROM Medicaments WHERE M_NOM ='" & ComboBox1.SelectedValue & "'"
         Dim test As Integer = 0
+        Dim nb_med As Integer = 0
 
 
         For Each item As String In id_M
+            nb_med += 1
             If ComboBox1.SelectedValue = item Then
                 test += 1
             End If
@@ -100,9 +97,11 @@ Public Class Visiteur_Rediger_compte_rendu
                 Exit Sub
             Else
                 id_M.Add(ComboBox1.SelectedValue)
-                id_M_Quantite.Add(TextBox1.Text)
-                Text = TextBox1.Text & " ==> " & ComboBox1.Text
-                Me.ListBox1.Items.Add(Text)
+
+                Me.DataGridView1.Rows.Add()
+                Me.DataGridView1.Rows.Item(nb_med).Cells.Item(0).Value = CInt(TextBox1.Text)
+                Me.DataGridView1.Rows.Item(nb_med).Cells.Item(1).Value = ComboBox1.Text
+
             End If
         Else
             MessageBox.Show("ATTENTION 'Médicament déjà ajouté !'")
@@ -115,45 +114,58 @@ Public Class Visiteur_Rediger_compte_rendu
 
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim Date_CR As String = "VALUES(to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'), 'column plutot')"
+        If TextBox2.Text = "" Then
+            MessageBox.Show("Vous n'avez pas donné de nom à votre compte-rendu")
+        Else
+            Dim Date_CR As String = "VALUES(to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'), 'column plutot')"
 
-        'insertion du compte-rendu
-        Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'), '" & TextBox2.Text & "', '" & ComboBox2.SelectedValue & "', '" & id_utilisateur & "')"
-        myCommand.Connection = myConnection
-        myCommand.CommandText = insertCompteRendu
-        myCommand.ExecuteNonQuery()
-
-
-        'recuperation de l'id du dernier compte-rendu
-        Dim plus_grand_id_CR As String = "SELECT cr_id FROM COMPTE_RENDU ORDER BY CAST(cr_id AS DECIMAL(5,2))"
-        myCommand.Connection = myConnection
-        myCommand.CommandText = plus_grand_id_CR
-        myReader = myCommand.ExecuteReader
-        Dim id_cr As String = ""
-        While myReader.Read
-            id_cr = myReader.GetString(0)
-        End While
-        myReader.Close()
-
-        id_cr = RemoveWhitespace(id_cr)
-
-        'Association des medicaments liés au compte-rendu
-        Dim insertQuantiteCompteRendu As String = ""
-        Dim item As Integer = id_M.Count - 1
-
-        For index As Integer = 0 To item
-            insertQuantiteCompteRendu = "INSERT INTO quantite(CR_ID, M_ID, QUANTITE) values ('" & id_cr & "','" & id_M(index) & "','" & id_M_Quantite(index) & "')"
+            'insertion du compte-rendu
+            Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'), '" & TextBox2.Text & "', '" & ComboBox2.SelectedValue & "', '" & id_utilisateur & "')"
             myCommand.Connection = myConnection
-            myCommand.CommandText = insertQuantiteCompteRendu
+            myCommand.CommandText = insertCompteRendu
             myCommand.ExecuteNonQuery()
-        Next
 
-        MessageBox.Show("Compte Rendu Réalisé")
+
+            'recuperation de l'id du dernier compte-rendu
+            Dim plus_grand_id_CR As String = "SELECT cr_id FROM COMPTE_RENDU ORDER BY CAST(cr_id AS DECIMAL(5,2))"
+            myCommand.Connection = myConnection
+            myCommand.CommandText = plus_grand_id_CR
+            myReader = myCommand.ExecuteReader
+            Dim id_cr As String = ""
+            While myReader.Read
+                id_cr = myReader.GetString(0)
+            End While
+            myReader.Close()
+
+            id_cr = RemoveWhitespace(id_cr)
+
+            'Association des medicaments liés au compte-rendu
+            Dim insertQuantiteCompteRendu As String
+            Dim item As Integer = Me.DataGridView1.RowCount - 2
+
+            For index As Integer = 0 To item
+                If Me.DataGridView1.Rows.Item(index).Cells.Item(1).Value = "" Then
+                    MessageBox.Show("Le numero ==> '" + Me.DataGridView1.Rows.Item(index).Cells.Item(0).Value + "' n'a pas de medicaments associé !")
+                Else
+                    insertQuantiteCompteRendu = "INSERT INTO quantite(CR_ID, M_ID, quantite) values ('" & id_cr & "','" & id_M(index) & "','" & Me.DataGridView1.Rows.Item(index).Cells.Item(0).Value & "')"
+                    myCommand.Connection = myConnection
+                    myCommand.CommandText = insertQuantiteCompteRendu
+                    myCommand.ExecuteNonQuery()
+                End If
+            Next
+
+            MessageBox.Show("Compte Rendu Réalisé")
+        End If
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         nom_medicaments = ComboBox1.Text
         Voir_Medicament.Show()
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim x As Integer = Me.DataGridView1.CurrentRow.Index()
+        Me.DataGridView1.Rows.RemoveAt(x)
     End Sub
 
     Private Sub Button_retour_Click(sender As Object, e As EventArgs) Handles Button_retour.Click
