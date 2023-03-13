@@ -38,6 +38,8 @@ Partial Class Creer_reunion
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -188,10 +190,26 @@ Partial Class Creer_reunion
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 286)
+        Me.DataGridView1.Location = New System.Drawing.Point(693, 140)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(240, 150)
+        Me.DataGridView1.Size = New System.Drawing.Size(152, 97)
         Me.DataGridView1.TabIndex = 40
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(332, 200)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(333, 21)
+        Me.ComboBox2.TabIndex = 41
+        '
+        'ListBox2
+        '
+        Me.ListBox2.FormattingEnabled = True
+        Me.ListBox2.Location = New System.Drawing.Point(42, 260)
+        Me.ListBox2.Name = "ListBox2"
+        Me.ListBox2.Size = New System.Drawing.Size(200, 238)
+        Me.ListBox2.TabIndex = 42
         '
         'Creer_reunion
         '
@@ -199,6 +217,8 @@ Partial Class Creer_reunion
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
+        Me.Controls.Add(Me.ListBox2)
+        Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label6)
@@ -241,5 +261,7 @@ Partial Class Creer_reunion
     Friend WithEvents Label6 As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents ListBox2 As ListBox
 End Class
 

@@ -8,6 +8,7 @@ Public Class Creer_reunion
     Dim myCommand4 As New Odbc.OdbcCommand
     Dim myCommand5 As New Odbc.OdbcCommand
     Dim myCommand6 As New Odbc.OdbcCommand
+    Dim myCommand7 As New Odbc.OdbcCommand
     Dim myReader As Odbc.OdbcDataReader
     Dim myAdapter As Odbc.OdbcDataAdapter
     Dim myBuilder As Odbc.OdbcCommandBuilder
@@ -19,14 +20,6 @@ Public Class Creer_reunion
         Label_Prenom.Text = Prenom
         Label_Nom.Text = Nom
 
-
-
-
-
-
-
-
-
         connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
 
         myConnection.ConnectionString = connString
@@ -36,54 +29,60 @@ Public Class Creer_reunion
             MessageBox.Show(ex.Message)
         End Try
 
-        Dim query As String = "SELECT ID,NOM,PRENOM FROM delegue_visiteur"
+        Dim selectUser As String = "SELECT ID,NOM,PRENOM FROM delegue_visiteur"
         donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(query, myConnection)
+        myAdapter = New Odbc.OdbcDataAdapter(selectUser, myConnection)
         myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
         myAdapter.Fill(donnee)
-        DataGridView1.DataSource = donnee
 
-        query = "SELECT ID FROM delegue_visiteur"
-        myCommand.Connection = myConnection
-        myCommand.CommandText = query
-        myReader = myCommand.ExecuteReader
+        Dim dt As New DataTable
+        dt.Columns.Add("ID")
+        dt.Columns.Add("NOM")
+        dt.Columns.Add("PRENOM")
+        'dt.Columns.Add("hello", Type.GetType("System.String"), "NOM+ ' ' + PRENOM")
 
-        While myReader.Read
-            Me.ComboBox1.Items.Add(myReader(0))
-        End While
+        For Each unItem In donnee.Rows
+            dt.Rows.Add(unItem("ID"), unItem("NOM") + unItem("PRENOM"))
+        Next
+
+        Me.ComboBox2.DataSource = dt
+        Me.ComboBox2.DisplayMember = "NOM"
+        Me.ComboBox2.ValueMember = "ID"
+        donnee.Clear()
+
     End Sub
     Private Sub Button_retour_Click(sender As Object, e As EventArgs) Handles Button_retour.Click
         Delegue_Organiser_réunions_mensuelles.Show()
         Me.Close()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    'Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        Dim query2 As String = "SELECT NOM,PRENOM FROM delegue_visiteur WHERE id ='" & ComboBox1.SelectedItem & "'"
+    '    Dim query2 As String = "SELECT NOM,PRENOM FROM delegue_visiteur WHERE id ='" & ComboBox2.ValueMember & "'"
 
-        test = 0
-        For Each item As Integer In id
-            If ComboBox1.SelectedItem = item Then
-                test += 1
-            End If
-        Next
+    '    test = 0
+    '    For Each item As Integer In id
+    '        If ComboBox2.ValueMember = item Then
+    '            test += 1
+    '        End If
+    '    Next
 
-        If test = 0 Then
-            id.Add(ComboBox1.SelectedItem)
-            myCommand2.Connection = myConnection
-            myCommand2.CommandText = query2
-            myReader = myCommand2.ExecuteReader
-            Dim text As String
-            While myReader.Read
-                text = myReader.GetString(0) & " " & myReader.GetString(1)
-                Me.ListBox1.Items.Add(text)
-            End While
-        Else
-            MessageBox.Show("ATTENTION 'Utilisateur déjà ajouté !'")
-        End If
+    '    If test = 0 Then
+    '        id.Add(ComboBox2.SelectedItem)
+    '        myCommand2.Connection = myConnection
+    '        myCommand2.CommandText = query2
+    '        myReader = myCommand2.ExecuteReader
+    '        Dim text As String
+    '        While myReader.Read
+    '            text = myReader.GetString(0) & " " & myReader.GetString(1)
+    '            Me.ListBox1.Items.Add(text)
+    '        End While
+    '    Else
+    '        MessageBox.Show("ATTENTION 'Utilisateur déjà ajouté !'")
+    '    End If
 
-        myReader.Close()
-    End Sub
+    '    myReader.Close()
+    'End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         'Création de la réunion
@@ -140,26 +139,23 @@ Public Class Creer_reunion
             MessageBox.Show("Erreur de réalisation")
         End If
 
-
-        Dim selectPraticien As String = "SELECT M_ID,M_NOM FROM medicaments"
-        donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(selectPraticien, myConnection)
-        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
-        myAdapter.Fill(donnee)
-
-        Dim dt As New DataTable
-        dt.Columns.Add("M_ID")
-        dt.Columns.Add("M_NOM")
-
-        For Each unItem In donnee.Rows
-            dt.Rows.Add(unItem("M_ID"), unItem("M_NOM"))
-        Next
-
-        Me.ComboBox1.DataSource = dt
-        Me.ComboBox1.DisplayMember = "M_NOM"
-        Me.ComboBox1.ValueMember = "M_ID"
-        donnee.Clear()
-
     End Sub
 
+    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
+        Dim displayNomPrenom As String = "SELECT NOM, PRENOM FROM delegue_visiteur WHERE ID ='" & ComboBox2.ValueMember & "'"
+
+
+
+        myCommand7.Connection = myConnection
+        myCommand7.CommandText = displayNomPrenom
+        myReader = myCommand7.ExecuteReader
+
+
+        Dim laCommande As String
+        While myReader.Read
+            laCommande = myReader.GetString(0)
+            Me.ListBox2.Items.Add(laCommande)
+        End While
+        myReader.Close()
+    End Sub
 End Class
