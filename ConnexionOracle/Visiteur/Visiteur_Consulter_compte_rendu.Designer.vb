@@ -37,6 +37,8 @@ Partial Class Visiteur_Consulter_compte_rendu
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -84,7 +86,7 @@ Partial Class Visiteur_Consulter_compte_rendu
         'ComboBox2
         '
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(423, 196)
+        Me.ComboBox2.Location = New System.Drawing.Point(307, 197)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(160, 21)
         Me.ComboBox2.TabIndex = 43
@@ -93,7 +95,7 @@ Partial Class Visiteur_Consulter_compte_rendu
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(304, 200)
+        Me.Label1.Location = New System.Drawing.Point(191, 197)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(110, 17)
         Me.Label1.TabIndex = 44
@@ -189,12 +191,32 @@ Partial Class Visiteur_Consulter_compte_rendu
         Me.Button1.TabIndex = 54
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(482, 197)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(51, 17)
+        Me.Label7.TabIndex = 56
+        Me.Label7.Text = "Date : "
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(539, 197)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(160, 21)
+        Me.ComboBox1.TabIndex = 55
+        '
         'Visiteur_Consulter_compte_rendu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.Label10)
@@ -233,5 +255,7 @@ Partial Class Visiteur_Consulter_compte_rendu
     Friend WithEvents Label8 As Label
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents Label7 As Label
+    Friend WithEvents ComboBox1 As ComboBox
 End Class
 

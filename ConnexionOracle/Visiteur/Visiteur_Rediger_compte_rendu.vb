@@ -32,7 +32,7 @@ Public Class Visiteur_Rediger_compte_rendu
         dt.Columns.Add("M_NOM")
 
         For Each unItem In donnee.Rows
-            dt.Rows.Add(unItem("M_ID"), unItem("M_NOM"))
+            dt.Rows.Add(unItem("M_ID"), RemoveWhitespace(unItem("M_NOM")))
         Next
 
         Me.ComboBox1.DataSource = dt
@@ -51,9 +51,10 @@ Public Class Visiteur_Rediger_compte_rendu
         Dim dt2 As New DataTable
         dt2.Columns.Add("P_ID")
         dt2.Columns.Add("P_NOM")
+        dt2.Columns.Add("P_PRENOM")
 
         For Each unItem In donnee.Rows
-            dt2.Rows.Add(unItem("P_ID"), unItem("P_NOM"))
+            dt2.Rows.Add(unItem("P_ID"), RemoveWhitespace(unItem("P_NOM")) + " - " + RemoveWhitespace(unItem("P_PRENOM")))
         Next
 
         Me.ComboBox2.DataSource = dt2
@@ -81,17 +82,21 @@ Public Class Visiteur_Rediger_compte_rendu
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        Dim test As Integer = 0
-        Dim nb_med As Integer = 0
+        Dim existe_pas As Boolean = True
+        Dim nb_med As Integer = -1
 
 
-        For Each item As String In id_M
+        Dim NB_Colonne_Datagrid As Integer = Me.DataGridView1.Rows.Count
+
+        For i As Integer = 0 To NB_Colonne_Datagrid - 1
             nb_med += 1
-            If ComboBox1.SelectedValue = item Then
-                test += 1
+            If ComboBox1.SelectedValue = Me.DataGridView1.Rows.Item(i).Cells.Item(2).Value Then
+                existe_pas = False
             End If
         Next
-        If test = 0 Then
+
+
+        If existe_pas Then
             If Not IsNumeric(TextBox1.Text) Then
                 MsgBox("Saisissez une valeur numérique !", vbExclamation, "Erreur de saisie")
                 Exit Sub
@@ -101,6 +106,8 @@ Public Class Visiteur_Rediger_compte_rendu
                 Me.DataGridView1.Rows.Add()
                 Me.DataGridView1.Rows.Item(nb_med).Cells.Item(0).Value = CInt(TextBox1.Text)
                 Me.DataGridView1.Rows.Item(nb_med).Cells.Item(1).Value = ComboBox1.Text
+                Me.DataGridView1.Rows.Item(nb_med).Cells.Item(2).Value = ComboBox1.SelectedValue
+
 
             End If
         Else
@@ -118,6 +125,8 @@ Public Class Visiteur_Rediger_compte_rendu
             MessageBox.Show("Vous n'avez pas donné de nom à votre compte-rendu")
         Else
             'insertion du compte-rendu
+            Dim Date_CR As String = "VALUES(to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'), 'column plutot')"
+
             Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'), '" & TextBox2.Text & "', '" & ComboBox2.SelectedValue & "', '" & id_utilisateur & "')"
             myCommand.Connection = myConnection
             myCommand.CommandText = insertCompteRendu
@@ -141,14 +150,28 @@ Public Class Visiteur_Rediger_compte_rendu
             Dim insertQuantiteCompteRendu As String
             Dim item As Integer = Me.DataGridView1.RowCount - 2
 
+            Dim valeur As Integer = 0
+            Dim id_valeur As Integer
+            Dim Est_Numerique As Boolean = True
+
             For index As Integer = 0 To item
+                Try
+                    valeur = Me.DataGridView1.Rows.Item(index).Cells.Item(0).Value
+                    id_valeur = Me.DataGridView1.Rows.Item(index).Cells.Item(2).Value
+                Catch ex As Exception
+                    Est_Numerique = False
+                End Try
+
+
                 If Me.DataGridView1.Rows.Item(index).Cells.Item(1).Value = "" Then
-                    MessageBox.Show("Le numero ==> '" + Me.DataGridView1.Rows.Item(index).Cells.Item(0).Value + "' n'a pas de medicaments associé !")
-                Else
-                    insertQuantiteCompteRendu = "INSERT INTO quantite(CR_ID, M_ID, quantite) values ('" & id_cr & "','" & id_M(index) & "','" & Me.DataGridView1.Rows.Item(index).Cells.Item(0).Value & "')"
+                    MessageBox.Show("Le numero ==> '" + valeur + "' n'a pas de medicaments associé !")
+                ElseIf Est_Numerique Then
+                    insertQuantiteCompteRendu = "INSERT INTO quantite(CR_ID, M_ID, quantite) values ('" & id_cr & "','" & id_valeur & "','" & valeur & "')"
                     myCommand.Connection = myConnection
                     myCommand.CommandText = insertQuantiteCompteRendu
                     myCommand.ExecuteNonQuery()
+                Else
+                    MessageBox.Show("Le numero ==> '" + Me.DataGridView1.Rows.Item(index).Cells.Item(0).Value + "' n'est pas un nombre")
                 End If
             Next
 
@@ -162,8 +185,14 @@ Public Class Visiteur_Rediger_compte_rendu
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim x As Integer = Me.DataGridView1.CurrentRow.Index()
-        Me.DataGridView1.Rows.RemoveAt(x)
+        If Me.DataGridView1.RowCount() > 1 Then
+            Dim x As Integer = Me.DataGridView1.CurrentRow.Index()
+            Me.DataGridView1.Rows.RemoveAt(x)
+        Else
+            MessageBox.Show("Vous ne pouvez pas supprimer la dernière ligne")
+        End If
+
+
     End Sub
 
     Private Sub Button_retour_Click(sender As Object, e As EventArgs) Handles Button_retour.Click

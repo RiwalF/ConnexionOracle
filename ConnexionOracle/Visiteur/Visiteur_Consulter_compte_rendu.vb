@@ -27,10 +27,14 @@ Public Class Visiteur_Consulter_compte_rendu
         End Try
 
 
-        ComboBox2.Items.Clear()
-        Dim query As String = "SELECT cr_id,CR_MODIF
+
+        ComboBox1.Items.Clear()
+        Dim query As String = "SELECT DISTINCT CR_DATE
                                  FROM COMPTE_RENDU
-                                 WHERE id ='" & id_utilisateur & "'"
+                                 WHERE id ='" & id_utilisateur & "'
+                                 ORDER BY CR_DATE"
+
+
 
         donnee = New DataTable
         myAdapter = New Odbc.OdbcDataAdapter(query, myConnection)
@@ -38,16 +42,14 @@ Public Class Visiteur_Consulter_compte_rendu
         myAdapter.Fill(donnee)
 
         Dim dt As New DataTable
-        dt.Columns.Add("cr_id")
-        dt.Columns.Add("CR_MODIF")
+        dt.Columns.Add("CR_DATE")
 
         For Each unItem In donnee.Rows
-            dt.Rows.Add(unItem("cr_id"), unItem("CR_MODIF"))
+            dt.Rows.Add(RemoveWhitespace(unItem("CR_DATE")))
         Next
 
-        Me.ComboBox2.DataSource = dt
-        Me.ComboBox2.DisplayMember = "CR_MODIF"
-        Me.ComboBox2.ValueMember = "cr_id"
+        Me.ComboBox1.DataSource = dt
+        Me.ComboBox1.DisplayMember = "CR_DATE"
         donnee.Clear()
 
     End Sub
@@ -99,12 +101,12 @@ Public Class Visiteur_Consulter_compte_rendu
         Dim P_ID As String = ""
         While myReader.Read
             Try
-                Label9.Text = myReader.GetString(0)
+                Label9.Text = RemoveWhitespace(myReader.GetString(0))
             Catch ex As Exception
                 'bug
             End Try
             Try
-                Label6.Text = myReader.GetString(1)
+                Label6.Text = RemoveWhitespace(myReader.GetString(1))
             Catch ex As Exception
                 'bug
             End Try
@@ -122,10 +124,37 @@ Public Class Visiteur_Consulter_compte_rendu
         myCommand.CommandText = SelectPraticien
         myReader = myCommand.ExecuteReader
         While myReader.Read
-            Label10.Text = myReader.GetString(0)
+            Label10.Text = RemoveWhitespace(myReader.GetString(0))
         End While
         myReader.Close()
 
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+
+        Dim query As String = "SELECT cr_id,CR_DATE,CR_MODIF
+                                 FROM COMPTE_RENDU
+                                 WHERE id ='" & id_utilisateur & "'
+                                 AND CR_DATE LIKE '%" & ComboBox1.Text & "%'"
+
+
+        donnee = New DataTable
+        myAdapter = New Odbc.OdbcDataAdapter(query, myConnection)
+        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
+        myAdapter.Fill(donnee)
+
+        Dim dt As New DataTable
+        dt.Columns.Add("cr_id")
+        dt.Columns.Add("CR_MODIF")
+
+        For Each unItem In donnee.Rows
+            dt.Rows.Add(unItem("cr_id"), RemoveWhitespace(unItem("CR_MODIF")))
+        Next
+
+        Me.ComboBox2.DataSource = dt
+        Me.ComboBox2.DisplayMember = "CR_MODIF"
+        Me.ComboBox2.ValueMember = "cr_id"
+        donnee.Clear()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
