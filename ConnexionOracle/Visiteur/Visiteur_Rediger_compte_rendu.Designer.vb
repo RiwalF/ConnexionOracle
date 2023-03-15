@@ -42,9 +42,10 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.quantite = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.medicament = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -89,6 +90,7 @@ Partial Class Visiteur_Rediger_compte_rendu
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(117, 278)
+        Me.TextBox1.MaxLength = 32
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(222, 20)
         Me.TextBox1.TabIndex = 18
@@ -151,6 +153,7 @@ Partial Class Visiteur_Rediger_compte_rendu
         'TextBox2
         '
         Me.TextBox2.Location = New System.Drawing.Point(117, 388)
+        Me.TextBox2.MaxLength = 32
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(390, 20)
         Me.TextBox2.TabIndex = 29
@@ -229,26 +232,11 @@ Partial Class Visiteur_Rediger_compte_rendu
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.quantite, Me.medicament})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.quantite, Me.medicament, Me.id})
         Me.DataGridView1.Location = New System.Drawing.Point(540, 238)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(305, 212)
         Me.DataGridView1.TabIndex = 42
-        '
-        'quantite
-        '
-        Me.quantite.HeaderText = "Quantité"
-        Me.quantite.Name = "quantite"
-        Me.quantite.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.quantite.Width = 50
-        '
-        'medicament
-        '
-        Me.medicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.medicament.HeaderText = "Médicament"
-        Me.medicament.Name = "medicament"
-        Me.medicament.ReadOnly = True
-        Me.medicament.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         '
         'Button4
         '
@@ -259,6 +247,31 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.Button4.TabIndex = 43
         Me.Button4.Text = "Supprimer ligne seléctionné"
         Me.Button4.UseVisualStyleBackColor = False
+        '
+        'quantite
+        '
+        Me.quantite.Frozen = True
+        Me.quantite.HeaderText = "Quantité"
+        Me.quantite.Name = "quantite"
+        Me.quantite.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.quantite.Width = 50
+        '
+        'medicament
+        '
+        Me.medicament.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.medicament.Frozen = True
+        Me.medicament.HeaderText = "Médicament"
+        Me.medicament.Name = "medicament"
+        Me.medicament.ReadOnly = True
+        Me.medicament.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.medicament.Width = 212
+        '
+        'id
+        '
+        Me.id.Frozen = True
+        Me.id.HeaderText = "Identifiant"
+        Me.id.Name = "id"
+        Me.id.ReadOnly = True
         '
         'Visiteur_Rediger_compte_rendu
         '
@@ -319,7 +332,8 @@ Partial Class Visiteur_Rediger_compte_rendu
     Friend WithEvents Button1 As Button
     Friend WithEvents Label8 As Label
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Button4 As Button
     Friend WithEvents quantite As DataGridViewTextBoxColumn
     Friend WithEvents medicament As DataGridViewTextBoxColumn
-    Friend WithEvents Button4 As Button
+    Friend WithEvents id As DataGridViewTextBoxColumn
 End Class
