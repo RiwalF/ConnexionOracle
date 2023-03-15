@@ -117,8 +117,6 @@ Public Class Visiteur_Rediger_compte_rendu
         If TextBox2.Text = "" Then
             MessageBox.Show("Vous n'avez pas donné de nom à votre compte-rendu")
         Else
-            Dim Date_CR As String = "VALUES(to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'), 'column plutot')"
-
             'insertion du compte-rendu
             Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'), '" & TextBox2.Text & "', '" & ComboBox2.SelectedValue & "', '" & id_utilisateur & "')"
             myCommand.Connection = myConnection
