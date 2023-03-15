@@ -16,6 +16,11 @@ Public Class Creer_reunion
     Dim donnee As DataTable
     Dim id As New List(Of Integer)
     Dim test As New Integer
+
+    Function RemoveWhitespace(fullString As String) As String
+        Return New String(fullString.Where(Function(x) Not Char.IsWhiteSpace(x)).ToArray())
+    End Function
+
     Private Sub Creer_reunion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Label_Prenom.Text = Prenom
         Label_Nom.Text = Nom
@@ -42,7 +47,7 @@ Public Class Creer_reunion
         'dt.Columns.Add("hello", Type.GetType("System.String"), "NOM+ ' ' + PRENOM")
 
         For Each unItem In donnee.Rows
-            dt.Rows.Add(unItem("ID"), unItem("NOM") + unItem("PRENOM"))
+            dt.Rows.Add(unItem("ID"), RemoveWhitespace(unItem("NOM")) + " " + RemoveWhitespace(unItem("PRENOM")))
         Next
 
         Me.ComboBox2.DataSource = dt

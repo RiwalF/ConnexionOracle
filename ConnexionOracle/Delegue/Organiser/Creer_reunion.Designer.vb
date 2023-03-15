@@ -40,6 +40,7 @@ Partial Class Creer_reunion
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -263,5 +264,6 @@ Partial Class Creer_reunion
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents ListBox2 As ListBox
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
 End Class
 
