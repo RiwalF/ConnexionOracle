@@ -32,7 +32,7 @@ Public Class Visiteur_Consulter_compte_rendu
         Dim query As String = "SELECT DISTINCT CR_DATE
                                  FROM COMPTE_RENDU
                                  WHERE id ='" & id_utilisateur & "'
-                                 ORDER BY CR_DATE"
+                                 ORDER BY to_date(CR_DATE) DESC"
 
 
 

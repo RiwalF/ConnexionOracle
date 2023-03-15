@@ -38,13 +38,15 @@ Public Class Form1
 
 
     Private Sub Connexio_Click(sender As Object, e As EventArgs) Handles Button_Login.Click
-        'ATTETION NE PAS OUBLIER DE SUPPRIMER
+        'ATTENTION NE PAS OUBLIER DE SUPPRIMER
         If TextBox_username.Text = "ADMIN" Then
             If TextBox_MDP.Text = "RNSLAM2022" Then
                 FormADMIN.Show()
                 Me.Hide()
             End If
         End If
+
+        Dim erreur_connexion As Integer = 0
 
         'HASHAGE DU MOT DE PASSE
         Dim password As String = TextBox_MDP.Text
@@ -92,6 +94,8 @@ Public Class Form1
                 Prenom = TextBox_username.Text
                 Accueil_responsable.Show()
                 Me.Hide()
+            Else
+                erreur_connexion += 1
             End If
         End While
         myReader.Close()
@@ -120,6 +124,8 @@ Public Class Form1
                 Prenom = TextBox_username.Text
                 Accueil_Visiteur.Show()
                 Me.Hide()
+            Else
+                erreur_connexion += 1
             End If
         End While
         myReader.Close()
@@ -149,9 +155,16 @@ Public Class Form1
                 Prenom = TextBox_username.Text
                 Accueil_Delegue.Show()
                 Me.Hide()
+            Else
+                erreur_connexion += 1
             End If
         End While
         myReader.Close()
+
+        If (erreur_connexion = 3) Then
+            MessageBox.Show("Erreur : Identifiant ou Mot de Passe incorrect")
+        End If
+
 
     End Sub
 
