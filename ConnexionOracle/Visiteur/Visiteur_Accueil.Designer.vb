@@ -22,88 +22,95 @@ Partial Class Accueil_Visiteur
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Button_rediger = New System.Windows.Forms.Button()
-        Me.Button_consulter = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Label_Nom = New System.Windows.Forms.Label()
-        Me.Label_Prenom = New System.Windows.Forms.Label()
+        Me.LabelVisiteur = New System.Windows.Forms.Label()
+        Me.ButtonRediger = New System.Windows.Forms.Button()
+        Me.ButtonConsulter = New System.Windows.Forms.Button()
+        Me.ButtonRetour = New System.Windows.Forms.Button()
+        Me.PictureBoxHeader = New System.Windows.Forms.PictureBox()
+        Me.LabelNom = New System.Windows.Forms.Label()
+        Me.LabelPrenom = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBoxHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label2
+        'LabelVisiteur
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label2.Font = New System.Drawing.Font("Arial", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(371, 170)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(114, 35)
-        Me.Label2.TabIndex = 8
-        Me.Label2.Text = "Visiteur"
+        Me.LabelVisiteur.AutoSize = True
+        Me.LabelVisiteur.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LabelVisiteur.Font = New System.Drawing.Font("Arial", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelVisiteur.Location = New System.Drawing.Point(371, 170)
+        Me.LabelVisiteur.Name = "LabelVisiteur"
+        Me.LabelVisiteur.Size = New System.Drawing.Size(114, 35)
+        Me.LabelVisiteur.TabIndex = 8
+        Me.LabelVisiteur.Text = "Visiteur"
         '
-        'Button_rediger
+        'ButtonRediger
         '
-        Me.Button_rediger.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button_rediger.Location = New System.Drawing.Point(200, 288)
-        Me.Button_rediger.Name = "Button_rediger"
-        Me.Button_rediger.Size = New System.Drawing.Size(165, 51)
-        Me.Button_rediger.TabIndex = 9
-        Me.Button_rediger.Text = "Rédiger un compte-rendu"
-        Me.Button_rediger.UseVisualStyleBackColor = False
+        Me.ButtonRediger.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.ButtonRediger.Location = New System.Drawing.Point(200, 288)
+        Me.ButtonRediger.Name = "ButtonRediger"
+        Me.ButtonRediger.Size = New System.Drawing.Size(165, 51)
+        Me.ButtonRediger.TabIndex = 9
+        Me.ButtonRediger.Text = "Rédiger un compte-rendu"
+        Me.ButtonRediger.UseVisualStyleBackColor = False
         '
-        'Button_consulter
+        'ButtonConsulter
         '
-        Me.Button_consulter.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button_consulter.Location = New System.Drawing.Point(491, 288)
-        Me.Button_consulter.Name = "Button_consulter"
-        Me.Button_consulter.Size = New System.Drawing.Size(165, 51)
-        Me.Button_consulter.TabIndex = 10
-        Me.Button_consulter.Text = "Consulter mes comptes-rendu"
-        Me.Button_consulter.UseVisualStyleBackColor = False
+        Me.ButtonConsulter.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.ButtonConsulter.Location = New System.Drawing.Point(491, 288)
+        Me.ButtonConsulter.Name = "ButtonConsulter"
+        Me.ButtonConsulter.Size = New System.Drawing.Size(165, 51)
+        Me.ButtonConsulter.TabIndex = 10
+        Me.ButtonConsulter.Text = "Consulter mes comptes-rendu"
+        Me.ButtonConsulter.UseVisualStyleBackColor = False
         '
-        'Button1
+        'ButtonRetour
         '
-        Me.Button1.BackgroundImage = Global.ConnexionOracle.My.Resources.Resources.retour
-        Me.Button1.Location = New System.Drawing.Point(12, 140)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(55, 50)
-        Me.Button1.TabIndex = 11
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ButtonRetour.BackgroundImage = Global.ConnexionOracle.My.Resources.Resources.retour
+        Me.ButtonRetour.Location = New System.Drawing.Point(12, 140)
+        Me.ButtonRetour.Name = "ButtonRetour"
+        Me.ButtonRetour.Size = New System.Drawing.Size(55, 50)
+        Me.ButtonRetour.TabIndex = 11
+        Me.ButtonRetour.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'PictureBoxHeader
         '
-        Me.PictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.PictureBox1.ErrorImage = Nothing
-        Me.PictureBox1.Image = Global.ConnexionOracle.My.Resources.Resources.MicrosoftTeams_image
-        Me.PictureBox1.InitialImage = Nothing
-        Me.PictureBox1.Location = New System.Drawing.Point(-2, 26)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(1176, 108)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
+        Me.PictureBoxHeader.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.PictureBoxHeader.ErrorImage = Nothing
+        Me.PictureBoxHeader.Image = Global.ConnexionOracle.My.Resources.Resources.MicrosoftTeams_image
+        Me.PictureBoxHeader.InitialImage = Nothing
+        Me.PictureBoxHeader.Location = New System.Drawing.Point(-2, 26)
+        Me.PictureBoxHeader.Name = "PictureBoxHeader"
+        Me.PictureBoxHeader.Size = New System.Drawing.Size(1176, 108)
+        Me.PictureBoxHeader.TabIndex = 0
+        Me.PictureBoxHeader.TabStop = False
         '
-        'Label_Nom
+        'LabelNom
         '
-        Me.Label_Nom.AutoSize = True
-        Me.Label_Nom.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Label_Nom.Location = New System.Drawing.Point(775, 52)
-        Me.Label_Nom.Name = "Label_Nom"
-        Me.Label_Nom.Size = New System.Drawing.Size(29, 13)
-        Me.Label_Nom.TabIndex = 12
-        Me.Label_Nom.Text = "Nom"
+        Me.LabelNom.AutoSize = True
+        Me.LabelNom.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.LabelNom.Location = New System.Drawing.Point(775, 52)
+        Me.LabelNom.Name = "LabelNom"
+        Me.LabelNom.Size = New System.Drawing.Size(29, 13)
+        Me.LabelNom.TabIndex = 12
+        Me.LabelNom.Text = "Nom"
         '
-        'Label_Prenom
+        'LabelPrenom
         '
-        Me.Label_Prenom.AutoSize = True
-        Me.Label_Prenom.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Label_Prenom.Location = New System.Drawing.Point(775, 90)
-        Me.Label_Prenom.Name = "Label_Prenom"
-        Me.Label_Prenom.Size = New System.Drawing.Size(43, 13)
-        Me.Label_Prenom.TabIndex = 13
-        Me.Label_Prenom.Text = "Prenom"
+        Me.LabelPrenom.AutoSize = True
+        Me.LabelPrenom.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.LabelPrenom.Location = New System.Drawing.Point(775, 90)
+        Me.LabelPrenom.Name = "LabelPrenom"
+        Me.LabelPrenom.Size = New System.Drawing.Size(43, 13)
+        Me.LabelPrenom.TabIndex = 13
+        Me.LabelPrenom.Text = "Prenom"
+        '
+        'Label1
+        '
+        Me.Label1.Location = New System.Drawing.Point(0, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(100, 23)
+        Me.Label1.TabIndex = 0
         '
         'Accueil_Visiteur
         '
@@ -112,27 +119,27 @@ Partial Class Accueil_Visiteur
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Label_Prenom)
-        Me.Controls.Add(Me.Label_Nom)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Button_consulter)
-        Me.Controls.Add(Me.Button_rediger)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.LabelPrenom)
+        Me.Controls.Add(Me.LabelNom)
+        Me.Controls.Add(Me.ButtonRetour)
+        Me.Controls.Add(Me.ButtonConsulter)
+        Me.Controls.Add(Me.ButtonRediger)
+        Me.Controls.Add(Me.LabelVisiteur)
+        Me.Controls.Add(Me.PictureBoxHeader)
         Me.Name = "Accueil_Visiteur"
         Me.Text = "Accueil_Visiteur"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBoxHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Button_rediger As Button
-    Friend WithEvents Button_consulter As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Label_Nom As Label
-    Friend WithEvents Label_Prenom As Label
+    Friend WithEvents LabelVisiteur As Label
+    Friend WithEvents ButtonRediger As Button
+    Friend WithEvents ButtonConsulter As Button
+    Friend WithEvents ButtonRetour As Button
+    Friend WithEvents PictureBoxHeader As PictureBox
+    Friend WithEvents LabelNom As Label
+    Friend WithEvents LabelPrenom As Label
     Friend WithEvents Label1 As Label
 End Class

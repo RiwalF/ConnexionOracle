@@ -22,44 +22,44 @@ Partial Class Visiteur_Rediger_compte_rendu
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.LabelRedigerUnCompteRendu = New System.Windows.Forms.Label()
         Me.Label_Prenom = New System.Windows.Forms.Label()
         Me.Label_Nom = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Button_retour = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.ComboBoxMedicaments = New System.Windows.Forms.ComboBox()
+        Me.TextBoxQuantite = New System.Windows.Forms.TextBox()
+        Me.ComboBoxPraticien = New System.Windows.Forms.ComboBox()
+        Me.ButtonCreerCompteRendu = New System.Windows.Forms.Button()
+        Me.LabelPraticien = New System.Windows.Forms.Label()
+        Me.LabelMedicaments = New System.Windows.Forms.Label()
+        Me.LabelQuantite = New System.Windows.Forms.Label()
+        Me.DateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.TextBoxMotif = New System.Windows.Forms.TextBox()
+        Me.LabelMotif = New System.Windows.Forms.Label()
+        Me.LabelDate = New System.Windows.Forms.Label()
+        Me.ButtonVoirMedicaments = New System.Windows.Forms.Button()
+        Me.PictureBoxHeader = New System.Windows.Forms.PictureBox()
+        Me.ButtonRetour = New System.Windows.Forms.Button()
+        Me.ButtonAjouterMedicaments = New System.Windows.Forms.Button()
+        Me.LabelMedicamentsSelectionne = New System.Windows.Forms.Label()
+        Me.DataGridViewMedicaments = New System.Windows.Forms.DataGridView()
         Me.quantite = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.medicament = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ButtonSupprimerLigneSelectionne = New System.Windows.Forms.Button()
+        CType(Me.PictureBoxHeader, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewMedicaments, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label2
+        'LabelRedigerUnCompteRendu
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label2.Font = New System.Drawing.Font("Arial", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(249, 147)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(347, 35)
-        Me.Label2.TabIndex = 9
-        Me.Label2.Text = "Rédiger un compte-rendu"
+        Me.LabelRedigerUnCompteRendu.AutoSize = True
+        Me.LabelRedigerUnCompteRendu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LabelRedigerUnCompteRendu.Font = New System.Drawing.Font("Arial", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelRedigerUnCompteRendu.Location = New System.Drawing.Point(249, 147)
+        Me.LabelRedigerUnCompteRendu.Name = "LabelRedigerUnCompteRendu"
+        Me.LabelRedigerUnCompteRendu.Size = New System.Drawing.Size(347, 35)
+        Me.LabelRedigerUnCompteRendu.TabIndex = 9
+        Me.LabelRedigerUnCompteRendu.Text = "Rédiger un compte-rendu"
         '
         'Label_Prenom
         '
@@ -79,179 +79,170 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.Label_Nom.Size = New System.Drawing.Size(0, 13)
         Me.Label_Nom.TabIndex = 15
         '
-        'ComboBox1
+        'ComboBoxMedicaments
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(117, 238)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(222, 21)
-        Me.ComboBox1.TabIndex = 17
+        Me.ComboBoxMedicaments.FormattingEnabled = True
+        Me.ComboBoxMedicaments.Location = New System.Drawing.Point(117, 238)
+        Me.ComboBoxMedicaments.Name = "ComboBoxMedicaments"
+        Me.ComboBoxMedicaments.Size = New System.Drawing.Size(222, 21)
+        Me.ComboBoxMedicaments.TabIndex = 17
         '
-        'TextBox1
+        'TextBoxQuantite
         '
-        Me.TextBox1.Location = New System.Drawing.Point(117, 278)
-        Me.TextBox1.MaxLength = 32
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(222, 20)
-        Me.TextBox1.TabIndex = 18
+        Me.TextBoxQuantite.Location = New System.Drawing.Point(117, 278)
+        Me.TextBoxQuantite.MaxLength = 9
+        Me.TextBoxQuantite.Name = "TextBoxQuantite"
+        Me.TextBoxQuantite.Size = New System.Drawing.Size(222, 20)
+        Me.TextBoxQuantite.TabIndex = 18
         '
-        'ComboBox2
+        'ComboBoxPraticien
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(117, 317)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(390, 21)
-        Me.ComboBox2.TabIndex = 20
+        Me.ComboBoxPraticien.FormattingEnabled = True
+        Me.ComboBoxPraticien.Location = New System.Drawing.Point(117, 317)
+        Me.ComboBoxPraticien.Name = "ComboBoxPraticien"
+        Me.ComboBoxPraticien.Size = New System.Drawing.Size(390, 21)
+        Me.ComboBoxPraticien.TabIndex = 20
         '
-        'Button2
+        'ButtonCreerCompteRendu
         '
-        Me.Button2.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button2.Location = New System.Drawing.Point(117, 427)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(390, 23)
-        Me.Button2.TabIndex = 22
-        Me.Button2.Text = "Créer Compte-Rendu"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.ButtonCreerCompteRendu.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.ButtonCreerCompteRendu.Location = New System.Drawing.Point(117, 427)
+        Me.ButtonCreerCompteRendu.Name = "ButtonCreerCompteRendu"
+        Me.ButtonCreerCompteRendu.Size = New System.Drawing.Size(390, 23)
+        Me.ButtonCreerCompteRendu.TabIndex = 22
+        Me.ButtonCreerCompteRendu.Text = "Créer Compte-Rendu"
+        Me.ButtonCreerCompteRendu.UseVisualStyleBackColor = False
         '
-        'Label1
+        'LabelPraticien
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(29, 317)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(81, 17)
-        Me.Label1.TabIndex = 24
-        Me.Label1.Text = "Praticiens :"
+        Me.LabelPraticien.AutoSize = True
+        Me.LabelPraticien.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPraticien.Location = New System.Drawing.Point(29, 317)
+        Me.LabelPraticien.Name = "LabelPraticien"
+        Me.LabelPraticien.Size = New System.Drawing.Size(81, 17)
+        Me.LabelPraticien.TabIndex = 24
+        Me.LabelPraticien.Text = "Praticiens :"
         '
-        'Label4
+        'LabelMedicaments
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(7, 242)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(103, 17)
-        Me.Label4.TabIndex = 26
-        Me.Label4.Text = "Médicaments :"
+        Me.LabelMedicaments.AutoSize = True
+        Me.LabelMedicaments.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelMedicaments.Location = New System.Drawing.Point(7, 242)
+        Me.LabelMedicaments.Name = "LabelMedicaments"
+        Me.LabelMedicaments.Size = New System.Drawing.Size(103, 17)
+        Me.LabelMedicaments.TabIndex = 26
+        Me.LabelMedicaments.Text = "Médicaments :"
         '
-        'Label5
+        'LabelQuantite
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(39, 278)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(71, 17)
-        Me.Label5.TabIndex = 27
-        Me.Label5.Text = "Quantité :"
+        Me.LabelQuantite.AutoSize = True
+        Me.LabelQuantite.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelQuantite.Location = New System.Drawing.Point(39, 278)
+        Me.LabelQuantite.Name = "LabelQuantite"
+        Me.LabelQuantite.Size = New System.Drawing.Size(71, 17)
+        Me.LabelQuantite.TabIndex = 27
+        Me.LabelQuantite.Text = "Quantité :"
         '
-        'DateTimePicker1
+        'DateTimePicker
         '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(117, 353)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(390, 20)
-        Me.DateTimePicker1.TabIndex = 28
+        Me.DateTimePicker.Location = New System.Drawing.Point(117, 353)
+        Me.DateTimePicker.Name = "DateTimePicker"
+        Me.DateTimePicker.Size = New System.Drawing.Size(390, 20)
+        Me.DateTimePicker.TabIndex = 28
         '
-        'TextBox2
+        'TextBoxMotif
         '
-        Me.TextBox2.Location = New System.Drawing.Point(117, 388)
-        Me.TextBox2.MaxLength = 32
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(390, 20)
-        Me.TextBox2.TabIndex = 29
+        Me.TextBoxMotif.Location = New System.Drawing.Point(117, 388)
+        Me.TextBoxMotif.MaxLength = 32
+        Me.TextBoxMotif.Name = "TextBoxMotif"
+        Me.TextBoxMotif.Size = New System.Drawing.Size(390, 20)
+        Me.TextBoxMotif.TabIndex = 29
         '
-        'Label3
+        'LabelMotif
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(64, 391)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(46, 17)
-        Me.Label3.TabIndex = 30
-        Me.Label3.Text = "Motif :"
+        Me.LabelMotif.AutoSize = True
+        Me.LabelMotif.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelMotif.Location = New System.Drawing.Point(64, 391)
+        Me.LabelMotif.Name = "LabelMotif"
+        Me.LabelMotif.Size = New System.Drawing.Size(46, 17)
+        Me.LabelMotif.TabIndex = 30
+        Me.LabelMotif.Text = "Motif :"
         '
-        'Label6
+        'LabelDate
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(7, 353)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(104, 17)
-        Me.Label6.TabIndex = 31
-        Me.Label6.Text = "Date de visite :"
+        Me.LabelDate.AutoSize = True
+        Me.LabelDate.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelDate.Location = New System.Drawing.Point(7, 353)
+        Me.LabelDate.Name = "LabelDate"
+        Me.LabelDate.Size = New System.Drawing.Size(104, 17)
+        Me.LabelDate.TabIndex = 31
+        Me.LabelDate.Text = "Date de visite :"
         '
-        'Button3
+        'ButtonVoirMedicaments
         '
-        Me.Button3.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button3.Location = New System.Drawing.Point(429, 238)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(78, 60)
-        Me.Button3.TabIndex = 32
-        Me.Button3.Text = "Voir médicaments"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.ButtonVoirMedicaments.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.ButtonVoirMedicaments.Location = New System.Drawing.Point(429, 238)
+        Me.ButtonVoirMedicaments.Name = "ButtonVoirMedicaments"
+        Me.ButtonVoirMedicaments.Size = New System.Drawing.Size(78, 60)
+        Me.ButtonVoirMedicaments.TabIndex = 32
+        Me.ButtonVoirMedicaments.Text = "Voir médicaments"
+        Me.ButtonVoirMedicaments.UseVisualStyleBackColor = False
         '
-        'PictureBox2
+        'PictureBoxHeader
         '
-        Me.PictureBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.PictureBox2.ErrorImage = Nothing
-        Me.PictureBox2.Image = Global.ConnexionOracle.My.Resources.Resources.MicrosoftTeams_image
-        Me.PictureBox2.InitialImage = Nothing
-        Me.PictureBox2.Location = New System.Drawing.Point(-1, 26)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(1176, 108)
-        Me.PictureBox2.TabIndex = 14
-        Me.PictureBox2.TabStop = False
+        Me.PictureBoxHeader.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.PictureBoxHeader.ErrorImage = Nothing
+        Me.PictureBoxHeader.Image = Global.ConnexionOracle.My.Resources.Resources.MicrosoftTeams_image
+        Me.PictureBoxHeader.InitialImage = Nothing
+        Me.PictureBoxHeader.Location = New System.Drawing.Point(-1, 26)
+        Me.PictureBoxHeader.Name = "PictureBoxHeader"
+        Me.PictureBoxHeader.Size = New System.Drawing.Size(1176, 108)
+        Me.PictureBoxHeader.TabIndex = 14
+        Me.PictureBoxHeader.TabStop = False
         '
-        'Button_retour
+        'ButtonRetour
         '
-        Me.Button_retour.BackgroundImage = Global.ConnexionOracle.My.Resources.Resources.retour
-        Me.Button_retour.Location = New System.Drawing.Point(12, 140)
-        Me.Button_retour.Name = "Button_retour"
-        Me.Button_retour.Size = New System.Drawing.Size(55, 50)
-        Me.Button_retour.TabIndex = 33
-        Me.Button_retour.UseVisualStyleBackColor = True
+        Me.ButtonRetour.BackgroundImage = Global.ConnexionOracle.My.Resources.Resources.retour
+        Me.ButtonRetour.Location = New System.Drawing.Point(12, 140)
+        Me.ButtonRetour.Name = "ButtonRetour"
+        Me.ButtonRetour.Size = New System.Drawing.Size(55, 50)
+        Me.ButtonRetour.TabIndex = 33
+        Me.ButtonRetour.UseVisualStyleBackColor = True
         '
-        'Button1
+        'ButtonAjouterMedicaments
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button1.Location = New System.Drawing.Point(345, 238)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(78, 60)
-        Me.Button1.TabIndex = 19
-        Me.Button1.Text = "Ajouter médicaments"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.ButtonAjouterMedicaments.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.ButtonAjouterMedicaments.Location = New System.Drawing.Point(345, 238)
+        Me.ButtonAjouterMedicaments.Name = "ButtonAjouterMedicaments"
+        Me.ButtonAjouterMedicaments.Size = New System.Drawing.Size(78, 60)
+        Me.ButtonAjouterMedicaments.TabIndex = 19
+        Me.ButtonAjouterMedicaments.Text = "Ajouter médicaments"
+        Me.ButtonAjouterMedicaments.UseVisualStyleBackColor = False
         '
-        'Label8
+        'LabelMedicamentsSelectionne
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(605, 202)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(173, 17)
-        Me.Label8.TabIndex = 41
-        Me.Label8.Text = "Médicaments sélectionné"
+        Me.LabelMedicamentsSelectionne.AutoSize = True
+        Me.LabelMedicamentsSelectionne.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelMedicamentsSelectionne.Location = New System.Drawing.Point(605, 202)
+        Me.LabelMedicamentsSelectionne.Name = "LabelMedicamentsSelectionne"
+        Me.LabelMedicamentsSelectionne.Size = New System.Drawing.Size(173, 17)
+        Me.LabelMedicamentsSelectionne.TabIndex = 41
+        Me.LabelMedicamentsSelectionne.Text = "Médicaments sélectionné"
         '
-        'DataGridView1
+        'DataGridViewMedicaments
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.quantite, Me.medicament, Me.id})
-        Me.DataGridView1.Location = New System.Drawing.Point(540, 238)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(305, 212)
-        Me.DataGridView1.TabIndex = 42
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button4.Location = New System.Drawing.Point(540, 456)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(305, 31)
-        Me.Button4.TabIndex = 43
-        Me.Button4.Text = "Supprimer ligne seléctionné"
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.DataGridViewMedicaments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewMedicaments.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.quantite, Me.medicament, Me.id})
+        Me.DataGridViewMedicaments.Location = New System.Drawing.Point(540, 238)
+        Me.DataGridViewMedicaments.Name = "DataGridViewMedicaments"
+        Me.DataGridViewMedicaments.Size = New System.Drawing.Size(305, 212)
+        Me.DataGridViewMedicaments.TabIndex = 42
         '
         'quantite
         '
         Me.quantite.Frozen = True
         Me.quantite.HeaderText = "Quantité"
+        Me.quantite.MaxInputLength = 9
         Me.quantite.Name = "quantite"
         Me.quantite.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.quantite.Width = 50
@@ -273,37 +264,47 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.id.Name = "id"
         Me.id.ReadOnly = True
         '
+        'ButtonSupprimerLigneSelectionne
+        '
+        Me.ButtonSupprimerLigneSelectionne.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.ButtonSupprimerLigneSelectionne.Location = New System.Drawing.Point(540, 456)
+        Me.ButtonSupprimerLigneSelectionne.Name = "ButtonSupprimerLigneSelectionne"
+        Me.ButtonSupprimerLigneSelectionne.Size = New System.Drawing.Size(305, 31)
+        Me.ButtonSupprimerLigneSelectionne.TabIndex = 43
+        Me.ButtonSupprimerLigneSelectionne.Text = "Supprimer ligne seléctionné"
+        Me.ButtonSupprimerLigneSelectionne.UseVisualStyleBackColor = False
+        '
         'Visiteur_Rediger_compte_rendu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.Button_retour)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.DateTimePicker1)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.ComboBox2)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.ButtonSupprimerLigneSelectionne)
+        Me.Controls.Add(Me.DataGridViewMedicaments)
+        Me.Controls.Add(Me.LabelMedicamentsSelectionne)
+        Me.Controls.Add(Me.ButtonRetour)
+        Me.Controls.Add(Me.ButtonVoirMedicaments)
+        Me.Controls.Add(Me.LabelDate)
+        Me.Controls.Add(Me.LabelMotif)
+        Me.Controls.Add(Me.TextBoxMotif)
+        Me.Controls.Add(Me.DateTimePicker)
+        Me.Controls.Add(Me.LabelQuantite)
+        Me.Controls.Add(Me.LabelMedicaments)
+        Me.Controls.Add(Me.LabelPraticien)
+        Me.Controls.Add(Me.ButtonCreerCompteRendu)
+        Me.Controls.Add(Me.ComboBoxPraticien)
+        Me.Controls.Add(Me.ButtonAjouterMedicaments)
+        Me.Controls.Add(Me.TextBoxQuantite)
+        Me.Controls.Add(Me.ComboBoxMedicaments)
         Me.Controls.Add(Me.Label_Prenom)
         Me.Controls.Add(Me.Label_Nom)
-        Me.Controls.Add(Me.PictureBox2)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.LabelRedigerUnCompteRendu)
+        Me.Controls.Add(Me.PictureBoxHeader)
         Me.Name = "Visiteur_Rediger_compte_rendu"
         Me.Text = "Rediger_compte_rendu"
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBoxHeader, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewMedicaments, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -312,27 +313,27 @@ Partial Class Visiteur_Rediger_compte_rendu
 
 
 
-    Friend WithEvents Label2 As Label
+    Friend WithEvents LabelRedigerUnCompteRendu As Label
     Friend WithEvents Label_Prenom As Label
     Friend WithEvents Label_Nom As Label
-    Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button_retour As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Label8 As Label
-    Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Button4 As Button
+    Friend WithEvents PictureBoxHeader As PictureBox
+    Friend WithEvents ComboBoxMedicaments As ComboBox
+    Friend WithEvents TextBoxQuantite As TextBox
+    Friend WithEvents ComboBoxPraticien As ComboBox
+    Friend WithEvents ButtonCreerCompteRendu As Button
+    Friend WithEvents LabelPraticien As Label
+    Friend WithEvents LabelMedicaments As Label
+    Friend WithEvents LabelQuantite As Label
+    Friend WithEvents DateTimePicker As DateTimePicker
+    Friend WithEvents TextBoxMotif As TextBox
+    Friend WithEvents LabelMotif As Label
+    Friend WithEvents LabelDate As Label
+    Friend WithEvents ButtonVoirMedicaments As Button
+    Friend WithEvents ButtonRetour As Button
+    Friend WithEvents ButtonAjouterMedicaments As Button
+    Friend WithEvents LabelMedicamentsSelectionne As Label
+    Friend WithEvents DataGridViewMedicaments As DataGridView
+    Friend WithEvents ButtonSupprimerLigneSelectionne As Button
     Friend WithEvents quantite As DataGridViewTextBoxColumn
     Friend WithEvents medicament As DataGridViewTextBoxColumn
     Friend WithEvents id As DataGridViewTextBoxColumn

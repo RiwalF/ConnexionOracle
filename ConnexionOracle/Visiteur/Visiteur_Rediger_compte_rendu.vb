@@ -8,19 +8,24 @@ Public Class Visiteur_Rediger_compte_rendu
     Dim myBuilder As Odbc.OdbcCommandBuilder
     Dim connString As String
     Dim donnee As DataTable
-    Dim id_M As New List(Of String)
 
+    'Fonction permettant de supprimer les espaces d'une chaine de caractère
     Function RemoveWhitespace(fullString As String) As String
         Return New String(fullString.Where(Function(x) Not Char.IsWhiteSpace(x)).ToArray())
     End Function
 
+    'Initialisation de tous les ComboBox et les Label de la page
     Private Sub Rediger_compte_rendu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Initiation des 2 label Nom et Prenom de l'utilisateur
         Label_Prenom.Text = Prenom
         Label_Nom.Text = Nom
+
+        'Connexion à la BDD SQL
         connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
         myConnection.ConnectionString = connString
         myConnection.Open()
 
+        'Récupération des médicaments pour remplir ComboBoxMedicaments
         Dim selectNomMedic As String = "SELECT M_ID,M_NOM FROM medicaments"
         donnee = New DataTable
         myAdapter = New Odbc.OdbcDataAdapter(selectNomMedic, myConnection)
@@ -35,16 +40,16 @@ Public Class Visiteur_Rediger_compte_rendu
             dt.Rows.Add(unItem("M_ID"), RemoveWhitespace(unItem("M_NOM")))
         Next
 
-        Me.ComboBox1.DataSource = dt
-        Me.ComboBox1.DisplayMember = "M_NOM"
-        Me.ComboBox1.ValueMember = "M_ID"
+        Me.ComboBoxMedicaments.DataSource = dt
+        Me.ComboBoxMedicaments.DisplayMember = "M_NOM"
+        Me.ComboBoxMedicaments.ValueMember = "M_ID"
         donnee.Clear()
 
-
-        Dim selectCoorPracticien As String = "SELECT P_ID,P_NOM,P_PRENOM,P_TYPE,P_CP,P_VILLE
+        'Récupération des Praticien pour remplir ComboBoxPraticien
+        Dim selectCoorPraticien As String = "SELECT P_ID,P_NOM,P_PRENOM,P_TYPE,P_CP,P_VILLE
                                               FROM PRATICIEN;"
         donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(selectCoorPracticien, myConnection)
+        myAdapter = New Odbc.OdbcDataAdapter(selectCoorPraticien, myConnection)
         myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
         myAdapter.Fill(donnee)
 
@@ -57,18 +62,15 @@ Public Class Visiteur_Rediger_compte_rendu
             dt2.Rows.Add(unItem("P_ID"), RemoveWhitespace(unItem("P_NOM")) + " - " + RemoveWhitespace(unItem("P_PRENOM")))
         Next
 
-        Me.ComboBox2.DataSource = dt2
-        Me.ComboBox2.DisplayMember = "P_NOM"
-        Me.ComboBox2.ValueMember = "P_ID"
+        Me.ComboBoxPraticien.DataSource = dt2
+        Me.ComboBoxPraticien.DisplayMember = "P_NOM"
+        Me.ComboBoxPraticien.ValueMember = "P_ID"
         donnee.Clear()
 
     End Sub
 
-
-
-
     'Obliger TextBox1 à accepter que des chiffres
-    Private Sub TextBox1_TextChanged(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox1.KeyPress
+    Private Sub TextBoxQuantite_TextChanged(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles TextBoxQuantite.KeyPress
         If Asc(e.KeyChar) <> 8 Then
             If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
                 e.Handled = True
@@ -76,62 +78,72 @@ Public Class Visiteur_Rediger_compte_rendu
         End If
     End Sub
 
+    'Ajoute un médicament à DataGridViewMedicaments (la liste de médicaments) avec sa quantite et son id
+    Private Sub ButtonAjouterMedicaments_Click(sender As Object, e As EventArgs) Handles ButtonAjouterMedicaments.Click
 
-
-
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+        'Instanciation de variable
         Dim existe_pas As Boolean = True
-        Dim nb_med As Integer = -1
+        Dim nb_medicaments As Integer = -1
+        Dim NB_Colonne_Datagrid As Integer = Me.DataGridViewMedicaments.Rows.Count
 
-
-        Dim NB_Colonne_Datagrid As Integer = Me.DataGridView1.Rows.Count
-
+        'Boucle comparant les médicaments déjà ajouté pour ne pas ajouter plusieurs fois le même médicament
         For i As Integer = 0 To NB_Colonne_Datagrid - 1
-            nb_med += 1
-            If ComboBox1.SelectedValue = Me.DataGridView1.Rows.Item(i).Cells.Item(2).Value Then
+            nb_medicaments += 1
+            If ComboBoxMedicaments.SelectedValue = Me.DataGridViewMedicaments.Rows.Item(i).Cells.Item(2).Value Then
                 existe_pas = False
             End If
         Next
 
-
+        'Si le medicaments n'a pas été ajouté alors on l'ajoute
         If existe_pas Then
-            If Not IsNumeric(TextBox1.Text) Then
+            'On vérifie que l'utilisateur a bien rentré une valeur numérique
+            If Not IsNumeric(TextBoxQuantite.Text) Then
                 MsgBox("Saisissez une valeur numérique !", vbExclamation, "Erreur de saisie")
                 Exit Sub
             Else
-                id_M.Add(ComboBox1.SelectedValue)
-
-                Me.DataGridView1.Rows.Add()
-                Me.DataGridView1.Rows.Item(nb_med).Cells.Item(0).Value = CInt(TextBox1.Text)
-                Me.DataGridView1.Rows.Item(nb_med).Cells.Item(1).Value = ComboBox1.Text
-                Me.DataGridView1.Rows.Item(nb_med).Cells.Item(2).Value = ComboBox1.SelectedValue
-
-
+                'Ajout de la ligne a la liste
+                Me.DataGridViewMedicaments.Rows.Add()
+                Me.DataGridViewMedicaments.Rows.Item(nb_medicaments).Cells.Item(0).Value = CInt(TextBoxQuantite.Text)
+                Me.DataGridViewMedicaments.Rows.Item(nb_medicaments).Cells.Item(1).Value = ComboBoxMedicaments.Text
+                Me.DataGridViewMedicaments.Rows.Item(nb_medicaments).Cells.Item(2).Value = ComboBoxMedicaments.SelectedValue
             End If
         Else
-            MessageBox.Show("ATTENTION 'Médicament déjà ajouté !'")
+            'Sinon on avertit l'utilisateur
+            MsgBox("Médicament déjà ajouté !", vbExclamation, "Erreur de saisie")
         End If
 
+    End Sub
+
+    'Permet de voir les détails du médicaments sélectionné
+    Private Sub ButtonVoirMedicaments_Click(sender As Object, e As EventArgs) Handles ButtonVoirMedicaments.Click
+        nom_medicaments = ComboBoxMedicaments.Text
+        Voir_Medicament.Show()
+    End Sub
+
+    'Permet de ssupprimer la ligne du médicaments sélectionné
+    Private Sub ButtonSupprimerLigneSelectionne_Click(sender As Object, e As EventArgs) Handles ButtonSupprimerLigneSelectionne.Click
+        'Vérifie que l'utilisateur ne supprime pas toutes les cases de la liste
+        Dim x As Integer = Me.DataGridViewMedicaments.CurrentRow.Index()
+        Try
+            Me.DataGridViewMedicaments.Rows.RemoveAt(x)
+        Catch ex As Exception
+            MsgBox("Vous ne pouvez pas supprimer la dernière ligne", vbExclamation, "Erreur")
+        End Try
 
     End Sub
 
 
-
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        If TextBox2.Text = "" Then
+    'Insère le compte rendu dans la BDD
+    Private Sub ButtonCreerCompteRendu_Click(sender As Object, e As EventArgs) Handles ButtonCreerCompteRendu.Click
+        'Vérifie que l'utilisateur à bien ajouté un titre
+        If TextBoxMotif.Text = "" Then
             MessageBox.Show("Vous n'avez pas donné de nom à votre compte-rendu")
         Else
             'insertion du compte-rendu
-            Dim Date_CR As String = "VALUES(to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'), 'column plutot')"
-
-            Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'), '" & TextBox2.Text & "', '" & ComboBox2.SelectedValue & "', '" & id_utilisateur & "')"
+            Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker.Value.Date & "', 'DD/MM/YYYY'), '" & TextBoxMotif.Text & "', '" & ComboBoxPraticien.SelectedValue & "', '" & id_utilisateur & "')"
             myCommand.Connection = myConnection
             myCommand.CommandText = insertCompteRendu
             myCommand.ExecuteNonQuery()
-
 
             'recuperation de l'id du dernier compte-rendu
             Dim plus_grand_id_CR As String = "SELECT cr_id FROM COMPTE_RENDU ORDER BY CAST(cr_id AS DECIMAL(5,2))"
@@ -148,54 +160,56 @@ Public Class Visiteur_Rediger_compte_rendu
 
             'Association des medicaments liés au compte-rendu
             Dim insertQuantiteCompteRendu As String
-            Dim item As Integer = Me.DataGridView1.RowCount - 2
-
-            Dim valeur As Integer = 0
-            Dim id_valeur As Integer
+            Dim item As Integer = Me.DataGridViewMedicaments.RowCount - 2
+            Dim quantite As Integer = 0
+            Dim id_medicament As Integer
             Dim Est_Numerique As Boolean = True
 
+            'Boucle ajoutant chaque medicament et leur quantite
             For index As Integer = 0 To item
                 Try
-                    valeur = Me.DataGridView1.Rows.Item(index).Cells.Item(0).Value
-                    id_valeur = Me.DataGridView1.Rows.Item(index).Cells.Item(2).Value
+                    quantite = Me.DataGridViewMedicaments.Rows.Item(index).Cells.Item(0).Value
+                    id_medicament = Me.DataGridViewMedicaments.Rows.Item(index).Cells.Item(2).Value
                 Catch ex As Exception
                     Est_Numerique = False
                 End Try
 
-
-                If Me.DataGridView1.Rows.Item(index).Cells.Item(1).Value = "" Then
-                    MessageBox.Show("Le numero ==> '" + valeur + "' n'a pas de medicaments associé !")
+                If Me.DataGridViewMedicaments.Rows.Item(index).Cells.Item(1).Value = "" Then
+                    MessageBox.Show("Le numero ==> '" + quantite + "' n'a pas de medicaments associé !")
                 ElseIf Est_Numerique Then
-                    insertQuantiteCompteRendu = "INSERT INTO quantite(CR_ID, M_ID, quantite) values ('" & id_cr & "','" & id_valeur & "','" & valeur & "')"
+                    insertQuantiteCompteRendu = "INSERT INTO quantite(CR_ID, M_ID, quantite) values ('" & id_cr & "','" & id_medicament & "','" & quantite & "')"
                     myCommand.Connection = myConnection
                     myCommand.CommandText = insertQuantiteCompteRendu
                     myCommand.ExecuteNonQuery()
                 Else
-                    MessageBox.Show("Le numero ==> '" + Me.DataGridView1.Rows.Item(index).Cells.Item(0).Value + "' n'est pas un nombre")
+                    Dim chaine As String = "L'élément numéro " & DataGridViewMedicaments.Rows.Item(index).Cells.Item(0).Value & "' n'est pas un nombre"
+                    MessageBox.Show(chaine)
                 End If
             Next
 
             MessageBox.Show("Compte Rendu Réalisé")
+
+            'Sortie de la page 
+            If type_Utilisateur = "Responsable" Then
+                Accueil_responsable.Show()
+                Me.Close()
+            ElseIf type_Utilisateur = "Delegue" Then
+                Accueil_Delegue.Show()
+                Me.Close()
+            ElseIf type_Utilisateur = "Visiteur" Then
+                Accueil_Visiteur.Show()
+                Me.Close()
+            Else
+                type_Utilisateur = ""
+                Form1.Show()
+                Me.Close()
+            End If
+
         End If
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        nom_medicaments = ComboBox1.Text
-        Voir_Medicament.Show()
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        If Me.DataGridView1.RowCount() > 1 Then
-            Dim x As Integer = Me.DataGridView1.CurrentRow.Index()
-            Me.DataGridView1.Rows.RemoveAt(x)
-        Else
-            MessageBox.Show("Vous ne pouvez pas supprimer la dernière ligne")
-        End If
-
-
-    End Sub
-
-    Private Sub Button_retour_Click(sender As Object, e As EventArgs) Handles Button_retour.Click
+    'Button servant à revenir en arrière (grâce à la variable type_utilisateur)
+    Private Sub Button_retour_Click(sender As Object, e As EventArgs) Handles ButtonRetour.Click
         If type_Utilisateur = "Responsable" Then
             Accueil_responsable.Show()
             Me.Close()

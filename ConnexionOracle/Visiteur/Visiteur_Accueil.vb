@@ -10,21 +10,21 @@ Public Class Accueil_Visiteur
     Dim connString As String
 
     Private Sub Accueil_Visiteur_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Label_Nom.Text = Nom
-        Label_Prenom.Text = Prenom
+        LabelNom.Text = Nom
+        LabelPrenom.Text = Prenom
     End Sub
 
-    Private Sub Button_rediger_Click(sender As Object, e As EventArgs) Handles Button_rediger.Click
+    Private Sub Button_rediger_Click(sender As Object, e As EventArgs) Handles ButtonRediger.Click
         Visiteur_Rediger_compte_rendu.Show()
         Me.Close()
     End Sub
 
-    Private Sub Button_consulter_Click(sender As Object, e As EventArgs) Handles Button_consulter.Click
+    Private Sub Button_consulter_Click(sender As Object, e As EventArgs) Handles ButtonConsulter.Click
         Visiteur_Consulter_compte_rendu.Show()
         Me.Close()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonRetour.Click
         Nom = ""
         Prenom = ""
         type_Utilisateur = ""

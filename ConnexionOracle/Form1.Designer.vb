@@ -23,85 +23,85 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.TextBox_username = New System.Windows.Forms.TextBox()
-        Me.Label_username = New System.Windows.Forms.Label()
-        Me.TextBox_MDP = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button_Login = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PictureBoxHeader = New System.Windows.Forms.PictureBox()
+        Me.TextBoxUsername = New System.Windows.Forms.TextBox()
+        Me.LabelUsername = New System.Windows.Forms.Label()
+        Me.TextBoxPassword = New System.Windows.Forms.TextBox()
+        Me.LabelPassword = New System.Windows.Forms.Label()
+        Me.ButtonLogin = New System.Windows.Forms.Button()
+        Me.LabelConnexion = New System.Windows.Forms.Label()
+        CType(Me.PictureBoxHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'PictureBox1
+        'PictureBoxHeader
         '
-        Me.PictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.PictureBox1.ErrorImage = CType(resources.GetObject("PictureBox1.ErrorImage"), System.Drawing.Image)
-        Me.PictureBox1.Image = Global.ConnexionOracle.My.Resources.Resources.MicrosoftTeams_image
-        Me.PictureBox1.InitialImage = Nothing
-        Me.PictureBox1.Location = New System.Drawing.Point(-2, 26)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(1176, 108)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
+        Me.PictureBoxHeader.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.PictureBoxHeader.ErrorImage = CType(resources.GetObject("PictureBoxHeader.ErrorImage"), System.Drawing.Image)
+        Me.PictureBoxHeader.Image = Global.ConnexionOracle.My.Resources.Resources.MicrosoftTeams_image
+        Me.PictureBoxHeader.InitialImage = Nothing
+        Me.PictureBoxHeader.Location = New System.Drawing.Point(-2, 26)
+        Me.PictureBoxHeader.Name = "PictureBoxHeader"
+        Me.PictureBoxHeader.Size = New System.Drawing.Size(1176, 108)
+        Me.PictureBoxHeader.TabIndex = 0
+        Me.PictureBoxHeader.TabStop = False
         '
-        'TextBox_username
+        'TextBoxUsername
         '
-        Me.TextBox_username.Location = New System.Drawing.Point(155, 288)
-        Me.TextBox_username.Name = "TextBox_username"
-        Me.TextBox_username.Size = New System.Drawing.Size(132, 20)
-        Me.TextBox_username.TabIndex = 1
+        Me.TextBoxUsername.Location = New System.Drawing.Point(155, 288)
+        Me.TextBoxUsername.Name = "TextBoxUsername"
+        Me.TextBoxUsername.Size = New System.Drawing.Size(132, 20)
+        Me.TextBoxUsername.TabIndex = 1
         '
-        'Label_username
+        'LabelUsername
         '
-        Me.Label_username.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_username.Location = New System.Drawing.Point(66, 288)
-        Me.Label_username.MaximumSize = New System.Drawing.Size(500, 500)
-        Me.Label_username.Name = "Label_username"
-        Me.Label_username.Size = New System.Drawing.Size(83, 20)
-        Me.Label_username.TabIndex = 2
-        Me.Label_username.Text = "Username :"
+        Me.LabelUsername.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelUsername.Location = New System.Drawing.Point(66, 288)
+        Me.LabelUsername.MaximumSize = New System.Drawing.Size(500, 500)
+        Me.LabelUsername.Name = "LabelUsername"
+        Me.LabelUsername.Size = New System.Drawing.Size(83, 20)
+        Me.LabelUsername.TabIndex = 2
+        Me.LabelUsername.Text = "Username :"
         '
-        'TextBox_MDP
+        'TextBoxPassword
         '
-        Me.TextBox_MDP.Location = New System.Drawing.Point(613, 285)
-        Me.TextBox_MDP.MaximumSize = New System.Drawing.Size(500, 500)
-        Me.TextBox_MDP.MinimumSize = New System.Drawing.Size(4, 4)
-        Me.TextBox_MDP.Name = "TextBox_MDP"
-        Me.TextBox_MDP.Size = New System.Drawing.Size(150, 20)
-        Me.TextBox_MDP.TabIndex = 3
-        Me.TextBox_MDP.UseSystemPasswordChar = True
+        Me.TextBoxPassword.Location = New System.Drawing.Point(613, 285)
+        Me.TextBoxPassword.MaximumSize = New System.Drawing.Size(500, 500)
+        Me.TextBoxPassword.MinimumSize = New System.Drawing.Size(4, 4)
+        Me.TextBoxPassword.Name = "TextBoxPassword"
+        Me.TextBoxPassword.Size = New System.Drawing.Size(150, 20)
+        Me.TextBoxPassword.TabIndex = 3
+        Me.TextBoxPassword.UseSystemPasswordChar = True
         '
-        'Label1
+        'LabelPassword
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(525, 285)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(82, 17)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Password :"
+        Me.LabelPassword.AutoSize = True
+        Me.LabelPassword.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPassword.Location = New System.Drawing.Point(525, 285)
+        Me.LabelPassword.Name = "LabelPassword"
+        Me.LabelPassword.Size = New System.Drawing.Size(82, 17)
+        Me.LabelPassword.TabIndex = 4
+        Me.LabelPassword.Text = "Password :"
         '
-        'Button_Login
+        'ButtonLogin
         '
-        Me.Button_Login.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button_Login.Location = New System.Drawing.Point(381, 412)
-        Me.Button_Login.Name = "Button_Login"
-        Me.Button_Login.Size = New System.Drawing.Size(91, 40)
-        Me.Button_Login.TabIndex = 5
-        Me.Button_Login.Text = "Login"
-        Me.Button_Login.UseVisualStyleBackColor = True
+        Me.ButtonLogin.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonLogin.Location = New System.Drawing.Point(381, 412)
+        Me.ButtonLogin.Name = "ButtonLogin"
+        Me.ButtonLogin.Size = New System.Drawing.Size(91, 40)
+        Me.ButtonLogin.TabIndex = 5
+        Me.ButtonLogin.Text = "Login"
+        Me.ButtonLogin.UseVisualStyleBackColor = True
         '
-        'Label2
+        'LabelConnexion
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label2.Font = New System.Drawing.Font("Arial", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(345, 190)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(154, 35)
-        Me.Label2.TabIndex = 6
-        Me.Label2.Text = "Connexion"
+        Me.LabelConnexion.AutoSize = True
+        Me.LabelConnexion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LabelConnexion.Font = New System.Drawing.Font("Arial", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelConnexion.Location = New System.Drawing.Point(345, 190)
+        Me.LabelConnexion.Name = "LabelConnexion"
+        Me.LabelConnexion.Size = New System.Drawing.Size(154, 35)
+        Me.LabelConnexion.TabIndex = 6
+        Me.LabelConnexion.Text = "Connexion"
         '
         'Form1
         '
@@ -109,27 +109,27 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Button_Login)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TextBox_MDP)
-        Me.Controls.Add(Me.Label_username)
-        Me.Controls.Add(Me.TextBox_username)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.LabelConnexion)
+        Me.Controls.Add(Me.ButtonLogin)
+        Me.Controls.Add(Me.LabelPassword)
+        Me.Controls.Add(Me.TextBoxPassword)
+        Me.Controls.Add(Me.LabelUsername)
+        Me.Controls.Add(Me.TextBoxUsername)
+        Me.Controls.Add(Me.PictureBoxHeader)
         Me.Name = "Form1"
         Me.Text = "Connect"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBoxHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
 
-    Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents TextBox_username As TextBox
-    Friend WithEvents Label_username As Label
-    Friend WithEvents TextBox_MDP As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Button_Login As Button
-    Friend WithEvents Label2 As Label
+    Friend WithEvents PictureBoxHeader As PictureBox
+    Friend WithEvents TextBoxUsername As TextBox
+    Friend WithEvents LabelUsername As Label
+    Friend WithEvents TextBoxPassword As TextBox
+    Friend WithEvents LabelPassword As Label
+    Friend WithEvents ButtonLogin As Button
+    Friend WithEvents LabelConnexion As Label
 End Class

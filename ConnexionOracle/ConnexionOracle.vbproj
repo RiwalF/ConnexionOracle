@@ -194,13 +194,6 @@
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormADMIN.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormADMIN.Designer.vb">
-      <DependentUpon>FormADMIN.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Global_Variable.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -282,9 +275,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormADMIN.resx">
-      <DependentUpon>FormADMIN.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
