@@ -23,12 +23,12 @@ Partial Class Voir_Medicament
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
+        Me.LabelNom = New System.Windows.Forms.Label()
+        Me.LabelEffet = New System.Windows.Forms.Label()
+        Me.LabelFamille = New System.Windows.Forms.Label()
+        Me.LabelNomAffiche = New System.Windows.Forms.Label()
+        Me.LabelEffetAffiche = New System.Windows.Forms.Label()
+        Me.LabelFamilleAffiche = New System.Windows.Forms.Label()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -44,68 +44,68 @@ Partial Class Voir_Medicament
         Me.PictureBox2.TabIndex = 15
         Me.PictureBox2.TabStop = False
         '
-        'Label1
+        'LabelNom
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(39, 158)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(54, 24)
-        Me.Label1.TabIndex = 16
-        Me.Label1.Text = "Nom"
+        Me.LabelNom.AutoSize = True
+        Me.LabelNom.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelNom.Location = New System.Drawing.Point(39, 158)
+        Me.LabelNom.Name = "LabelNom"
+        Me.LabelNom.Size = New System.Drawing.Size(54, 24)
+        Me.LabelNom.TabIndex = 16
+        Me.LabelNom.Text = "Nom"
         '
-        'Label2
+        'LabelEffet
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(39, 251)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(51, 24)
-        Me.Label2.TabIndex = 17
-        Me.Label2.Text = "Effet"
+        Me.LabelEffet.AutoSize = True
+        Me.LabelEffet.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelEffet.Location = New System.Drawing.Point(39, 251)
+        Me.LabelEffet.Name = "LabelEffet"
+        Me.LabelEffet.Size = New System.Drawing.Size(51, 24)
+        Me.LabelEffet.TabIndex = 17
+        Me.LabelEffet.Text = "Effet"
         '
-        'Label3
+        'LabelFamille
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(39, 337)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(78, 24)
-        Me.Label3.TabIndex = 18
-        Me.Label3.Text = "Famille"
+        Me.LabelFamille.AutoSize = True
+        Me.LabelFamille.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFamille.Location = New System.Drawing.Point(39, 337)
+        Me.LabelFamille.Name = "LabelFamille"
+        Me.LabelFamille.Size = New System.Drawing.Size(78, 24)
+        Me.LabelFamille.TabIndex = 18
+        Me.LabelFamille.Text = "Famille"
         '
-        'Label4
+        'LabelNomAffiche
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(39, 206)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(66, 24)
-        Me.Label4.TabIndex = 19
-        Me.Label4.Text = "Label4"
+        Me.LabelNomAffiche.AutoSize = True
+        Me.LabelNomAffiche.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.LabelNomAffiche.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelNomAffiche.Location = New System.Drawing.Point(39, 206)
+        Me.LabelNomAffiche.Name = "LabelNomAffiche"
+        Me.LabelNomAffiche.Size = New System.Drawing.Size(154, 24)
+        Me.LabelNomAffiche.TabIndex = 19
+        Me.LabelNomAffiche.Text = "LabelNomAffiche"
         '
-        'Label5
+        'LabelEffetAffiche
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(39, 295)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(66, 24)
-        Me.Label5.TabIndex = 20
-        Me.Label5.Text = "Label5"
+        Me.LabelEffetAffiche.AutoSize = True
+        Me.LabelEffetAffiche.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.LabelEffetAffiche.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelEffetAffiche.Location = New System.Drawing.Point(39, 295)
+        Me.LabelEffetAffiche.Name = "LabelEffetAffiche"
+        Me.LabelEffetAffiche.Size = New System.Drawing.Size(149, 24)
+        Me.LabelEffetAffiche.TabIndex = 20
+        Me.LabelEffetAffiche.Text = "LabelEffetAffiche"
         '
-        'Label6
+        'LabelFamilleAffiche
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(39, 382)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(66, 24)
-        Me.Label6.TabIndex = 21
-        Me.Label6.Text = "Label6"
+        Me.LabelFamilleAffiche.AutoSize = True
+        Me.LabelFamilleAffiche.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.LabelFamilleAffiche.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelFamilleAffiche.Location = New System.Drawing.Point(39, 382)
+        Me.LabelFamilleAffiche.Name = "LabelFamilleAffiche"
+        Me.LabelFamilleAffiche.Size = New System.Drawing.Size(174, 24)
+        Me.LabelFamilleAffiche.TabIndex = 21
+        Me.LabelFamilleAffiche.Text = "LabelFamilleAffiche"
         '
         'Voir_Medicament
         '
@@ -113,12 +113,12 @@ Partial Class Voir_Medicament
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(304, 450)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.LabelFamilleAffiche)
+        Me.Controls.Add(Me.LabelEffetAffiche)
+        Me.Controls.Add(Me.LabelNomAffiche)
+        Me.Controls.Add(Me.LabelFamille)
+        Me.Controls.Add(Me.LabelEffet)
+        Me.Controls.Add(Me.LabelNom)
         Me.Controls.Add(Me.PictureBox2)
         Me.Name = "Voir_Medicament"
         Me.Text = "Voir"
@@ -129,10 +129,10 @@ Partial Class Voir_Medicament
     End Sub
 
     Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
+    Friend WithEvents LabelNom As Label
+    Friend WithEvents LabelEffet As Label
+    Friend WithEvents LabelFamille As Label
+    Friend WithEvents LabelNomAffiche As Label
+    Friend WithEvents LabelEffetAffiche As Label
+    Friend WithEvents LabelFamilleAffiche As Label
 End Class
