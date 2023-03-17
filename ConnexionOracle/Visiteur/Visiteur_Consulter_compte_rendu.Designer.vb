@@ -31,14 +31,15 @@ Partial Class Visiteur_Consulter_compte_rendu
         Me.LabelMotif = New System.Windows.Forms.Label()
         Me.LabelDateCR = New System.Windows.Forms.Label()
         Me.LabelPraticien = New System.Windows.Forms.Label()
-        Me.LabelMotifAffiche = New System.Windows.Forms.Label()
-        Me.LabelDateAffiche = New System.Windows.Forms.Label()
-        Me.LabelPraticienAffiche = New System.Windows.Forms.Label()
         Me.LabelMedicaments = New System.Windows.Forms.Label()
         Me.ListBoxMedicaments = New System.Windows.Forms.ListBox()
         Me.ButtonRetour = New System.Windows.Forms.Button()
         Me.LabelDate = New System.Windows.Forms.Label()
         Me.ComboBoxDate = New System.Windows.Forms.ComboBox()
+        Me.TextBoxMotifCR = New System.Windows.Forms.TextBox()
+        Me.TextBoxPraticien = New System.Windows.Forms.TextBox()
+        Me.TextBoxDate = New System.Windows.Forms.TextBox()
+        Me.ButtonSupprimerCR = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -105,7 +106,7 @@ Partial Class Visiteur_Consulter_compte_rendu
         '
         Me.LabelMotif.AutoSize = True
         Me.LabelMotif.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelMotif.Location = New System.Drawing.Point(115, 260)
+        Me.LabelMotif.Location = New System.Drawing.Point(106, 240)
         Me.LabelMotif.Name = "LabelMotif"
         Me.LabelMotif.Size = New System.Drawing.Size(152, 17)
         Me.LabelMotif.TabIndex = 47
@@ -115,7 +116,7 @@ Partial Class Visiteur_Consulter_compte_rendu
         '
         Me.LabelDateCR.AutoSize = True
         Me.LabelDateCR.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDateCR.Location = New System.Drawing.Point(115, 332)
+        Me.LabelDateCR.Location = New System.Drawing.Point(106, 307)
         Me.LabelDateCR.Name = "LabelDateCR"
         Me.LabelDateCR.Size = New System.Drawing.Size(232, 17)
         Me.LabelDateCR.TabIndex = 48
@@ -125,50 +126,17 @@ Partial Class Visiteur_Consulter_compte_rendu
         '
         Me.LabelPraticien.AutoSize = True
         Me.LabelPraticien.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPraticien.Location = New System.Drawing.Point(115, 415)
+        Me.LabelPraticien.Location = New System.Drawing.Point(106, 368)
         Me.LabelPraticien.Name = "LabelPraticien"
         Me.LabelPraticien.Size = New System.Drawing.Size(124, 17)
         Me.LabelPraticien.TabIndex = 49
         Me.LabelPraticien.Text = "Praticien consulté"
         '
-        'LabelMotifAffiche
-        '
-        Me.LabelMotifAffiche.AutoSize = True
-        Me.LabelMotifAffiche.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelMotifAffiche.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelMotifAffiche.Location = New System.Drawing.Point(114, 297)
-        Me.LabelMotifAffiche.Name = "LabelMotifAffiche"
-        Me.LabelMotifAffiche.Size = New System.Drawing.Size(49, 24)
-        Me.LabelMotifAffiche.TabIndex = 50
-        Me.LabelMotifAffiche.Text = "motif"
-        '
-        'LabelDateAffiche
-        '
-        Me.LabelDateAffiche.AutoSize = True
-        Me.LabelDateAffiche.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelDateAffiche.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDateAffiche.Location = New System.Drawing.Point(114, 376)
-        Me.LabelDateAffiche.Name = "LabelDateAffiche"
-        Me.LabelDateAffiche.Size = New System.Drawing.Size(48, 24)
-        Me.LabelDateAffiche.TabIndex = 51
-        Me.LabelDateAffiche.Text = "Date"
-        '
-        'LabelPraticienAffiche
-        '
-        Me.LabelPraticienAffiche.AutoSize = True
-        Me.LabelPraticienAffiche.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.LabelPraticienAffiche.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPraticienAffiche.Location = New System.Drawing.Point(114, 451)
-        Me.LabelPraticienAffiche.Name = "LabelPraticienAffiche"
-        Me.LabelPraticienAffiche.Size = New System.Drawing.Size(82, 24)
-        Me.LabelPraticienAffiche.TabIndex = 52
-        Me.LabelPraticienAffiche.Text = "Praticien"
-        '
         'LabelMedicaments
         '
         Me.LabelMedicaments.AutoSize = True
-        Me.LabelMedicaments.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelMedicaments.Location = New System.Drawing.Point(604, 240)
+        Me.LabelMedicaments.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelMedicaments.Location = New System.Drawing.Point(506, 240)
         Me.LabelMedicaments.Name = "LabelMedicaments"
         Me.LabelMedicaments.Size = New System.Drawing.Size(95, 17)
         Me.LabelMedicaments.TabIndex = 42
@@ -177,9 +145,9 @@ Partial Class Visiteur_Consulter_compte_rendu
         'ListBoxMedicaments
         '
         Me.ListBoxMedicaments.FormattingEnabled = True
-        Me.ListBoxMedicaments.Location = New System.Drawing.Point(507, 260)
+        Me.ListBoxMedicaments.Location = New System.Drawing.Point(509, 260)
         Me.ListBoxMedicaments.Name = "ListBoxMedicaments"
-        Me.ListBoxMedicaments.Size = New System.Drawing.Size(305, 251)
+        Me.ListBoxMedicaments.Size = New System.Drawing.Size(305, 147)
         Me.ListBoxMedicaments.TabIndex = 53
         '
         'ButtonRetour
@@ -209,19 +177,55 @@ Partial Class Visiteur_Consulter_compte_rendu
         Me.ComboBoxDate.Size = New System.Drawing.Size(160, 21)
         Me.ComboBoxDate.TabIndex = 55
         '
+        'TextBoxMotifCR
+        '
+        Me.TextBoxMotifCR.Location = New System.Drawing.Point(109, 260)
+        Me.TextBoxMotifCR.Name = "TextBoxMotifCR"
+        Me.TextBoxMotifCR.ReadOnly = True
+        Me.TextBoxMotifCR.Size = New System.Drawing.Size(229, 20)
+        Me.TextBoxMotifCR.TabIndex = 57
+        '
+        'TextBoxPraticien
+        '
+        Me.TextBoxPraticien.Location = New System.Drawing.Point(109, 388)
+        Me.TextBoxPraticien.Name = "TextBoxPraticien"
+        Me.TextBoxPraticien.ReadOnly = True
+        Me.TextBoxPraticien.Size = New System.Drawing.Size(229, 20)
+        Me.TextBoxPraticien.TabIndex = 58
+        '
+        'TextBoxDate
+        '
+        Me.TextBoxDate.Location = New System.Drawing.Point(109, 327)
+        Me.TextBoxDate.Name = "TextBoxDate"
+        Me.TextBoxDate.ReadOnly = True
+        Me.TextBoxDate.Size = New System.Drawing.Size(229, 20)
+        Me.TextBoxDate.TabIndex = 59
+        '
+        'ButtonSupprimerCR
+        '
+        Me.ButtonSupprimerCR.BackColor = System.Drawing.Color.IndianRed
+        Me.ButtonSupprimerCR.ForeColor = System.Drawing.SystemColors.Control
+        Me.ButtonSupprimerCR.Location = New System.Drawing.Point(307, 453)
+        Me.ButtonSupprimerCR.Name = "ButtonSupprimerCR"
+        Me.ButtonSupprimerCR.Size = New System.Drawing.Size(238, 40)
+        Me.ButtonSupprimerCR.TabIndex = 60
+        Me.ButtonSupprimerCR.Text = "SUPPRIMER COMPTE-RENDU"
+        Me.ButtonSupprimerCR.UseVisualStyleBackColor = False
+        '
         'Visiteur_Consulter_compte_rendu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
+        Me.Controls.Add(Me.ButtonSupprimerCR)
+        Me.Controls.Add(Me.TextBoxDate)
+        Me.Controls.Add(Me.TextBoxPraticien)
+        Me.Controls.Add(Me.TextBoxMotifCR)
         Me.Controls.Add(Me.LabelDate)
         Me.Controls.Add(Me.ComboBoxDate)
         Me.Controls.Add(Me.ButtonRetour)
         Me.Controls.Add(Me.ListBoxMedicaments)
-        Me.Controls.Add(Me.LabelPraticienAffiche)
-        Me.Controls.Add(Me.LabelDateAffiche)
-        Me.Controls.Add(Me.LabelMotifAffiche)
         Me.Controls.Add(Me.LabelPraticien)
         Me.Controls.Add(Me.LabelDateCR)
         Me.Controls.Add(Me.LabelMotif)
@@ -249,13 +253,14 @@ Partial Class Visiteur_Consulter_compte_rendu
     Friend WithEvents LabelMotif As Label
     Friend WithEvents LabelDateCR As Label
     Friend WithEvents LabelPraticien As Label
-    Friend WithEvents LabelMotifAffiche As Label
-    Friend WithEvents LabelDateAffiche As Label
-    Friend WithEvents LabelPraticienAffiche As Label
     Friend WithEvents LabelMedicaments As Label
     Friend WithEvents ListBoxMedicaments As ListBox
     Friend WithEvents ButtonRetour As Button
     Friend WithEvents LabelDate As Label
     Friend WithEvents ComboBoxDate As ComboBox
+    Friend WithEvents TextBoxMotifCR As TextBox
+    Friend WithEvents TextBoxPraticien As TextBox
+    Friend WithEvents TextBoxDate As TextBox
+    Friend WithEvents ButtonSupprimerCR As Button
 End Class
 

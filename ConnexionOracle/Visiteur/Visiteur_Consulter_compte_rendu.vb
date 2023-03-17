@@ -1,4 +1,5 @@
 ﻿Imports System.Data.Common
+Imports System.Threading
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class Visiteur_Consulter_compte_rendu
@@ -75,7 +76,7 @@ Public Class Visiteur_Consulter_compte_rendu
         dt.Columns.Add("CR_MODIF")
 
         For Each unItem In donnee.Rows
-            dt.Rows.Add(unItem("cr_id"), RemoveWhitespace(unItem("CR_MODIF")))
+            dt.Rows.Add(unItem("cr_id"), unItem("CR_MODIF"))
         Next
 
         Me.ComboBoxCompteRendu.DataSource = dt
@@ -130,12 +131,12 @@ Public Class Visiteur_Consulter_compte_rendu
         Dim P_ID As String = ""
         While myReader.Read
             Try
-                LabelDateAffiche.Text = myReader.GetString(0)
+                TextBoxDate.Text = myReader.GetString(0)
             Catch ex As Exception
                 'bug
             End Try
             Try
-                LabelMotifAffiche.Text = myReader.GetString(1)
+                TextBoxMotifCR.Text = myReader.GetString(1)
             Catch ex As Exception
                 'bug
             End Try
@@ -153,7 +154,7 @@ Public Class Visiteur_Consulter_compte_rendu
         myCommand.CommandText = SelectPraticien
         myReader = myCommand.ExecuteReader
         While myReader.Read
-            LabelPraticienAffiche.Text = myReader.GetString(0) & " " & myReader.GetString(1)
+            TextBoxPraticien.Text = RemoveWhitespace(myReader.GetString(0)) & " " & RemoveWhitespace(myReader.GetString(1))
         End While
         myReader.Close()
 
@@ -177,4 +178,33 @@ Public Class Visiteur_Consulter_compte_rendu
         End If
     End Sub
 
+    'Véérifie que l'utilisateur souhaite réelement supprimer le compte-rendu et le supprime si oui
+    Private Sub ButtonSupprimerCR_Click_1(sender As Object, e As EventArgs) Handles ButtonSupprimerCR.Click
+
+        If MsgBox("Continuer ?", 36, "Confirmation") = vbYes Then
+            Dim cmd As String = "DELETE FROM QUANTITE WHERE CR_ID = '" & ComboBoxCompteRendu.SelectedValue.ToString() & "';"
+            Dim cmd2 As String = "DELETE FROM COMPTE_RENDU WHERE CR_ID = '" & ComboBoxCompteRendu.SelectedValue.ToString() & "';"
+
+            myCommand.Connection = myConnection
+            myCommand.CommandText = cmd
+            myReader = myCommand.ExecuteReader
+            myReader.Close()
+
+            myCommand.Connection = myConnection
+            myCommand.CommandText = cmd2
+            myReader = myCommand.ExecuteReader
+            myReader.Close()
+
+            ComboBoxCompteRendu.Text = ""
+            ComboBoxDate.Text = ""
+            TextBoxDate.Text = ""
+            TextBoxMotifCR.Text = ""
+            TextBoxPraticien.Text = ""
+            ListBoxMedicaments.ClearSelected()
+
+            MessageBox.Show("Compte rendu supprimé")
+        Else
+            MessageBox.Show("Annulation de la suppression")
+        End If
+    End Sub
 End Class
