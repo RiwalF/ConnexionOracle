@@ -120,7 +120,7 @@ Public Class Visiteur_Rediger_compte_rendu
         Voir_Medicament.Show()
     End Sub
 
-    'Permet de ssupprimer la ligne du médicaments sélectionné
+    'Permet de supprimer la ligne du médicaments sélectionné
     Private Sub ButtonSupprimerLigneSelectionne_Click(sender As Object, e As EventArgs) Handles ButtonSupprimerLigneSelectionne.Click
         'Vérifie que l'utilisateur ne supprime pas toutes les cases de la liste
         Dim x As Integer = Me.DataGridViewMedicaments.CurrentRow.Index()

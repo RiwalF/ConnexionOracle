@@ -31,16 +31,17 @@ Partial Class Creer_reunion
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.DataNom = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataPrenom = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.identifiant = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -99,23 +100,23 @@ Partial Class Creer_reunion
         '
         'DateTimePicker1
         '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(440, 296)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(12, 280)
         Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(166, 20)
+        Me.DateTimePicker1.Size = New System.Drawing.Size(259, 20)
         Me.DateTimePicker1.TabIndex = 21
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(440, 358)
+        Me.TextBox1.Location = New System.Drawing.Point(12, 342)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(166, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(259, 20)
         Me.TextBox1.TabIndex = 22
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(500, 273)
+        Me.Label1.Location = New System.Drawing.Point(122, 257)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(48, 20)
         Me.Label1.TabIndex = 23
@@ -125,65 +126,29 @@ Partial Class Creer_reunion
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(500, 335)
+        Me.Label3.Location = New System.Drawing.Point(122, 319)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(43, 20)
         Me.Label3.TabIndex = 24
         Me.Label3.Text = "Lieu"
         '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(15, 233)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(280, 21)
-        Me.ComboBox1.TabIndex = 25
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button1.Location = New System.Drawing.Point(248, 358)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(166, 23)
-        Me.Button1.TabIndex = 26
-        Me.Button1.Text = "Validation de l'ajout"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'ListBox1
-        '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(624, 271)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(200, 238)
-        Me.ListBox1.TabIndex = 30
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(12, 214)
+        Me.Label4.Location = New System.Drawing.Point(277, 260)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(283, 16)
         Me.Label4.TabIndex = 33
         Me.Label4.Text = "Sélectionnez les membres de la réunion"
         '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(615, 248)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(230, 20)
-        Me.Label6.TabIndex = 35
-        Me.Label6.Text = "Liste des utilisateurs ajouté" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
         'Button2
         '
         Me.Button2.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(297, 431)
+        Me.Button2.Location = New System.Drawing.Point(12, 429)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(251, 56)
+        Me.Button2.Size = New System.Drawing.Size(551, 51)
         Me.Button2.TabIndex = 39
         Me.Button2.Text = "CRÉER RÉUNION"
         Me.Button2.UseVisualStyleBackColor = False
@@ -191,26 +156,70 @@ Partial Class Creer_reunion
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(693, 140)
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataNom, Me.DataPrenom, Me.identifiant})
+        Me.DataGridView1.Location = New System.Drawing.Point(566, 253)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(152, 97)
+        Me.DataGridView1.Size = New System.Drawing.Size(283, 227)
         Me.DataGridView1.TabIndex = 40
         '
         'ComboBox2
         '
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(332, 200)
+        Me.ComboBox2.Location = New System.Drawing.Point(280, 279)
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(333, 21)
+        Me.ComboBox2.Size = New System.Drawing.Size(280, 21)
         Me.ComboBox2.TabIndex = 41
         '
-        'ListBox2
+        'Button3
         '
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(42, 260)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(200, 238)
-        Me.ListBox2.TabIndex = 42
+        Me.Button3.BackColor = System.Drawing.Color.SpringGreen
+        Me.Button3.Location = New System.Drawing.Point(277, 312)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(283, 36)
+        Me.Button3.TabIndex = 43
+        Me.Button3.Text = "Ajouter Utilisateur"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'DataNom
+        '
+        Me.DataNom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataNom.HeaderText = "Nom"
+        Me.DataNom.Name = "DataNom"
+        Me.DataNom.ReadOnly = True
+        '
+        'DataPrenom
+        '
+        Me.DataPrenom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataPrenom.HeaderText = "Prenom"
+        Me.DataPrenom.Name = "DataPrenom"
+        Me.DataPrenom.ReadOnly = True
+        '
+        'identifiant
+        '
+        Me.identifiant.HeaderText = "identifiant"
+        Me.identifiant.Name = "identifiant"
+        Me.identifiant.ReadOnly = True
+        Me.identifiant.Visible = False
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(628, 234)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(147, 16)
+        Me.Label5.TabIndex = 44
+        Me.Label5.Text = "Membre sélectionné"
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Tomato
+        Me.Button1.Location = New System.Drawing.Point(277, 354)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(283, 36)
+        Me.Button1.TabIndex = 45
+        Me.Button1.Text = "Supprimer Utilisateur"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'Creer_reunion
         '
@@ -218,15 +227,13 @@ Partial Class Creer_reunion
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
-        Me.Controls.Add(Me.ListBox2)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.ListBox1)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TextBox1)
@@ -255,15 +262,16 @@ Partial Class Creer_reunion
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents ListBox1 As ListBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents Label6 As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents ListBox2 As ListBox
     Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents Button3 As Button
+    Friend WithEvents DataNom As DataGridViewTextBoxColumn
+    Friend WithEvents DataPrenom As DataGridViewTextBoxColumn
+    Friend WithEvents identifiant As DataGridViewTextBoxColumn
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Button1 As Button
 End Class
 
