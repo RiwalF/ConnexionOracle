@@ -44,7 +44,6 @@ Public Class Creer_reunion
         dt.Columns.Add("ID")
         dt.Columns.Add("NOM")
         dt.Columns.Add("PRENOM")
-        'dt.Columns.Add("hello", Type.GetType("System.String"), "NOM+ ' ' + PRENOM")
 
         For Each unItem In donnee.Rows
             dt.Rows.Add(unItem("ID"), RemoveWhitespace(unItem("NOM")) + " " + RemoveWhitespace(unItem("PRENOM")))
@@ -91,76 +90,110 @@ Public Class Creer_reunion
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         'Création de la réunion
-        Dim query3 As String = "INSERT INTO reunion(r_date,r_lieu) VALUES(to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'),'" & TextBox1.Text & " ')"
-        Dim Error_commande As Integer
-        myCommand3.Connection = myConnection
-        myCommand3.CommandText = query3
-        Try
-            myCommand3.ExecuteNonQuery()
-        Catch ex As Odbc.OdbcException
-            MessageBox.Show(ex.Message)
-            Error_commande += 1
-        End Try
-
-
-        'recuperation de l'id de la derniere reunion
-        Dim plus_grand_id As String = "SELECT r_id FROM reunion ORDER BY CAST(r_id AS DECIMAL(5,2))"
-        myCommand4.Connection = myConnection
-        myCommand4.CommandText = plus_grand_id
-        Try
-            myReader = myCommand4.ExecuteReader
-        Catch ex As Odbc.OdbcException
-            MessageBox.Show(ex.Message)
-            Error_commande += 1
-        End Try
-
-
-        Dim id_reu As String = ""
-        While myReader.Read
-            id_reu = myReader.GetString(0)
-        End While
-        myReader.Close()
-
-        'Association des personnes liés à la réunion 
-        Dim query4 As String = ""
-        For Each item As Integer In id
-            query4 = "Insert into reunion_dv(id,r_id) Values('" & item & "','" & id_reu & "')"
-            myCommand5.Connection = myConnection
-            myCommand5.CommandText = query4
+        If TextBox1.Text = "" Then
+            MsgBox("Vous n'avez pas donnez dde lieu à votre réunion")
+        Else
+            Dim query3 As String = "INSERT INTO reunion(r_date,r_lieu) VALUES(to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'),'" & TextBox1.Text & " ')"
+            Dim Error_commande As Integer
+            myCommand3.Connection = myConnection
+            myCommand3.CommandText = query3
             Try
-                myCommand5.ExecuteNonQuery()
+                myCommand3.ExecuteNonQuery()
             Catch ex As Odbc.OdbcException
                 MessageBox.Show(ex.Message)
                 Error_commande += 1
             End Try
-        Next
 
 
-        If Error_commande = 0 Then
+            'recuperation de l'id de la derniere reunion
+            Dim plus_grand_id As String = "SELECT r_id FROM reunion ORDER BY CAST(r_id AS DECIMAL(5,2))"
+            myCommand4.Connection = myConnection
+            myCommand4.CommandText = plus_grand_id
+            Try
+                myReader = myCommand4.ExecuteReader
+            Catch ex As Odbc.OdbcException
+                MessageBox.Show(ex.Message)
+                Error_commande += 1
+            End Try
+
+
+            Dim id_reu As String = ""
+            While myReader.Read
+                id_reu = myReader.GetString(0)
+            End While
+            myReader.Close()
+
+            'Association les membres de la réunion
+            Dim insertMembreReunion As String = ""
+            Dim item As Integer = Me.DataGridView1.RowCount - 2
+            Dim id_membre As Integer
+
+            'Boucle ajoutant chaque medicament et leur quantite
+            For index As Integer = 0 To item
+                id_membre = Me.DataGridView1.Rows.Item(index).Cells.Item(2).Value
+
+                insertMembreReunion = "INSERT INTO REUNION_DV(ID, R_ID) values ('" & id_membre & "','" & id_reu & "')"
+                myCommand.Connection = myConnection
+                myCommand.CommandText = insertMembreReunion
+                myCommand.ExecuteNonQuery()
+            Next
+
+            MessageBox.Show("Réunion réalisé")
+
+            'Sortie de la page 
             Delegue_Organiser_réunions_mensuelles.Show()
             Me.Close()
-            MessageBox.Show("Réunion réalisé")
-        Else
-            MessageBox.Show("Erreur de réalisation")
         End If
 
     End Sub
 
-    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
-        Dim displayNomPrenom As String = "SELECT NOM, PRENOM FROM delegue_visiteur WHERE ID ='" & ComboBox2.ValueMember & "'"
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim UserNom As String = ""
+        Dim UserPrenom As String = ""
 
-
+        Dim displayNomPrenom As String = "SELECT NOM, PRENOM FROM delegue_visiteur WHERE ID =" & ComboBox2.SelectedValue & ""
 
         myCommand7.Connection = myConnection
         myCommand7.CommandText = displayNomPrenom
         myReader = myCommand7.ExecuteReader
 
-
-        Dim laCommande As String
+        'Dim laCommande As String
         While myReader.Read
-            laCommande = myReader.GetString(0)
-            Me.ListBox2.Items.Add(laCommande)
+            UserNom = myReader.GetString(0)
+            UserPrenom = myReader.GetString(1)
         End While
         myReader.Close()
+
+        Dim NB_ligne_Datagrid As Integer = Me.DataGridView1.Rows.Count
+        Dim nb_personne As Integer = -1
+        Dim existe_pas As Boolean = True
+        'Boucle comparant les médicaments déjà ajouté pour ne pas ajouter plusieurs fois le même médicament
+        For i As Integer = 0 To NB_ligne_Datagrid - 1
+            nb_personne += 1
+            If ComboBox2.SelectedValue = Me.DataGridView1.Rows.Item(i).Cells.Item(2).Value Then
+                existe_pas = False
+            End If
+        Next
+
+        If existe_pas Then
+            Me.DataGridView1.Rows.Add()
+            Me.DataGridView1.Rows.Item(nb_personne).Cells.Item(0).Value = UserNom
+            Me.DataGridView1.Rows.Item(nb_personne).Cells.Item(1).Value = UserPrenom
+            Me.DataGridView1.Rows.Item(nb_personne).Cells.Item(2).Value = ComboBox2.SelectedValue
+        Else
+            MsgBox("Utilisateur déjà ajouté !", vbExclamation, "Erreur de saisie")
+        End If
     End Sub
+
+    'Permet de supprimer la ligne du médicaments sélectionné
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'Vérifie que l'utilisateur ne supprime pas toutes les cases de la liste
+        Dim x As Integer = Me.DataGridView1.CurrentRow.Index()
+        Try
+            Me.DataGridView1.Rows.RemoveAt(x)
+        Catch ex As Exception
+            MsgBox("Vous ne pouvez pas supprimer la dernière ligne", vbExclamation, "Erreur")
+        End Try
+    End Sub
+
 End Class
