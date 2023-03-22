@@ -38,7 +38,8 @@ Public Class Voir_reunion
                                     SELECT reunion_dv.r_id
                                     FROM reunion_dv
                                     WHERE id ='" & id_utilisateur & "'
-                                    )"
+                                    )
+                                ORDER BY to_date(R_DATE) DESC"
 
         donnee = New DataTable
         myAdapter = New Odbc.OdbcDataAdapter(query, myConnection)
