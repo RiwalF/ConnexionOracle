@@ -160,23 +160,6 @@ Public Class Visiteur_Consulter_compte_rendu
 
     End Sub
 
-    'Button permettant de revenir en arrière 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonRetour.Click
-        If type_Utilisateur = "Responsable" Then
-            Accueil_responsable.Show()
-            Me.Close()
-        ElseIf type_Utilisateur = "Delegue" Then
-            Accueil_Delegue.Show()
-            Me.Close()
-        ElseIf type_Utilisateur = "Visiteur" Then
-            Accueil_Visiteur.Show()
-            Me.Close()
-        Else
-            type_Utilisateur = ""
-            Form1.Show()
-            Me.Close()
-        End If
-    End Sub
 
     'Véérifie que l'utilisateur souhaite réelement supprimer le compte-rendu et le supprime si oui
     Private Sub ButtonSupprimerCR_Click_1(sender As Object, e As EventArgs) Handles ButtonSupprimerCR.Click
@@ -207,4 +190,24 @@ Public Class Visiteur_Consulter_compte_rendu
             MessageBox.Show("Annulation de la suppression")
         End If
     End Sub
+
+
+    'Button permettant de revenir en arrière 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonRetour.Click
+        If type_Utilisateur = "Responsable" Then
+            Accueil_responsable.Show()
+            Me.Close()
+        ElseIf type_Utilisateur = "Delegue" Then
+            Accueil_Delegue.Show()
+            Me.Close()
+        ElseIf type_Utilisateur = "Visiteur" Then
+            Accueil_Visiteur.Show()
+            Me.Close()
+        Else
+            type_Utilisateur = ""
+            Form1.Show()
+            Me.Close()
+        End If
+    End Sub
+
 End Class
