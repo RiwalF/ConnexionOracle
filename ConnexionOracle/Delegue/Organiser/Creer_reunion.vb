@@ -1,14 +1,11 @@
 ﻿Imports System.Data.Common
 
 Public Class Creer_reunion
-    Function RemoveWhitespace(fullString As String) As String
-        Return New String(fullString.Where(Function(x) Not Char.IsWhiteSpace(x)).ToArray())
-    End Function
-
     Private Sub Creer_reunion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Label_Prenom.Text = Prenom
         Label_Nom.Text = Nom
 
+        'Liste des users
         Dim selectUser As String = "SELECT ID,NOM|| ' ' ||PRENOM As P_AFFICHE FROM delegue_visiteur"
         Dim dt_Delegue_Visiteur As New DataTable
         Form1.myAdapter = New Odbc.OdbcDataAdapter(selectUser, Form1.myConnection)
@@ -128,5 +125,4 @@ Public Class Creer_reunion
             MsgBox("Vous ne pouvez pas supprimer la dernière ligne", vbExclamation, "Erreur")
         End Try
     End Sub
-
 End Class
