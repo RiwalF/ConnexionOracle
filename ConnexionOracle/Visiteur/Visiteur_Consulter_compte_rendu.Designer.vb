@@ -180,6 +180,7 @@ Partial Class Visiteur_Consulter_compte_rendu
         Me.ComboBoxDate.Name = "ComboBoxDate"
         Me.ComboBoxDate.Size = New System.Drawing.Size(160, 21)
         Me.ComboBoxDate.TabIndex = 55
+
         '
         'TextBoxMotifCR
         '
