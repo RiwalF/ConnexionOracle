@@ -3,20 +3,17 @@ Imports System.Security.Cryptography.X509Certificates
 Imports System.Text
 Public Class Form1
 
-    Dim myConnection As New Odbc.OdbcConnection
-    Dim myCommand As New Odbc.OdbcCommand
-    Dim myReader As Odbc.OdbcDataReader
-    Dim my2Connection As New Odbc.OdbcConnection
+    Public myConnection As New Odbc.OdbcConnection
+    Public myCommand As New Odbc.OdbcCommand
+    Public myReader As Odbc.OdbcDataReader
+    Public myAdapter As Odbc.OdbcDataAdapter
     Dim my2Command As New Odbc.OdbcCommand
     Dim my2Reader As Odbc.OdbcDataReader
-    Dim myAdapter As Odbc.OdbcDataAdapter
-    Dim myBuilder As Odbc.OdbcCommandBuilder
-    Dim connString As String
 
 
     Private Sub Connect_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Connexion au serveur SQL
-        connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
+        Dim connString As String = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
         myConnection.ConnectionString = connString
         Try
             myConnection.Open()
@@ -25,17 +22,17 @@ Public Class Form1
         End Try
 
         'CREATION DES MOT DE PASSE QUE L'ON AJOUTE AU INSERT LORSQUE L'ON SOUHAITE AJOUTER UN UTILISATEUR QUELCONQUE
-        'Dim password As String = "Melon"
+        'Dim password As String = "Elegall"
         'Dim sha256 As HashAlgorithm = sha256.Create()
         'Dim passwordBytes() As Byte = Encoding.ASCII.GetBytes(password)
-        'Dim passwordHash() As Byte = sha256.ComputeHash(passwordBytes)
+        'Dim passwordHash() As Byte = SHA256.ComputeHash(passwordBytes)
         'Dim passwordHashString As String = BitConverter.ToString(passwordHash).Replace("-", "")
         'Console.WriteLine(passwordHashString)
 
     End Sub
 
 
-    Private Sub Connexio_Click(sender As Object, e As EventArgs) Handles ButtonLogin.Click
+    Private Sub Connexion_Click(sender As Object, e As EventArgs) Handles ButtonLogin.Click
 
         Dim erreur_connexion As Integer = 0
 

@@ -86,6 +86,8 @@ Partial Class Visiteur_Consulter_compte_rendu
         '
         'ComboBoxCompteRendu
         '
+        Me.ComboBoxCompteRendu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBoxCompteRendu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBoxCompteRendu.FormattingEnabled = True
         Me.ComboBoxCompteRendu.Location = New System.Drawing.Point(307, 197)
         Me.ComboBoxCompteRendu.Name = "ComboBoxCompteRendu"
@@ -171,6 +173,8 @@ Partial Class Visiteur_Consulter_compte_rendu
         '
         'ComboBoxDate
         '
+        Me.ComboBoxDate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBoxDate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBoxDate.FormattingEnabled = True
         Me.ComboBoxDate.Location = New System.Drawing.Point(539, 197)
         Me.ComboBoxDate.Name = "ComboBoxDate"
