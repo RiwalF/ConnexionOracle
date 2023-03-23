@@ -81,6 +81,8 @@ Partial Class Visiteur_Rediger_compte_rendu
         '
         'ComboBoxMedicaments
         '
+        Me.ComboBoxMedicaments.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBoxMedicaments.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBoxMedicaments.FormattingEnabled = True
         Me.ComboBoxMedicaments.Location = New System.Drawing.Point(117, 238)
         Me.ComboBoxMedicaments.Name = "ComboBoxMedicaments"
@@ -97,6 +99,8 @@ Partial Class Visiteur_Rediger_compte_rendu
         '
         'ComboBoxPraticien
         '
+        Me.ComboBoxPraticien.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBoxPraticien.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBoxPraticien.FormattingEnabled = True
         Me.ComboBoxPraticien.Location = New System.Drawing.Point(117, 317)
         Me.ComboBoxPraticien.Name = "ComboBoxPraticien"

@@ -1,22 +1,6 @@
 ﻿Imports System.Data.Common
 
 Public Class Creer_reunion
-    Dim myConnection As New Odbc.OdbcConnection
-    Dim myCommand As New Odbc.OdbcCommand
-    Dim myCommand2 As New Odbc.OdbcCommand
-    Dim myCommand3 As New Odbc.OdbcCommand
-    Dim myCommand4 As New Odbc.OdbcCommand
-    Dim myCommand5 As New Odbc.OdbcCommand
-    Dim myCommand6 As New Odbc.OdbcCommand
-    Dim myCommand7 As New Odbc.OdbcCommand
-    Dim myReader As Odbc.OdbcDataReader
-    Dim myAdapter As Odbc.OdbcDataAdapter
-    Dim myBuilder As Odbc.OdbcCommandBuilder
-    Dim connString As String
-    Dim donnee As DataTable
-    Dim id As New List(Of Integer)
-    Dim test As New Integer
-
     Function RemoveWhitespace(fullString As String) As String
         Return New String(fullString.Where(Function(x) Not Char.IsWhiteSpace(x)).ToArray())
     End Function
@@ -25,34 +9,14 @@ Public Class Creer_reunion
         Label_Prenom.Text = Prenom
         Label_Nom.Text = Nom
 
-        connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
+        Dim selectUser As String = "SELECT ID,NOM|| ' ' ||PRENOM As P_AFFICHE FROM delegue_visiteur"
+        Dim dt_Delegue_Visiteur As New DataTable
+        Form1.myAdapter = New Odbc.OdbcDataAdapter(selectUser, Form1.myConnection)
+        Form1.myAdapter.Fill(dt_Delegue_Visiteur)
 
-        myConnection.ConnectionString = connString
-        Try
-            myConnection.Open()
-        Catch ex As Odbc.OdbcException
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Dim selectUser As String = "SELECT ID,NOM,PRENOM FROM delegue_visiteur"
-        donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(selectUser, myConnection)
-        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
-        myAdapter.Fill(donnee)
-
-        Dim dt As New DataTable
-        dt.Columns.Add("ID")
-        dt.Columns.Add("NOM")
-        dt.Columns.Add("PRENOM")
-
-        For Each unItem In donnee.Rows
-            dt.Rows.Add(unItem("ID"), RemoveWhitespace(unItem("NOM")) + " " + RemoveWhitespace(unItem("PRENOM")))
-        Next
-
-        Me.ComboBox2.DataSource = dt
-        Me.ComboBox2.DisplayMember = "NOM"
+        Me.ComboBox2.DataSource = dt_Delegue_Visiteur
+        Me.ComboBox2.DisplayMember = "P_AFFICHE"
         Me.ComboBox2.ValueMember = "ID"
-        donnee.Clear()
 
     End Sub
     Private Sub Button_retour_Click(sender As Object, e As EventArgs) Handles Button_retour.Click
@@ -60,71 +24,40 @@ Public Class Creer_reunion
         Me.Close()
     End Sub
 
-    'Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-    '    Dim query2 As String = "SELECT NOM,PRENOM FROM delegue_visiteur WHERE id ='" & ComboBox2.ValueMember & "'"
-
-    '    test = 0
-    '    For Each item As Integer In id
-    '        If ComboBox2.ValueMember = item Then
-    '            test += 1
-    '        End If
-    '    Next
-
-    '    If test = 0 Then
-    '        id.Add(ComboBox2.SelectedItem)
-    '        myCommand2.Connection = myConnection
-    '        myCommand2.CommandText = query2
-    '        myReader = myCommand2.ExecuteReader
-    '        Dim text As String
-    '        While myReader.Read
-    '            text = myReader.GetString(0) & " " & myReader.GetString(1)
-    '            Me.ListBox1.Items.Add(text)
-    '        End While
-    '    Else
-    '        MessageBox.Show("ATTENTION 'Utilisateur déjà ajouté !'")
-    '    End If
-
-    '    myReader.Close()
-    'End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         'Création de la réunion
         If TextBox1.Text = "" Then
-            MsgBox("Vous n'avez pas donnez dde lieu à votre réunion")
+            MsgBox("Vous n'avez pas donnez de lieu à votre réunion")
         Else
             Dim query3 As String = "INSERT INTO reunion(r_date,r_lieu) VALUES(to_date('" & DateTimePicker1.Value.Date & "', 'DD/MM/YYYY'),'" & TextBox1.Text & " ')"
-            Dim Error_commande As Integer
-            myCommand3.Connection = myConnection
-            myCommand3.CommandText = query3
+            Form1.myCommand.Connection = Form1.myConnection
+            Form1.myCommand.CommandText = query3
             Try
-                myCommand3.ExecuteNonQuery()
+                Form1.myCommand.ExecuteNonQuery()
             Catch ex As Odbc.OdbcException
                 MessageBox.Show(ex.Message)
-                Error_commande += 1
             End Try
 
 
             'recuperation de l'id de la derniere reunion
             Dim plus_grand_id As String = "SELECT r_id FROM reunion ORDER BY CAST(r_id AS DECIMAL(5,2))"
-            myCommand4.Connection = myConnection
-            myCommand4.CommandText = plus_grand_id
+            Form1.myCommand.Connection = Form1.myConnection
+            Form1.myCommand.CommandText = plus_grand_id
             Try
-                myReader = myCommand4.ExecuteReader
+                Form1.myReader = Form1.myCommand.ExecuteReader
             Catch ex As Odbc.OdbcException
                 MessageBox.Show(ex.Message)
-                Error_commande += 1
             End Try
 
 
             Dim id_reu As String = ""
-            While myReader.Read
-                id_reu = myReader.GetString(0)
+            While Form1.myReader.Read
+                id_reu = Form1.myReader.GetString(0)
             End While
-            myReader.Close()
+            Form1.myReader.Close()
 
             'Association les membres de la réunion
-            Dim insertMembreReunion As String = ""
             Dim item As Integer = Me.DataGridView1.RowCount - 2
             Dim id_membre As Integer
 
@@ -132,10 +65,10 @@ Public Class Creer_reunion
             For index As Integer = 0 To item
                 id_membre = Me.DataGridView1.Rows.Item(index).Cells.Item(2).Value
 
-                insertMembreReunion = "INSERT INTO REUNION_DV(ID, R_ID) values ('" & id_membre & "','" & id_reu & "')"
-                myCommand.Connection = myConnection
-                myCommand.CommandText = insertMembreReunion
-                myCommand.ExecuteNonQuery()
+                Dim insertMembreReunion As String = "INSERT INTO REUNION_DV(ID, R_ID) values ('" & id_membre & "','" & id_reu & "')"
+                Form1.myCommand.Connection = Form1.myConnection
+                Form1.myCommand.CommandText = insertMembreReunion
+                Form1.myCommand.ExecuteNonQuery()
             Next
 
             MessageBox.Show("Réunion réalisé")
@@ -153,16 +86,16 @@ Public Class Creer_reunion
 
         Dim displayNomPrenom As String = "SELECT NOM, PRENOM FROM delegue_visiteur WHERE ID =" & ComboBox2.SelectedValue & ""
 
-        myCommand7.Connection = myConnection
-        myCommand7.CommandText = displayNomPrenom
-        myReader = myCommand7.ExecuteReader
+        Form1.myCommand.Connection = Form1.myConnection
+        Form1.myCommand.CommandText = displayNomPrenom
+        Form1.myReader = Form1.myCommand.ExecuteReader
 
         'Dim laCommande As String
-        While myReader.Read
-            UserNom = myReader.GetString(0)
-            UserPrenom = myReader.GetString(1)
+        While Form1.myReader.Read
+            UserNom = Form1.myReader.GetString(0)
+            UserPrenom = Form1.myReader.GetString(1)
         End While
-        myReader.Close()
+        Form1.myReader.Close()
 
         Dim NB_ligne_Datagrid As Integer = Me.DataGridView1.Rows.Count
         Dim nb_personne As Integer = -1

@@ -23,7 +23,10 @@ Public Class Accueil_Visiteur
         Visiteur_Consulter_compte_rendu.Show()
         Me.Close()
     End Sub
-
+    Private Sub Button_consulter_Click_1(sender As Object, e As EventArgs) Handles Button_consulter.Click
+        Me.Hide()
+        Voir_reunion.Show()
+    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonRetour.Click
         Nom = ""
         Prenom = ""
@@ -31,5 +34,6 @@ Public Class Accueil_Visiteur
         Form1.Show()
         Me.Close()
     End Sub
+
 
 End Class

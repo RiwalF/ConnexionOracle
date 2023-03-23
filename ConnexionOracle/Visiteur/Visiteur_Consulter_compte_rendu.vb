@@ -3,14 +3,6 @@ Imports System.Threading
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class Visiteur_Consulter_compte_rendu
-    Dim myConnection As New Odbc.OdbcConnection
-    Dim myCommand As New Odbc.OdbcCommand
-    Dim myCommand2 As New Odbc.OdbcCommand
-    Dim myReader As Odbc.OdbcDataReader
-    Dim myAdapter As Odbc.OdbcDataAdapter
-    Dim myBuilder As Odbc.OdbcCommandBuilder
-    Dim connString As String
-    Dim donnee As DataTable
 
     'Retire les espaces d'une chaine de caractère
     Function RemoveWhitespace(fullString As String) As String
@@ -23,15 +15,6 @@ Public Class Visiteur_Consulter_compte_rendu
         Label_Nom.Text = Nom
         Label_Prenom.Text = Prenom
 
-        'Connexion à la BDD
-        connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
-        myConnection.ConnectionString = connString
-        Try
-            myConnection.Open()
-        Catch ex As Odbc.OdbcException
-            MessageBox.Show(ex.Message)
-        End Try
-
         'Récupération des dates de tous les Compte-Rendu
         ComboBoxDate.Items.Clear()
         Dim query As String = "SELECT DISTINCT CR_DATE
@@ -39,21 +22,12 @@ Public Class Visiteur_Consulter_compte_rendu
                                  WHERE id ='" & id_utilisateur & "'
                                  ORDER BY to_date(CR_DATE) DESC"
 
-        donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(query, myConnection)
-        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
-        myAdapter.Fill(donnee)
+        Dim dt_Date As New DataTable
+        Form1.myAdapter = New Odbc.OdbcDataAdapter(query, Form1.myConnection)
+        Form1.myAdapter.Fill(dt_Date)
 
-        Dim dt As New DataTable
-        dt.Columns.Add("CR_DATE")
-
-        For Each unItem In donnee.Rows
-            dt.Rows.Add(RemoveWhitespace(unItem("CR_DATE")))
-        Next
-
-        Me.ComboBoxDate.DataSource = dt
+        Me.ComboBoxDate.DataSource = dt_Date
         Me.ComboBoxDate.DisplayMember = "CR_DATE"
-        donnee.Clear()
 
     End Sub
 
@@ -65,24 +39,13 @@ Public Class Visiteur_Consulter_compte_rendu
                                  WHERE id ='" & id_utilisateur & "'
                                  AND CR_DATE LIKE '%" & ComboBoxDate.Text & "%'"
 
+        Dim dt_CompteRendu As New DataTable
+        Form1.myAdapter = New Odbc.OdbcDataAdapter(query, Form1.myConnection)
+        Form1.myAdapter.Fill(dt_CompteRendu)
 
-        donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(query, myConnection)
-        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
-        myAdapter.Fill(donnee)
-
-        Dim dt As New DataTable
-        dt.Columns.Add("cr_id")
-        dt.Columns.Add("CR_MODIF")
-
-        For Each unItem In donnee.Rows
-            dt.Rows.Add(unItem("cr_id"), unItem("CR_MODIF"))
-        Next
-
-        Me.ComboBoxCompteRendu.DataSource = dt
+        Me.ComboBoxCompteRendu.DataSource = dt_CompteRendu
         Me.ComboBoxCompteRendu.DisplayMember = "CR_MODIF"
         Me.ComboBoxCompteRendu.ValueMember = "cr_id"
-        donnee.Clear()
     End Sub
 
     'Selectionne le compte-rendu cliqué
@@ -96,15 +59,15 @@ Public Class Visiteur_Consulter_compte_rendu
         Dim id_liste As New List(Of String)
         Dim Quantite_liste As New List(Of String)
         Dim nom_liste As New List(Of String)
-        myCommand.Connection = myConnection
-        myCommand.CommandText = query
-        myReader = myCommand.ExecuteReader
+        Form1.myCommand.Connection = Form1.myConnection
+        Form1.myCommand.CommandText = query
+        Form1.myReader = Form1.myCommand.ExecuteReader
 
-        While myReader.Read
-            id_liste.Add(myReader.GetString(0))
-            Quantite_liste.Add(RemoveWhitespace(myReader.GetString(1)))
+        While Form1.myReader.Read
+            id_liste.Add(Form1.myReader.GetString(0))
+            Quantite_liste.Add(RemoveWhitespace(Form1.myReader.GetString(1)))
         End While
-        myReader.Close()
+        Form1.myReader.Close()
 
 
 
@@ -112,51 +75,51 @@ Public Class Visiteur_Consulter_compte_rendu
         Dim item As Integer = id_liste.Count - 1
         For index As Integer = 0 To item
             Dim query2 = "SELECT M_NOM FROM Medicaments WHERE m_id ='" & id_liste(index) & "'"
-            myCommand.Connection = myConnection
-            myCommand.CommandText = query2
-            myReader = myCommand.ExecuteReader
-            While myReader.Read
-                nom_liste.Add(myReader.GetString(0))
+            Form1.myCommand.Connection = Form1.myConnection
+            Form1.myCommand.CommandText = query2
+            Form1.myReader = Form1.myCommand.ExecuteReader
+            While Form1.myReader.Read
+                nom_liste.Add(Form1.myReader.GetString(0))
             End While
-            myReader.Close()
+            Form1.myReader.Close()
             Me.ListBoxMedicaments.Items.Add(Quantite_liste(index) & " ==> " & nom_liste(index))
         Next
 
 
         'Récupère toutes les informations du compte rendu
         Dim selectnomCR As String = "SELECT CR_DATE,CR_MODIF,P_ID FROM Compte_Rendu WHERE cr_id = '" & ComboBoxCompteRendu.SelectedValue.ToString & "'"
-        myCommand.Connection = myConnection
-        myCommand.CommandText = selectnomCR
-        myReader = myCommand.ExecuteReader
+        Form1.myCommand.Connection = Form1.myConnection
+        Form1.myCommand.CommandText = selectnomCR
+        Form1.myReader = Form1.myCommand.ExecuteReader
         Dim P_ID As String = ""
-        While myReader.Read
+        While Form1.myReader.Read
             Try
-                TextBoxDate.Text = myReader.GetString(0)
+                TextBoxDate.Text = Form1.myReader.GetString(0)
             Catch ex As Exception
                 'bug
             End Try
             Try
-                TextBoxMotifCR.Text = myReader.GetString(1)
+                TextBoxMotifCR.Text = Form1.myReader.GetString(1)
             Catch ex As Exception
                 'bug
             End Try
             Try
-                P_ID = myReader.GetString(2)
+                P_ID = Form1.myReader.GetString(2)
             Catch ex As Exception
                 'bug
             End Try
         End While
-        myReader.Close()
+        Form1.myReader.Close()
 
         'Récupère le Nom et le Prénom du Praticien
         Dim SelectPraticien As String = "SELECT P_NOM,P_PRENOM FROM PRATICIEN WHERE P_ID = '" & P_ID & "'"
-        myCommand.Connection = myConnection
-        myCommand.CommandText = SelectPraticien
-        myReader = myCommand.ExecuteReader
-        While myReader.Read
-            TextBoxPraticien.Text = RemoveWhitespace(myReader.GetString(0)) & " " & RemoveWhitespace(myReader.GetString(1))
+        Form1.myCommand.Connection = Form1.myConnection
+        Form1.myCommand.CommandText = SelectPraticien
+        Form1.myReader = Form1.myCommand.ExecuteReader
+        While Form1.myReader.Read
+            TextBoxPraticien.Text = RemoveWhitespace(Form1.myReader.GetString(0)) & " " & RemoveWhitespace(Form1.myReader.GetString(1))
         End While
-        myReader.Close()
+        Form1.myReader.Close()
 
     End Sub
 
@@ -168,15 +131,15 @@ Public Class Visiteur_Consulter_compte_rendu
             Dim cmd As String = "DELETE FROM QUANTITE WHERE CR_ID = '" & ComboBoxCompteRendu.SelectedValue.ToString() & "';"
             Dim cmd2 As String = "DELETE FROM COMPTE_RENDU WHERE CR_ID = '" & ComboBoxCompteRendu.SelectedValue.ToString() & "';"
 
-            myCommand.Connection = myConnection
-            myCommand.CommandText = cmd
-            myReader = myCommand.ExecuteReader
-            myReader.Close()
+            Form1.myCommand.Connection = Form1.myConnection
+            Form1.myCommand.CommandText = cmd
+            Form1.myReader = Form1.myCommand.ExecuteReader
+            Form1.myReader.Close()
 
-            myCommand.Connection = myConnection
-            myCommand.CommandText = cmd2
-            myReader = myCommand.ExecuteReader
-            myReader.Close()
+            Form1.myCommand.Connection = Form1.myConnection
+            Form1.myCommand.CommandText = cmd2
+            Form1.myReader = Form1.myCommand.ExecuteReader
+            Form1.myReader.Close()
 
             ComboBoxCompteRendu.Text = ""
             ComboBoxDate.Text = ""

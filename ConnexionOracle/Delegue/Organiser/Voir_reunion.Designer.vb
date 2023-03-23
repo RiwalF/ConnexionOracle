@@ -134,6 +134,8 @@ Partial Class Voir_reunion
         '
         'ComboBoxLieu
         '
+        Me.ComboBoxLieu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBoxLieu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBoxLieu.FormattingEnabled = True
         Me.ComboBoxLieu.Location = New System.Drawing.Point(78, 355)
         Me.ComboBoxLieu.Name = "ComboBoxLieu"
@@ -142,6 +144,8 @@ Partial Class Voir_reunion
         '
         'ComboBoxDate
         '
+        Me.ComboBoxDate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBoxDate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBoxDate.FormattingEnabled = True
         Me.ComboBoxDate.Location = New System.Drawing.Point(78, 276)
         Me.ComboBoxDate.Name = "ComboBoxDate"

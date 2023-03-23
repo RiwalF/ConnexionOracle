@@ -34,12 +34,12 @@ Partial Class Creer_reunion
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.DataNom = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataPrenom = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.identifiant = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,24 +162,6 @@ Partial Class Creer_reunion
         Me.DataGridView1.Size = New System.Drawing.Size(283, 227)
         Me.DataGridView1.TabIndex = 40
         '
-        'ComboBox2
-        '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(280, 279)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(280, 21)
-        Me.ComboBox2.TabIndex = 41
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.SpringGreen
-        Me.Button3.Location = New System.Drawing.Point(277, 312)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(283, 36)
-        Me.Button3.TabIndex = 43
-        Me.Button3.Text = "Ajouter Utilisateur"
-        Me.Button3.UseVisualStyleBackColor = False
-        '
         'DataNom
         '
         Me.DataNom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -200,6 +182,26 @@ Partial Class Creer_reunion
         Me.identifiant.Name = "identifiant"
         Me.identifiant.ReadOnly = True
         Me.identifiant.Visible = False
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(280, 279)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(280, 21)
+        Me.ComboBox2.TabIndex = 41
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.SpringGreen
+        Me.Button3.Location = New System.Drawing.Point(277, 312)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(283, 36)
+        Me.Button3.TabIndex = 43
+        Me.Button3.Text = "Ajouter Utilisateur"
+        Me.Button3.UseVisualStyleBackColor = False
         '
         'Label5
         '

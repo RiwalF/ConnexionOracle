@@ -1,13 +1,6 @@
 ﻿Imports System.EventArgs
 Public Class Visiteur_Rediger_compte_rendu
 
-    Dim myConnection As New Odbc.OdbcConnection
-    Dim myCommand As New Odbc.OdbcCommand
-    Dim myReader As Odbc.OdbcDataReader
-    Dim myAdapter As Odbc.OdbcDataAdapter
-    Dim myBuilder As Odbc.OdbcCommandBuilder
-    Dim connString As String
-    Dim donnee As DataTable
 
     'Fonction permettant de supprimer les espaces d'une chaine de caractère
     Function RemoveWhitespace(fullString As String) As String
@@ -20,52 +13,26 @@ Public Class Visiteur_Rediger_compte_rendu
         Label_Prenom.Text = Prenom
         Label_Nom.Text = Nom
 
-        'Connexion à la BDD SQL
-        connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
-        myConnection.ConnectionString = connString
-        myConnection.Open()
-
         'Récupération des médicaments pour remplir ComboBoxMedicaments
-        Dim selectNomMedic As String = "SELECT M_ID,M_NOM FROM medicaments"
-        donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(selectNomMedic, myConnection)
-        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
-        myAdapter.Fill(donnee)
+        Dim selectNomMedic As String = "SELECT M_NOM,M_ID FROM medicaments"
+        Dim dt_medicaments As New DataTable
+        Form1.myAdapter = New Odbc.OdbcDataAdapter(selectNomMedic, Form1.myConnection)
+        Form1.myAdapter.Fill(dt_medicaments)
 
-        Dim dt As New DataTable
-        dt.Columns.Add("M_ID")
-        dt.Columns.Add("M_NOM")
-
-        For Each unItem In donnee.Rows
-            dt.Rows.Add(unItem("M_ID"), RemoveWhitespace(unItem("M_NOM")))
-        Next
-
-        Me.ComboBoxMedicaments.DataSource = dt
+        Me.ComboBoxMedicaments.DataSource = dt_medicaments
         Me.ComboBoxMedicaments.DisplayMember = "M_NOM"
         Me.ComboBoxMedicaments.ValueMember = "M_ID"
-        donnee.Clear()
 
         'Récupération des Praticien pour remplir ComboBoxPraticien
-        Dim selectCoorPraticien As String = "SELECT P_ID,P_NOM,P_PRENOM,P_TYPE,P_CP,P_VILLE
-                                              FROM PRATICIEN;"
-        donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(selectCoorPraticien, myConnection)
-        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
-        myAdapter.Fill(donnee)
+        Dim selectCoorPraticien As String = "SELECT P_ID,P_NOM|| ' ' ||P_PRENOM As P_AFFICHE
+                                               FROM PRATICIEN;"
+        Dim dt_praticien As New DataTable
+        Form1.myAdapter = New Odbc.OdbcDataAdapter(selectCoorPraticien, Form1.myConnection)
+        Form1.myAdapter.Fill(dt_praticien)
 
-        Dim dt2 As New DataTable
-        dt2.Columns.Add("P_ID")
-        dt2.Columns.Add("P_NOM")
-        dt2.Columns.Add("P_PRENOM")
-
-        For Each unItem In donnee.Rows
-            dt2.Rows.Add(unItem("P_ID"), RemoveWhitespace(unItem("P_NOM")) + " - " + RemoveWhitespace(unItem("P_PRENOM")))
-        Next
-
-        Me.ComboBoxPraticien.DataSource = dt2
-        Me.ComboBoxPraticien.DisplayMember = "P_NOM"
+        Me.ComboBoxPraticien.DataSource = dt_praticien
+        Me.ComboBoxPraticien.DisplayMember = "P_AFFICHE"
         Me.ComboBoxPraticien.ValueMember = "P_ID"
-        donnee.Clear()
 
     End Sub
 
@@ -141,20 +108,20 @@ Public Class Visiteur_Rediger_compte_rendu
         Else
             'insertion du compte-rendu
             Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker.Value.Date & "', 'DD/MM/YYYY'), '" & TextBoxMotif.Text & "', '" & ComboBoxPraticien.SelectedValue & "', '" & id_utilisateur & "')"
-            myCommand.Connection = myConnection
-            myCommand.CommandText = insertCompteRendu
-            myCommand.ExecuteNonQuery()
+            Form1.myCommand.Connection = Form1.myConnection
+            Form1.myCommand.CommandText = insertCompteRendu
+            Form1.myCommand.ExecuteNonQuery()
 
             'recuperation de l'id du dernier compte-rendu
             Dim plus_grand_id_CR As String = "SELECT cr_id FROM COMPTE_RENDU ORDER BY CAST(cr_id AS DECIMAL(5,2))"
-            myCommand.Connection = myConnection
-            myCommand.CommandText = plus_grand_id_CR
-            myReader = myCommand.ExecuteReader
+            Form1.myCommand.Connection = Form1.myConnection
+            Form1.myCommand.CommandText = plus_grand_id_CR
+            Form1.myReader = Form1.myCommand.ExecuteReader
             Dim id_cr As String = ""
-            While myReader.Read
-                id_cr = myReader.GetString(0)
+            While Form1.myReader.Read
+                id_cr = Form1.myReader.GetString(0)
             End While
-            myReader.Close()
+            Form1.myReader.Close()
 
             id_cr = RemoveWhitespace(id_cr)
 
@@ -178,9 +145,9 @@ Public Class Visiteur_Rediger_compte_rendu
                     MessageBox.Show("Le numero ==> '" + quantite + "' n'a pas de medicaments associé !")
                 ElseIf Est_Numerique Then
                     insertQuantiteCompteRendu = "INSERT INTO quantite(CR_ID, M_ID, quantite) values ('" & id_cr & "','" & id_medicament & "','" & quantite & "')"
-                    myCommand.Connection = myConnection
-                    myCommand.CommandText = insertQuantiteCompteRendu
-                    myCommand.ExecuteNonQuery()
+                    Form1.myCommand.Connection = Form1.myConnection
+                    Form1.myCommand.CommandText = insertQuantiteCompteRendu
+                    Form1.myCommand.ExecuteNonQuery()
                 Else
                     Dim chaine As String = "L'élément numéro " & DataGridViewMedicaments.Rows.Item(index).Cells.Item(0).Value & "' n'est pas un nombre"
                     MessageBox.Show(chaine)

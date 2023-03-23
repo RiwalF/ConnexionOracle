@@ -2,35 +2,11 @@
 Imports System.Windows.Forms.VisualStyles
 
 Public Class Voir_reunion
-    Dim myConnection As New Odbc.OdbcConnection
-    Dim myCommand As New Odbc.OdbcCommand
-    Dim myCommand2 As New Odbc.OdbcCommand
-    Dim myReader As Odbc.OdbcDataReader
-    Dim myAdapter As Odbc.OdbcDataAdapter
-    Dim myAdapter2 As Odbc.OdbcDataAdapter
-    Dim myBuilder As Odbc.OdbcCommandBuilder
-    Dim myBuilder2 As Odbc.OdbcCommandBuilder
-    Dim connString As String
-    Dim donnee As DataTable
-    Function RemoveWhitespace(fullString As String) As String
-        Return New String(fullString.Where(Function(x) Not Char.IsWhiteSpace(x)).ToArray())
-    End Function
     Private Sub Voir_reunion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        connString = "DSN=RN_SLAM1;Uid=slam1;Pwd=SLAMRN2022;"
-
-        myConnection.ConnectionString = connString
-        Try
-            myConnection.Open()
-        Catch ex As Odbc.OdbcException
-            MessageBox.Show(ex.Message)
-        End Try
-
         Label_Nom.Text = Nom
         Label_Prenom.Text = Prenom
 
         'Récupération des dates de toutes les réunions
-        ComboBoxDate.Items.Clear()
         Dim query As String = "SELECT DISTINCT R_DATE
                                 FROM reunion
                                 WHERE r_id IN
@@ -41,32 +17,34 @@ Public Class Voir_reunion
                                     )
                                 ORDER BY to_date(R_DATE) DESC"
 
-        donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(query, myConnection)
-        myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
-        myAdapter.Fill(donnee)
+        Dim dt_Date_reu As New DataTable
+        Form1.myAdapter = New Odbc.OdbcDataAdapter(query, Form1.myConnection)
+        Form1.myAdapter.Fill(dt_Date_reu)
 
-        Dim dt As New DataTable
-        dt.Columns.Add("R_DATE")
-
-        For Each unItem In donnee.Rows
-            dt.Rows.Add(RemoveWhitespace(unItem("R_DATE")))
-        Next
-
-        Me.ComboBoxDate.DataSource = dt
+        Me.ComboBoxDate.DataSource = dt_Date_reu
         Me.ComboBoxDate.DisplayMember = "R_DATE"
-        donnee.Clear()
-
     End Sub
+
     Private Sub Button_retour_Click(sender As Object, e As EventArgs) Handles Button_retour.Click
-        Delegue_Organiser_réunions_mensuelles.Show()
-        Me.Close()
+        If type_Utilisateur = "Responsable" Then
+            Delegue_Organiser_réunions_mensuelles.Show()
+            Me.Close()
+        ElseIf type_Utilisateur = "Delegue" Then
+            Delegue_Organiser_réunions_mensuelles.Show()
+            Me.Close()
+        ElseIf type_Utilisateur = "Visiteur" Then
+            Accueil_Visiteur.Show()
+            Me.Close()
+        Else
+            type_Utilisateur = ""
+            Form1.Show()
+            Me.Close()
+        End If
     End Sub
 
 
     Private Sub ComboBoxDate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxDate.SelectedIndexChanged
         'Récupération des dates de toutes les réunions
-
         Dim selectedDataRowView As DataRowView = ComboBoxDate.SelectedItem
         Dim selectedDate As Date = selectedDataRowView("R_DATE")
         Dim query As String = "SELECT R_ID,R_LIEU
@@ -79,26 +57,15 @@ Public Class Voir_reunion
                             )
                         AND R_DATE = TO_DATE('" & selectedDate.ToString("dd/MM/yyyy") & "', 'DD/MM/YYYY')"
 
-
         Me.ListBox1.Items.Add(selectedDate)
 
-        donnee = New DataTable
-        myAdapter2 = New Odbc.OdbcDataAdapter(query, myConnection)
-        myBuilder2 = New Odbc.OdbcCommandBuilder(myAdapter2)
-        myAdapter2.Fill(donnee)
+        Dim dt_Lieu_Reu = New DataTable
+        Form1.myAdapter = New Odbc.OdbcDataAdapter(query, Form1.myConnection)
+        Form1.myAdapter.Fill(dt_Lieu_Reu)
 
-        Dim dt As New DataTable
-        dt.Columns.Add("R_ID")
-        dt.Columns.Add("R_LIEU")
-
-        For Each unItem In donnee.Rows
-            dt.Rows.Add(unItem("R_ID"), unItem("R_LIEU"))
-        Next
-
-        Me.ComboBoxLieu.DataSource = dt
+        Me.ComboBoxLieu.DataSource = dt_Lieu_Reu
         Me.ComboBoxLieu.DisplayMember = "R_LIEU"
         Me.ComboBoxLieu.ValueMember = "R_ID"
-        donnee.Clear()
     End Sub
 
     Private Sub ComboBoxLieu_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles ComboBoxLieu.SelectedIndexChanged
@@ -110,28 +77,28 @@ Public Class Voir_reunion
         Dim nom_liste As New List(Of String)
         Dim prenom_liste As New List(Of String)
         Dim id_liste As New List(Of String)
-        myCommand.Connection = myConnection
-        myCommand.CommandText = query
-        myReader = myCommand.ExecuteReader
+        Form1.myCommand.Connection = Form1.myConnection
+        Form1.myCommand.CommandText = query
+        Form1.myReader = Form1.myCommand.ExecuteReader
 
-        While myReader.Read
-            id_liste.Add(RemoveWhitespace(myReader.GetString(0)))
+        While Form1.myReader.Read
+            id_liste.Add(Form1.myReader.GetString(0))
         End While
-        myReader.Close()
+        Form1.myReader.Close()
 
         'Boucle parcourant tous les Membres associé a la Réunion selectionné
         Dim item As Integer = id_liste.Count - 1
         For index As Integer = 0 To item
             Dim query2 = "SELECT NOM, PRENOM FROM DELEGUE_VISITEUR WHERE ID ='" & id_liste(index) & "'"
-            myCommand.Connection = myConnection
-            myCommand.CommandText = query2
-            myReader = myCommand.ExecuteReader
-            While myReader.Read
-                nom_liste.Add(myReader.GetString(0))
-                prenom_liste.Add(myReader.GetString(1))
+            Form1.myCommand.Connection = Form1.myConnection
+            Form1.myCommand.CommandText = query2
+            Form1.myReader = Form1.myCommand.ExecuteReader
+            While Form1.myReader.Read
+                nom_liste.Add(Form1.myReader.GetString(0))
+                prenom_liste.Add(Form1.myReader.GetString(1))
             End While
-            myReader.Close()
-            Me.ListBox1.Items.Add(RemoveWhitespace(nom_liste(index)) & " " & RemoveWhitespace(prenom_liste(index)))
+            Form1.myReader.Close()
+            Me.ListBox1.Items.Add(nom_liste(index) & " " & prenom_liste(index))
         Next
     End Sub
 End Class

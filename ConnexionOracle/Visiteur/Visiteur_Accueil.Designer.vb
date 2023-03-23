@@ -30,6 +30,7 @@ Partial Class Accueil_Visiteur
         Me.LabelNom = New System.Windows.Forms.Label()
         Me.LabelPrenom = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button_consulter = New System.Windows.Forms.Button()
         CType(Me.PictureBoxHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -112,12 +113,23 @@ Partial Class Accueil_Visiteur
         Me.Label1.Size = New System.Drawing.Size(100, 23)
         Me.Label1.TabIndex = 0
         '
+        'Button_consulter
+        '
+        Me.Button_consulter.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Button_consulter.Location = New System.Drawing.Point(790, 140)
+        Me.Button_consulter.Name = "Button_consulter"
+        Me.Button_consulter.Size = New System.Drawing.Size(55, 50)
+        Me.Button_consulter.TabIndex = 25
+        Me.Button_consulter.Text = "Voir mes réunions"
+        Me.Button_consulter.UseVisualStyleBackColor = False
+        '
         'Accueil_Visiteur
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(857, 523)
+        Me.Controls.Add(Me.Button_consulter)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.LabelPrenom)
         Me.Controls.Add(Me.LabelNom)
@@ -142,4 +154,5 @@ Partial Class Accueil_Visiteur
     Friend WithEvents LabelNom As Label
     Friend WithEvents LabelPrenom As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents Button_consulter As Button
 End Class
