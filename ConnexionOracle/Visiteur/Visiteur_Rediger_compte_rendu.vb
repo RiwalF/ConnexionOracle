@@ -225,5 +225,4 @@ Public Class Visiteur_Rediger_compte_rendu
             Me.Close()
         End If
     End Sub
-
 End Class
