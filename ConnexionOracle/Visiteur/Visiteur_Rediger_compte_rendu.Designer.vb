@@ -83,11 +83,13 @@ Partial Class Visiteur_Rediger_compte_rendu
         '
         Me.ComboBoxMedicaments.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.ComboBoxMedicaments.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBoxMedicaments.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxMedicaments.FormattingEnabled = True
         Me.ComboBoxMedicaments.Location = New System.Drawing.Point(117, 238)
         Me.ComboBoxMedicaments.Name = "ComboBoxMedicaments"
         Me.ComboBoxMedicaments.Size = New System.Drawing.Size(222, 21)
         Me.ComboBoxMedicaments.TabIndex = 17
+        Me.ComboBoxMedicaments.DropDownStyle = ComboBoxStyle.DropDownList
         '
         'TextBoxQuantite
         '
@@ -101,11 +103,14 @@ Partial Class Visiteur_Rediger_compte_rendu
         '
         Me.ComboBoxPraticien.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.ComboBoxPraticien.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBoxPraticien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxPraticien.FormattingEnabled = True
+        Me.ComboBoxPraticien.ImeMode = System.Windows.Forms.ImeMode.Disable
         Me.ComboBoxPraticien.Location = New System.Drawing.Point(117, 317)
         Me.ComboBoxPraticien.Name = "ComboBoxPraticien"
         Me.ComboBoxPraticien.Size = New System.Drawing.Size(390, 21)
         Me.ComboBoxPraticien.TabIndex = 20
+        Me.ComboBoxPraticien.DropDownStyle = ComboBoxStyle.DropDownList
         '
         'ButtonCreerCompteRendu
         '
@@ -248,6 +253,7 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.quantite.HeaderText = "Quantité"
         Me.quantite.MaxInputLength = 9
         Me.quantite.Name = "quantite"
+        Me.quantite.ReadOnly = True
         Me.quantite.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.quantite.Width = 50
         '
