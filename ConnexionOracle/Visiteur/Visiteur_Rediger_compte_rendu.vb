@@ -1,11 +1,7 @@
 ﻿Imports System.EventArgs
+Imports System.Text.RegularExpressions
+
 Public Class Visiteur_Rediger_compte_rendu
-
-
-    'Fonction permettant de supprimer les espaces d'une chaine de caractère
-    Function RemoveWhitespace(fullString As String) As String
-        Return New String(fullString.Where(Function(x) Not Char.IsWhiteSpace(x)).ToArray())
-    End Function
 
     'Initialisation de tous les ComboBox et les Label de la page
     Private Sub Rediger_compte_rendu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -107,7 +103,7 @@ Public Class Visiteur_Rediger_compte_rendu
             MessageBox.Show("Vous n'avez pas donné de nom à votre compte-rendu")
         Else
             'insertion du compte-rendu
-            Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker.Value.Date & "', 'DD/MM/YYYY'), '" & TextBoxMotif.Text & "', '" & ComboBoxPraticien.SelectedValue & "', '" & id_utilisateur & "')"
+            Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker.Value.Date & "', 'DD/MM/YYYY'), '" & Regex.Replace(TextBoxMotif.Text, "[^a-zA-Z0-9]", "") & "', '" & ComboBoxPraticien.SelectedValue & "', '" & id_utilisateur & "')"
             Form1.myCommand.Connection = Form1.myConnection
             Form1.myCommand.CommandText = insertCompteRendu
             Form1.myCommand.ExecuteNonQuery()
@@ -123,7 +119,7 @@ Public Class Visiteur_Rediger_compte_rendu
             End While
             Form1.myReader.Close()
 
-            id_cr = RemoveWhitespace(id_cr)
+            id_cr = (id_cr)
 
             'Association des medicaments liés au compte-rendu
             Dim insertQuantiteCompteRendu As String
