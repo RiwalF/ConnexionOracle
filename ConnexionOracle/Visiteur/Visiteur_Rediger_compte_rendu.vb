@@ -14,7 +14,7 @@ Public Class Visiteur_Rediger_compte_rendu
         Label_Nom.Text = Nom
 
         'Récupération des médicaments pour remplir ComboBoxMedicaments
-        Dim selectNomMedic As String = "SELECT M_NOM,M_ID FROM medicaments"
+        Dim selectNomMedic As String = "SELECT M_NOM,M_ID FROM medicaments order by M_NOM"
         Dim dt_medicaments As New DataTable
         Form1.myAdapter = New Odbc.OdbcDataAdapter(selectNomMedic, Form1.myConnection)
         Form1.myAdapter.Fill(dt_medicaments)
@@ -25,7 +25,7 @@ Public Class Visiteur_Rediger_compte_rendu
 
         'Récupération des Praticien pour remplir ComboBoxPraticien
         Dim selectCoorPraticien As String = "SELECT P_ID,P_NOM|| ' ' ||P_PRENOM As P_AFFICHE
-                                               FROM PRATICIEN;"
+                                               FROM PRATICIEN order by P_NOM;"
         Dim dt_praticien As New DataTable
         Form1.myAdapter = New Odbc.OdbcDataAdapter(selectCoorPraticien, Form1.myConnection)
         Form1.myAdapter.Fill(dt_praticien)

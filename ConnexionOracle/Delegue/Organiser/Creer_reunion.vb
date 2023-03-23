@@ -6,7 +6,7 @@ Public Class Creer_reunion
         Label_Nom.Text = Nom
 
         'Liste des users
-        Dim selectUser As String = "SELECT ID,NOM|| ' ' ||PRENOM As P_AFFICHE FROM delegue_visiteur"
+        Dim selectUser As String = "SELECT ID,NOM|| ' ' ||PRENOM As P_AFFICHE FROM delegue_visiteur order by NOM"
         Dim dt_Delegue_Visiteur As New DataTable
         Form1.myAdapter = New Odbc.OdbcDataAdapter(selectUser, Form1.myConnection)
         Form1.myAdapter.Fill(dt_Delegue_Visiteur)
