@@ -284,6 +284,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Visiteur\Visiteur_Rediger_compte_rendu.resx">
       <DependentUpon>Visiteur_Rediger_compte_rendu.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Visiteur\Visiteur_Consulter_compte_rendu.resx">
       <DependentUpon>Visiteur_Consulter_compte_rendu.vb</DependentUpon>
