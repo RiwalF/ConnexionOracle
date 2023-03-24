@@ -2,6 +2,11 @@
 Imports System.Windows.Forms.VisualStyles
 
 Public Class Voir_reunion
+
+    Dim myCommand As New Odbc.OdbcCommand
+    Dim myReader As Odbc.OdbcDataReader
+    Dim myAdapter As Odbc.OdbcDataAdapter
+
     Private Sub Voir_reunion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Label_Nom.Text = Nom
         Label_Prenom.Text = Prenom
@@ -18,8 +23,8 @@ Public Class Voir_reunion
                                 ORDER BY to_date(R_DATE) DESC"
 
         Dim dt_Date_reu As New DataTable
-        Form1.myAdapter = New Odbc.OdbcDataAdapter(query, Form1.myConnection)
-        Form1.myAdapter.Fill(dt_Date_reu)
+        myAdapter = New Odbc.OdbcDataAdapter(query, Form1.myConnection)
+        myAdapter.Fill(dt_Date_reu)
 
         Me.ComboBoxDate.DataSource = dt_Date_reu
         Me.ComboBoxDate.DisplayMember = "R_DATE"
@@ -37,7 +42,7 @@ Public Class Voir_reunion
             Me.Close()
         Else
             type_Utilisateur = ""
-            Form1.Show()
+            Show()
             Me.Close()
         End If
     End Sub
@@ -60,8 +65,8 @@ Public Class Voir_reunion
         Me.ListBox1.Items.Add(selectedDate)
 
         Dim dt_Lieu_Reu = New DataTable
-        Form1.myAdapter = New Odbc.OdbcDataAdapter(query, Form1.myConnection)
-        Form1.myAdapter.Fill(dt_Lieu_Reu)
+        myAdapter = New Odbc.OdbcDataAdapter(query, Form1.myConnection)
+        myAdapter.Fill(dt_Lieu_Reu)
 
         Me.ComboBoxLieu.DataSource = dt_Lieu_Reu
         Me.ComboBoxLieu.DisplayMember = "R_LIEU"
@@ -77,27 +82,27 @@ Public Class Voir_reunion
         Dim nom_liste As New List(Of String)
         Dim prenom_liste As New List(Of String)
         Dim id_liste As New List(Of String)
-        Form1.myCommand.Connection = Form1.myConnection
-        Form1.myCommand.CommandText = query
-        Form1.myReader = Form1.myCommand.ExecuteReader
+        myCommand.Connection = Form1.myConnection
+        myCommand.CommandText = query
+        myReader = myCommand.ExecuteReader
 
-        While Form1.myReader.Read
-            id_liste.Add(Form1.myReader.GetString(0))
+        While myReader.Read
+            id_liste.Add(myReader.GetString(0))
         End While
-        Form1.myReader.Close()
+        myReader.Close()
 
         'Boucle parcourant tous les Membres associé a la Réunion selectionné
         Dim item As Integer = id_liste.Count - 1
         For index As Integer = 0 To item
             Dim query2 = "SELECT NOM, PRENOM FROM DELEGUE_VISITEUR WHERE ID ='" & id_liste(index) & "'"
-            Form1.myCommand.Connection = Form1.myConnection
-            Form1.myCommand.CommandText = query2
-            Form1.myReader = Form1.myCommand.ExecuteReader
-            While Form1.myReader.Read
-                nom_liste.Add(Form1.myReader.GetString(0))
-                prenom_liste.Add(Form1.myReader.GetString(1))
+            myCommand.Connection = Form1.myConnection
+            myCommand.CommandText = query2
+            myReader = myCommand.ExecuteReader
+            While myReader.Read
+                nom_liste.Add(myReader.GetString(0))
+                prenom_liste.Add(myReader.GetString(1))
             End While
-            Form1.myReader.Close()
+            myReader.Close()
             Me.ListBox1.Items.Add(nom_liste(index) & " " & prenom_liste(index))
         Next
     End Sub

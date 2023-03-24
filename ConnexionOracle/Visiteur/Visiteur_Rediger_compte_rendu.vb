@@ -3,6 +3,10 @@ Imports System.Text.RegularExpressions
 
 Public Class Visiteur_Rediger_compte_rendu
 
+    Dim myCommand As New Odbc.OdbcCommand
+    Dim myReader As Odbc.OdbcDataReader
+    Dim myAdapter As Odbc.OdbcDataAdapter
+
     'Initialisation de tous les ComboBox et les Label de la page
     Private Sub Rediger_compte_rendu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Initiation des 2 label Nom et Prenom de l'utilisateur
@@ -12,8 +16,8 @@ Public Class Visiteur_Rediger_compte_rendu
         'Récupération des médicaments pour remplir ComboBoxMedicaments
         Dim selectNomMedic As String = "SELECT M_NOM,M_ID FROM medicaments order by M_NOM"
         Dim dt_medicaments As New DataTable
-        Form1.myAdapter = New Odbc.OdbcDataAdapter(selectNomMedic, Form1.myConnection)
-        Form1.myAdapter.Fill(dt_medicaments)
+        myAdapter = New Odbc.OdbcDataAdapter(selectNomMedic, Form1.myConnection)
+        myAdapter.Fill(dt_medicaments)
 
         Me.ComboBoxMedicaments.DataSource = dt_medicaments
         Me.ComboBoxMedicaments.DisplayMember = "M_NOM"
@@ -23,8 +27,8 @@ Public Class Visiteur_Rediger_compte_rendu
         Dim selectCoorPraticien As String = "SELECT P_ID,P_NOM|| ' ' ||P_PRENOM As P_AFFICHE
                                                FROM PRATICIEN order by P_NOM;"
         Dim dt_praticien As New DataTable
-        Form1.myAdapter = New Odbc.OdbcDataAdapter(selectCoorPraticien, Form1.myConnection)
-        Form1.myAdapter.Fill(dt_praticien)
+        myAdapter = New Odbc.OdbcDataAdapter(selectCoorPraticien, Form1.myConnection)
+        myAdapter.Fill(dt_praticien)
 
         Me.ComboBoxPraticien.DataSource = dt_praticien
         Me.ComboBoxPraticien.DisplayMember = "P_AFFICHE"
@@ -46,12 +50,10 @@ Public Class Visiteur_Rediger_compte_rendu
 
         'Instanciation de variable
         Dim existe_pas As Boolean = True
-        Dim nb_medicaments As Integer = -1
         Dim NB_Colonne_Datagrid As Integer = Me.DataGridViewMedicaments.Rows.Count
 
         'Boucle comparant les médicaments déjà ajouté pour ne pas ajouter plusieurs fois le même médicament
         For i As Integer = 0 To NB_Colonne_Datagrid - 1
-            nb_medicaments += 1
             If ComboBoxMedicaments.SelectedValue = Me.DataGridViewMedicaments.Rows.Item(i).Cells.Item(2).Value Then
                 existe_pas = False
             End If
@@ -66,9 +68,9 @@ Public Class Visiteur_Rediger_compte_rendu
             Else
                 'Ajout de la ligne a la liste
                 Me.DataGridViewMedicaments.Rows.Add()
-                Me.DataGridViewMedicaments.Rows.Item(nb_medicaments).Cells.Item(0).Value = CInt(TextBoxQuantite.Text)
-                Me.DataGridViewMedicaments.Rows.Item(nb_medicaments).Cells.Item(1).Value = ComboBoxMedicaments.Text
-                Me.DataGridViewMedicaments.Rows.Item(nb_medicaments).Cells.Item(2).Value = ComboBoxMedicaments.SelectedValue
+                Me.DataGridViewMedicaments.Rows.Item(NB_Colonne_Datagrid - 1).Cells.Item(0).Value = CInt(TextBoxQuantite.Text)
+                Me.DataGridViewMedicaments.Rows.Item(NB_Colonne_Datagrid - 1).Cells.Item(1).Value = ComboBoxMedicaments.Text
+                Me.DataGridViewMedicaments.Rows.Item(NB_Colonne_Datagrid - 1).Cells.Item(2).Value = ComboBoxMedicaments.SelectedValue
             End If
         Else
             'Sinon on avertit l'utilisateur
@@ -103,21 +105,21 @@ Public Class Visiteur_Rediger_compte_rendu
             MessageBox.Show("Vous n'avez pas donné de nom à votre compte-rendu")
         Else
             'insertion du compte-rendu
-            Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker.Value.Date & "', 'DD/MM/YYYY'), '" & Regex.Replace(TextBoxMotif.Text, "[^a-zA-Z0-9]", "") & "', '" & ComboBoxPraticien.SelectedValue & "', '" & id_utilisateur & "')"
-            Form1.myCommand.Connection = Form1.myConnection
-            Form1.myCommand.CommandText = insertCompteRendu
-            Form1.myCommand.ExecuteNonQuery()
+            Dim insertCompteRendu As String = "INSERT INTO compte_rendu(cr_date, cr_modif,P_ID,ID) values (to_date('" & DateTimePicker.Value.Date.ToString("dd-MM-yyyy") & "', 'DD/MM/YYYY'), '" & Regex.Replace(TextBoxMotif.Text, "[^a-zA-Z0-9\s(),.]", "") & "', '" & ComboBoxPraticien.SelectedValue & "', '" & id_utilisateur & "')"
+            myCommand.Connection = Form1.myConnection
+            myCommand.CommandText = insertCompteRendu
+            myCommand.ExecuteNonQuery()
 
             'recuperation de l'id du dernier compte-rendu
             Dim plus_grand_id_CR As String = "SELECT cr_id FROM COMPTE_RENDU ORDER BY CAST(cr_id AS DECIMAL(5,2))"
-            Form1.myCommand.Connection = Form1.myConnection
-            Form1.myCommand.CommandText = plus_grand_id_CR
-            Form1.myReader = Form1.myCommand.ExecuteReader
+            myCommand.Connection = Form1.myConnection
+            myCommand.CommandText = plus_grand_id_CR
+            myReader = myCommand.ExecuteReader
             Dim id_cr As String = ""
-            While Form1.myReader.Read
-                id_cr = Form1.myReader.GetString(0)
+            While myReader.Read
+                id_cr = myReader.GetString(0)
             End While
-            Form1.myReader.Close()
+            myReader.Close()
 
             id_cr = (id_cr)
 
@@ -141,9 +143,9 @@ Public Class Visiteur_Rediger_compte_rendu
                     MessageBox.Show("Le numero ==> '" + quantite + "' n'a pas de medicaments associé !")
                 ElseIf Est_Numerique Then
                     insertQuantiteCompteRendu = "INSERT INTO quantite(CR_ID, M_ID, quantite) values ('" & id_cr & "','" & id_medicament & "','" & quantite & "')"
-                    Form1.myCommand.Connection = Form1.myConnection
-                    Form1.myCommand.CommandText = insertQuantiteCompteRendu
-                    Form1.myCommand.ExecuteNonQuery()
+                    myCommand.Connection = Form1.myConnection
+                    myCommand.CommandText = insertQuantiteCompteRendu
+                    myCommand.ExecuteNonQuery()
                 Else
                     Dim chaine As String = "L'élément numéro " & DataGridViewMedicaments.Rows.Item(index).Cells.Item(0).Value & "' n'est pas un nombre"
                     MessageBox.Show(chaine)
@@ -164,7 +166,7 @@ Public Class Visiteur_Rediger_compte_rendu
                 Me.Close()
             Else
                 type_Utilisateur = ""
-                Form1.Show()
+                Show()
                 Me.Close()
             End If
 
@@ -184,8 +186,9 @@ Public Class Visiteur_Rediger_compte_rendu
             Me.Close()
         Else
             type_Utilisateur = ""
-            Form1.Show()
+            Show()
             Me.Close()
         End If
     End Sub
+
 End Class

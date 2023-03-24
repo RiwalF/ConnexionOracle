@@ -4,9 +4,8 @@ Imports System.Text
 Public Class Form1
 
     Public myConnection As New Odbc.OdbcConnection
-    Public myCommand As New Odbc.OdbcCommand
-    Public myReader As Odbc.OdbcDataReader
-    Public myAdapter As Odbc.OdbcDataAdapter
+    Dim myCommand As New Odbc.OdbcCommand
+    Dim myReader As Odbc.OdbcDataReader
     Dim my2Command As New Odbc.OdbcCommand
     Dim my2Reader As Odbc.OdbcDataReader
 
@@ -66,7 +65,7 @@ Public Class Form1
         While myReader.Read
             If (myReader.GetString(0)) = 1 Then
                 type_Utilisateur = "Responsable"
-                Dim commande As String = "SELECT NOM,ID
+                Dim commande As String = "SELECT NOM,PRENOM,ID
                                     FROM RESPONSABLE_SECTEUR
                                     WHERE PRENOM='" & TextBoxUsername.Text & "'
                                     AND MDP='" & passwordHashString & "'"
@@ -76,10 +75,10 @@ Public Class Form1
 
                 While my2Reader.Read
                     Nom = my2Reader.GetString(0)
-                    id_utilisateur = my2Reader.GetString(1)
+                    Prenom = my2Reader.GetString(1)
+                    id_utilisateur = my2Reader.GetString(2)
                 End While
                 my2Reader.Close()
-                Prenom = TextBoxUsername.Text
                 Accueil_responsable.Show()
                 Me.Hide()
             Else
@@ -95,7 +94,7 @@ Public Class Form1
         While myReader.Read
             If (myReader.GetString(0)) = 1 Then
                 type_Utilisateur = "Visiteur"
-                Dim commande As String = "SELECT NOM,ID
+                Dim commande As String = "SELECT NOM,PRENOM,ID
                                     FROM DELEGUE_VISITEUR
                                     WHERE PRENOM='" & TextBoxUsername.Text & "'
                                     AND MDP='" & passwordHashString & "'
@@ -106,7 +105,8 @@ Public Class Form1
 
                 While my2Reader.Read
                     Nom = my2Reader.GetString(0)
-                    id_utilisateur = my2Reader.GetString(1)
+                    Prenom = my2Reader.GetString(1)
+                    id_utilisateur = my2Reader.GetString(2)
                 End While
                 my2Reader.Close()
                 Prenom = TextBoxUsername.Text
@@ -126,7 +126,7 @@ Public Class Form1
         While myReader.Read
             If (myReader.GetString(0)) = 1 Then
                 type_Utilisateur = "Delegue"
-                Dim commande As String = "SELECT NOM,ID
+                Dim commande As String = "SELECT NOM,PRENOM,ID
                                     FROM DELEGUE_VISITEUR
                                     WHERE PRENOM='" & TextBoxUsername.Text & "'
                                     AND MDP='" & passwordHashString & "'
@@ -137,7 +137,8 @@ Public Class Form1
 
                 While my2Reader.Read
                     Nom = my2Reader.GetString(0)
-                    id_utilisateur = my2Reader.GetString(1)
+                    Prenom = my2Reader.GetString(1)
+                    id_utilisateur = my2Reader.GetString(2)
                 End While
                 my2Reader.Close()
                 Prenom = TextBoxUsername.Text

@@ -60,7 +60,7 @@ Partial Class Form1
         Me.LabelUsername.Name = "LabelUsername"
         Me.LabelUsername.Size = New System.Drawing.Size(83, 20)
         Me.LabelUsername.TabIndex = 2
-        Me.LabelUsername.Text = "Username :"
+        Me.LabelUsername.Text = "Identifiant :"
         '
         'TextBoxPassword
         '
@@ -76,11 +76,11 @@ Partial Class Form1
         '
         Me.LabelPassword.AutoSize = True
         Me.LabelPassword.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPassword.Location = New System.Drawing.Point(525, 285)
+        Me.LabelPassword.Location = New System.Drawing.Point(504, 285)
         Me.LabelPassword.Name = "LabelPassword"
-        Me.LabelPassword.Size = New System.Drawing.Size(82, 17)
+        Me.LabelPassword.Size = New System.Drawing.Size(103, 17)
         Me.LabelPassword.TabIndex = 4
-        Me.LabelPassword.Text = "Password :"
+        Me.LabelPassword.Text = "Mot de passe :"
         '
         'ButtonLogin
         '
@@ -89,7 +89,7 @@ Partial Class Form1
         Me.ButtonLogin.Name = "ButtonLogin"
         Me.ButtonLogin.Size = New System.Drawing.Size(91, 40)
         Me.ButtonLogin.TabIndex = 5
-        Me.ButtonLogin.Text = "Login"
+        Me.ButtonLogin.Text = "Connexion"
         Me.ButtonLogin.UseVisualStyleBackColor = True
         '
         'LabelConnexion

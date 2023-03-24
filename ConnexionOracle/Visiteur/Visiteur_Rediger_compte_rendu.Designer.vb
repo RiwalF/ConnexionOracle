@@ -89,7 +89,6 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.ComboBoxMedicaments.Name = "ComboBoxMedicaments"
         Me.ComboBoxMedicaments.Size = New System.Drawing.Size(222, 21)
         Me.ComboBoxMedicaments.TabIndex = 17
-        Me.ComboBoxMedicaments.DropDownStyle = ComboBoxStyle.DropDownList
         '
         'TextBoxQuantite
         '
@@ -110,7 +109,6 @@ Partial Class Visiteur_Rediger_compte_rendu
         Me.ComboBoxPraticien.Name = "ComboBoxPraticien"
         Me.ComboBoxPraticien.Size = New System.Drawing.Size(390, 21)
         Me.ComboBoxPraticien.TabIndex = 20
-        Me.ComboBoxPraticien.DropDownStyle = ComboBoxStyle.DropDownList
         '
         'ButtonCreerCompteRendu
         '
